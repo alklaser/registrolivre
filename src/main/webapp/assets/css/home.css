@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900);
+
+body {	
+	background-color:#E1E1E1;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+.home {
+	background-color: transparent;
+	border: 0 !important;
+}
+
+.descricao {
+	color: #2c3e50;	
+	line-height: 30px;
+	font-family: Lato;
+	font-weight: 300;
+}
+
+.panel-default>.panel-heading {
+	background-color: transparent;
+	border: 0;
+}
+
+#registrolivre {
+	color: #2c3e50;
+	font-size: 60px;
+	font-family: "Montserrat-Hairline";	
+}
+
+.logo{
+	width:200px;
+	height:230px;
+}
