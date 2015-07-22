@@ -15,3 +15,11 @@ O **Registro Livre** é uma plataforma de dados abertos cujo objetivo principal 
 * JUnit
 * Hamcrest
 * Mockito
+
+## Prerequisite to execute test
+
+##### For Mac OS X
+
+```
+$ brew install node
+```
