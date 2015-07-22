@@ -26,8 +26,13 @@ targetCompatibility = 1.8
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
+    compile 'org.hibernate:hibernate-core:4.3.10.Final'
+    compile "org.projectlombok:lombok:1.16.4"
+
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-all:1.9.5'
+
+
 }
 
 task wrapper(type: Wrapper) {

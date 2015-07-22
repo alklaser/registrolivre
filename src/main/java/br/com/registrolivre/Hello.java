@@ -1,14 +1,12 @@
 package br.com.registrolivre;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.experimental.FieldDefaults;
+
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Hello {
-
-    private final String helloMessage;
-
-    public Hello(String helloMessage) {
-        this.helloMessage = helloMessage;
-    }
-
-    public String getHelloMessage() {
-        return helloMessage;
-    }
+    @Getter String helloMessage;
 }
