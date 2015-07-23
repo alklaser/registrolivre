@@ -31,6 +31,6 @@ describe("People Controller", function() {
         $scope.people[0].selected = true;
         $scope.$apply();
 
-        $scope.peopleSelected.should.be.deep.equal(["Person"]);
+        $scope.peopleSelected.should.be.deep.equal(["Person 1"]);
     });
 });

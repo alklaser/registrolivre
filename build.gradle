@@ -31,10 +31,32 @@ dependencies {
 
     testCompile 'junit:junit:4.12'
     testCompile 'org.mockito:mockito-all:1.9.5'
-
-
 }
+
+task npmInstall(type: Exec) {
+    commandLine "npm", "install"
+}
+
+task npmTest(type: Exec) {
+    commandLine "npm", "test"
+}
+
+task jsTest(dependsOn: ['npmInstall', 'npmTest'])
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
+}
+
+test {
+
+    clean.execute()
+    testLogging.showStandardStreams = true
+
+    onOutput { descriptor, event ->
+        logger.lifecycle("Test: " + descriptor + " produced standard out/err: " + event.message )
+    }
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }

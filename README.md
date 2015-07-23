@@ -15,11 +15,31 @@ O **Registro Livre** é uma plataforma de dados abertos cujo objetivo principal 
 * JUnit
 * Hamcrest
 * Mockito
+* Jasmine
+* Karma
+* Sinon
+* Chai
 
-## Prerequisite to execute test
+## Pré-requisitos para executar os testes de front-end
 
-##### For Mac OS X
+##### Mac OS X
 
 ```
 $ brew install node
+```
+
+No Mac OS X, instalando somente o 'node', o npm já é incluso.
+
+##### Linux
+
+```
+$ sudo apt-get update
+$ sudo apt-get install nodejs
+$ sudo apt-get install npm
+```
+
+## Como executar os testes de front-end
+
+```
+$ ./gradlew jsTest
 ```

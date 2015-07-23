@@ -7,13 +7,13 @@ module.exports = function (config) {
         frameworks: ['jasmine', 'sinon-chai'],
 
         files: [
-            'node_modules/angular/angular.js',
-            'node_modules/angular-mocks/angular-mocks.js',
-            'main/webapp/angular/*.js',
-            'test/webapp/angular/*-spec.js'
+            '../node_modules/angular/angular.js',
+            '../node_modules/angular-mocks/angular-mocks.js',
+            'main/webapp/js/*.js',
+            'test/webapp/js/*-spec.js'
         ],
 
-        reporters: ['progress'],
+        reporters: ['spec'],
 
         port: 9876,
         colors: true,
