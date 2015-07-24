@@ -43,3 +43,29 @@ $ sudo apt-get install npm
 ```
 $ ./gradlew jsTest
 ```
+
+## Criando migrations
+
+Migrations devem ser adicionadas no diretório src/main/resources/db/migration/.
+
+##### Nomenclatura
+
+Os arquivos de migration devem seguir o padrão abaixo de nomenclatura.
+* Prefixo: V
+* Versão: Pontos e underscores separão as partes, você pode usar quantas partes quiser
+* Separador: __ (dois underscores)
+* Descrição: Underscores separam as palavras
+* Sufixo: .sql
+
+**Exemplo**: V1__init.sql
+
+#### Executar migrations
+
+```
+$ ./gradlew flywayMigrate
+```
+Ou
+```
+$ ./gradlew run
+```
+Obs: Executando o comando run as migrations serão executadas automaticamente.

@@ -4,6 +4,7 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:1.2.5.RELEASE")
+        classpath("org.flywaydb:flyway-gradle-plugin:3.2.1")
     }
 }
 
@@ -11,6 +12,7 @@ apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: 'org.flywaydb.flyway'
 
 jar {
     baseName = 'gs-rest-service'
@@ -19,6 +21,16 @@ jar {
 
 repositories {
     mavenCentral()
+}
+
+flyway {
+
+    Properties flywayProps = new Properties()
+    flywayProps.load(new FileInputStream("src/main/resources/application.properties"))
+
+    url = flywayProps['spring.datasource.url']
+    user = flywayProps['spring.datasource.username']
+    password = flywayProps['spring.datasource.password']
 }
 
 sourceCompatibility = 1.8
