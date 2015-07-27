@@ -56,6 +56,10 @@ task npmTest(type: Exec) {
     commandLine "npm", "test"
 }
 
+task initDatabase(type: Exec) {
+    commandLine 'scripts/./install_database.sh'
+}
+
 task jsTest(dependsOn: ['npmInstall', 'npmTest'])
 
 task wrapper(type: Wrapper) {
