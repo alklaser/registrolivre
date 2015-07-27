@@ -20,6 +20,14 @@ O **Registro Livre** é uma plataforma de dados abertos cujo objetivo principal 
 * Sinon
 * Chai
 
+## Configurando banco de dados
+
+Para configurar o banco executar o comando abaixo:
+
+```
+$ ./gradlew initDatabase
+```
+
 ## Pré-requisitos para executar os testes de front-end
 
 ##### Mac OS X

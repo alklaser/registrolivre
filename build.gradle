@@ -57,6 +57,7 @@ task npmTest(type: Exec) {
 }
 
 task initDatabase(type: Exec) {
+    description = 'Configure database'
     commandLine 'scripts/./install_database.sh'
 }
 
