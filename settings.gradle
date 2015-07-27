@@ -1,0 +1,2 @@
+rootProject.name = 'registrolivre'
+include 'infrastructure/application', 'infrastructure/go'

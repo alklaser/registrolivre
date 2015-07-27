@@ -1,0 +1,11 @@
+task bringUpGoServer(type: Exec) {
+    commandLine "vagrant", "up", "--no-provision"
+}
+
+task destroyGoServer(type: Exec) {
+    commandLine "vagrant", "destroy", "--force"
+}
+
+task statusGoServer(type: Exec) {
+    commandLine "vagrant", "status"
+}

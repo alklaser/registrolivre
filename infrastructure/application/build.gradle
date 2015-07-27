@@ -1,0 +1,23 @@
+task bringUpLocalAppServer(type: Exec) {
+    commandLine "vagrant", "up", "--no-provision"
+}
+
+task provisionLocalAppServer(type: Exec) {
+    commandLine "vagrant", "provision"
+}
+
+task destroyLocalAppServer(type: Exec) {
+    commandLine "vagrant", "destroy", "--force"
+}
+
+task statusLocalAppServer(type: Exec) {
+    commandLine "vagrant", "status"
+}
+
+task deployLocalAppServer(type: Exec) {
+    commandLine "sh", "infrastructure/application/scripts/deploy/local/install.sh"
+}
+
+provisionLocalAppServer.mustRunAfter(bringUpLocalAppServer)
+destroyLocalAppServer.mustRunAfter(bringUpLocalAppServer)
+deployLocalAppServer.mustRunAfter(provisionLocalAppServer)
