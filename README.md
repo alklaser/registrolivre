@@ -86,10 +86,10 @@ Para ter uma instância do GO-CD executando no seu computador, basta executar o 
 $ ./gradlew bringUpGoServer
 ```
 
-Após a inicialização da maquina, execute privisionGoServer para fazer o provisionamento da maquina, o que irá instalar e configurar todos os requisitos necessários:
+Após a inicialização da maquina, execute provisionGoServer para fazer o provisionamento da maquina, o que irá instalar e configurar todos os requisitos necessários:
 
 ```
-$ ./gradlew privisionGoServer
+$ ./gradlew provisionGoServer
 ```
 
 Ao fazer isso uma maquina virtual será criada em seu computador e o GO-CD será configurado dentro dela, permitindo o acesso ao GO-CD através das configurações informadas no Vagrantfile na pasta infrastructure/go. Se as configurações  padrões foram mantidas, o acesso será através da url:  192.168.33.10:8153/go.
@@ -100,7 +100,7 @@ Além disso você pode destruir a maquina virtual executando o comando:
 $ ./gradlew destroyGoServer
 ```
 
-A qualquer momento você pode verificar o status da MV qu contem a instancia do GO utilizado:
+E a qualquer momento  verificar o status da maquina virtual usando:
 
 ```
 $ ./gradlew statusGoServer
