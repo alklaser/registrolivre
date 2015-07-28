@@ -1,5 +1,6 @@
 #!/bin/sh
 
+sudo apt-get install build-essential
 sudo apt-get update
 sudo apt-get --yes install curl
 curl -sL https://deb.nodesource.com/setup | sudo bash -
