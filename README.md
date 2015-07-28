@@ -10,6 +10,8 @@ O **Registro Livre** é uma plataforma de dados abertos cujo objetivo principal 
 * PostgreSQL
 * Hibernate
 * [Bootstrap3](http://getbootstrap.com/)
+* [GO](http://www.go.cd/)
+* [Vagrant](https://www.vagrantup.com/) 
 
 ##### Testes
 * JUnit
