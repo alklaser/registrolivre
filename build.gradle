@@ -52,6 +52,10 @@ task npmInstall(type: Exec) {
     commandLine "npm", "install"
 }
 
+task deleteNodeFolder(type: Delete) {
+    delete "node_modules"
+}
+
 task npmTest(type: Exec) {
     commandLine "npm", "test"
 }
@@ -61,7 +65,7 @@ task initDatabase(type: Exec) {
     commandLine 'scripts/./install_database.sh'
 }
 
-task jsTest(dependsOn: ['npmInstall', 'npmTest'])
+task jsTest(dependsOn: ['deleteNodeFolder','npmInstall', 'npmTest'])
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'

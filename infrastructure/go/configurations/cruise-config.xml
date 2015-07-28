@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="75">
+  <server artifactsdir="artifacts" commandRepositoryLocation="default" />
+  <pipelines group="PraiaThoughtworks">
+    <pipeline name="RegistroLivre">
+      <materials>
+        <git url="https://github.com/juniorvanin/GOTeste" />
+      </materials>
+      <stage name="Build">
+        <jobs>
+          <job name="Build">
+            <tasks>
+              <exec command="./gradlew">
+                <arg>build</arg>
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+      <stage name="UI_Tests">
+        <jobs>
+          <job name="UI_Test">
+            <tasks>
+              <exec command="./gradlew">
+                <arg>jsTest</arg>
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+      <stage name="Unit_Tests">
+        <jobs>
+          <job name="Unit_Tests">
+            <tasks>
+              <exec command="./gradlew">
+                <arg>test</arg>
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+    </pipeline>
+  </pipelines>
+  <agents>
+    <agent hostname="precise32" ipaddress="10.0.2.15" uuid="bceca59e-a663-4a8c-9e34-d6cf08224932" />
+  </agents>
+</cruise>
