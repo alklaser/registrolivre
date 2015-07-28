@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="75">
-  <server artifactsdir="artifacts" commandRepositoryLocation="default" />
+  <server artifactsdir="artifacts" commandRepositoryLocation="default" serverId="" />
   <pipelines group="PraiaThoughtworks">
     <pipeline name="RegistroLivre">
       <materials>
-        <git url="https://github.com/juniorvanin/GOTeste" />
+        <git url="https://github.com/ThoughtWorksInc/registrolivre" />
       </materials>
       <stage name="Build">
         <jobs>
@@ -41,7 +41,4 @@
       </stage>
     </pipeline>
   </pipelines>
-  <agents>
-    <agent hostname="precise32" ipaddress="10.0.2.15" uuid="bceca59e-a663-4a8c-9e34-d6cf08224932" />
-  </agents>
 </cruise>
