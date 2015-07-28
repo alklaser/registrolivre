@@ -13,7 +13,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
      box.memory = 1024
   end
 
-  config.vm.provision "shell", path: "scripts/provision/openjdk-8.sh"
+  config.vm.provision "shell", path: "../scripts/provision/open-jdk8.sh"
   config.vm.provision "shell", path: "scripts/provision/git.sh"
   config.vm.provision "shell", path: "scripts/provision/nodejs.sh"
   config.vm.provision "shell", path: "scripts/provision/go-server.sh"

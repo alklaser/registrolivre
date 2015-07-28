@@ -2,6 +2,10 @@ task bringUpGoServer(type: Exec) {
     commandLine "vagrant", "up", "--no-provision"
 }
 
+task provisionGoServer(type: Exec) {
+    commandLine "vagrant", "provision"
+}
+
 task destroyGoServer(type: Exec) {
     commandLine "vagrant", "destroy", "--force"
 }
@@ -9,3 +13,6 @@ task destroyGoServer(type: Exec) {
 task statusGoServer(type: Exec) {
     commandLine "vagrant", "status"
 }
+
+provisionGoServer.mustRunAfter(bringUpGoServer)
+destroyGoServer.mustRunAfter(bringUpGoServer)
