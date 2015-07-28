@@ -77,3 +77,25 @@ Ou
 $ ./gradlew run
 ```
 Obs: Executando o comando run as migrations serão executadas automaticamente.
+
+## Como iniciar o GO-CD no seu computador
+
+Para ter uma instância do GO-CD executando no seu computador, basta executar o comando abaixo:
+
+```
+$ ./gradlew bringUpGoServer
+```
+
+Ao fazer isso uma maquina virtual será criada em seu computador e o GO-CD será configurado dentro dela, permitindo o acesso ao GO-CD através das configurações informadas no Vagrantfile na pasta infrastructure/go. Se as configurações  padrões foram mantidas, o acesso será através da url:  192.168.33.10:8153/go.
+
+Além disso você pode destruir a maquina virtual executando o comando:
+
+```
+$ ./gradlew destroyGoServer
+```
+
+A qualquer momento você pode verificar o status da MV qu contem a instancia do GO utilizado:
+
+```
+$ ./gradlew statusGoServer
+```
