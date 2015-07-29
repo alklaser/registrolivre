@@ -107,3 +107,21 @@ E a qualquer momento  verificar o status da maquina virtual usando:
 ```
 $ ./gradlew statusGoServer
 ```
+
+#### Permissões de acesso
+GO-CD provem duas formas para autenticação de acesso. A primeira utilizando um arquivo de configuração de senhas (no formato padrão do Apache htpasswd) ou por autenticação LDAP/ActiveDirectory. Para este projeto nós ultizaremos a primeira opção. Você pode ler mais sobre as formas de autenticação lendo a documentado do GO-CD na parte de autentication, [clicando aqui](http://www.go.cd/documentation/user/current/configuration/dev_authentication.html).
+
+O arquivo com as configurações de senhas pode ser encontrado em:
+
+```
+$ infrastructure/go/configurations/htpasswd
+```
+
+Para criar um login de acesso, primeiro verifique se você já possui o Apache htpasswd instalado no seu computador, caso não o possua, [clique aqui](http://www.go.cd/documentation/user/current/configuration/dev_authentication.html#generating-passwords-using-htpasswd ) para saber como instalar.
+
+Uma vez instalado, vá até a pasta root do projeto e execute o seguinte comando:
+```
+$ htpasswd -s infrastructure/go/configurations/htpasswd "username desejado"
+```
+A senha desejada será solicidada e será armazenada no arquivo usando hash SHA1.
+
