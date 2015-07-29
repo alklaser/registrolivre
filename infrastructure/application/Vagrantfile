@@ -16,5 +16,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     box.memory = 524
   end
 
+  config.vm.synced_folder "public_keys/", "/home/vagrant/public_keys", create: true
+
+  # Provision
   config.vm.provision :shell, :path => "../scripts/provision/open-jdk8.sh"
+  config.vm.provision :shell, :path => "scripts/provision/create-user.sh"
+  config.vm.provision :shell, :path => "scripts/provision/ssh-user-permission.sh"
+
 end

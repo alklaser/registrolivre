@@ -1,3 +1,5 @@
+#!/bin/sh
+
 echo "=====> Installing openjdk-8"
 sudo apt-get update
 sudo apt-get --yes install software-properties-common  python-software-properties
