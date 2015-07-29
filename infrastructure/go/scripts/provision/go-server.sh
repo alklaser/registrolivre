@@ -5,6 +5,10 @@ wget --quiet -O - "https://bintray.com/user/downloadSubjectPublicKey?username=go
 sudo apt-get update
 sudo apt-get --yes install go-server
 
+#copy file that contains login informations of go users in hash64
+cp /vagrant/configurations/htpasswd /etc/go
+
+#copy cruise-config.xml that contains the pipeline of this project
 /etc/init.d/go-server stop
 cp /vagrant/configurations/cruise-config.xml /etc/go
 /etc/init.d/go-server start
