@@ -23,8 +23,12 @@ O **Registro Livre** é uma plataforma de dados abertos cujo objetivo principal 
 * Chai
 
 ## Configurando banco de dados
-
-Para configurar o banco executar o comando abaixo:
+##### Pré-requisitos para executar o script
+###### Mac OS X
+```
+brew install wget
+```
+**Para configurar o banco executar o comando abaixo:**
 
 ```
 $ ./gradlew initDatabase
