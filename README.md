@@ -94,7 +94,7 @@ Após a inicialização da maquina, execute provisionGoServer para fazer o provi
 $ ./gradlew provisionGoServer
 ```
 
-Ao fazer isso uma maquina virtual será criada em seu computador e o GO-CD será configurado dentro dela, permitindo o acesso ao GO-CD através das configurações informadas no Vagrantfile na pasta infrastructure/go. Se as configurações  padrões foram mantidas, o acesso será através da url:  192.168.33.10:8153/go.
+Ao fazer isso o GO-CD será configurado dentro da maquina virtual criada no step anterior, permitindo o acesso ao GO-CD através das configurações informadas no Vagrantfile na pasta infrastructure/go. Se as configurações  padrões foram mantidas, o acesso será através da url:  192.168.33.10:8153/go.
 
 Além disso você pode destruir a maquina virtual executando o comando:
 
@@ -123,5 +123,5 @@ Uma vez instalado, vá até a pasta root do projeto e execute o seguinte comando
 ```
 $ htpasswd -s infrastructure/go/configurations/htpasswd "username desejado"
 ```
-A senha desejada será solicidada e será armazenada no arquivo usando hash SHA1.
+A senha desejada será solicidada e será armazenada no arquivo htpasswd (usando hash SHA1), lembrando que será necessário executar o provisionamento da maquina virtual utilizada pelo go novamente.
 
