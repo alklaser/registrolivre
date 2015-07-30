@@ -15,7 +15,11 @@ task statusLocalAppServer(type: Exec) {
 }
 
 task deployLocalAppServer(type: Exec) {
-    commandLine "sh", "infrastructure/application/scripts/deploy/local/install.sh"
+    commandLine "sh", "scripts/deploy/local/install.sh"
+}
+
+task provisionProductionServer(type: Exec) {
+    commandLine "sh", "scripts/provision/provision-to-aws.sh"
 }
 
 provisionLocalAppServer.mustRunAfter(bringUpLocalAppServer)
