@@ -1,0 +1,7 @@
+task createDatabase(type: Exec) {
+    commandLine "sh", "./scripts/create-database.sh"
+}
+
+task destroyDatabase(type: Exec) {
+    commandLine "sh", "./scripts/destroy-database.sh"
+}

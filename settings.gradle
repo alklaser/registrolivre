@@ -1,2 +1,2 @@
 rootProject.name = 'registrolivre'
-include 'infrastructure/application', 'infrastructure/go'
+include 'infrastructure/application', 'infrastructure/go', 'infrastructure/database'
