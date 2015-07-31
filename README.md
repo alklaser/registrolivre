@@ -22,6 +22,13 @@ O **Registro Livre** é uma plataforma de dados abertos cujo objetivo principal 
 * Sinon
 * Chai
 
+
+# Variáveis de Ambiente
+Para a conexão com o servidor remoto, é necessário definir as seguintes variáveis de ambiente:
+
+* **REGISTROLIVRE_PRIVATE_KEY** – Caminho para a sua chave privada.
+* **REGISTROLIVRE_IP_OR_DNS** – IP ou DNS do servidor.
+
 ## Configurando banco de dados
 ##### Pré-requisitos para executar o script
 ###### Mac OS X
