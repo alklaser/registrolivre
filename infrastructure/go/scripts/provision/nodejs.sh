@@ -1,8 +1,12 @@
 #!/bin/sh
 
-sudo apt-get install build-essential
-sudo apt-get update
-sudo apt-get --yes install curl
-curl -sL https://deb.nodesource.com/setup | sudo bash -
-sudo apt-get install -y nodejs
-sudo npm install npm -g
+set -e
+
+sudo su <<BLOCK
+    apt-get install --yes build-essential
+    apt-get update
+    apt-get --yes install curl
+    curl -sL https://deb.nodesource.com/setup | sudo bash -
+    apt-get install -y nodejs
+    npm install npm -g
+BLOCK

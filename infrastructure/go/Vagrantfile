@@ -13,6 +13,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
      box.memory = 1024
   end
 
+  config.vm.provision "file", source: "configurations/cruise-config.xml", destination: "/tmp/cruise-config.xml"
+  config.vm.provision "file", source: "configurations/htpasswd", destination: "/tmp/htpasswd"
+
   config.vm.provision "shell", path: "../scripts/provision/open-jdk8.sh"
   config.vm.provision "shell", path: "scripts/provision/export_java_home.sh"
   config.vm.provision "shell", path: "scripts/provision/git.sh"
@@ -20,4 +23,4 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "shell", path: "scripts/provision/go-server.sh"
   config.vm.provision "shell", path: "scripts/provision/go-agent.sh"
 
-end
+ end

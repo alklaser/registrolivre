@@ -1,14 +1,18 @@
 #!/bin/sh
 
-sudo echo "deb http://dl.bintray.com/gocd/gocd-deb/ /" > /etc/apt/sources.list.d/gocd.list
-wget --quiet -O - "https://bintray.com/user/downloadSubjectPublicKey?username=gocd" | sudo apt-key add -
-sudo apt-get update
-sudo apt-get --yes install go-server
+set -e
 
-#copy file that contains login informations of go users in hash64
-cp /vagrant/configurations/htpasswd /etc/go
+sudo su <<BLOCK
+    echo "deb http://dl.bintray.com/gocd/gocd-deb/ /" > /etc/apt/sources.list.d/gocd.list
+    wget --quiet -O - "https://bintray.com/user/downloadSubjectPublicKey?username=gocd" | sudo apt-key add -
+    apt-get --yes purge go-server
+    apt-get update
+    apt-get --yes install go-server
 
-#copy cruise-config.xml that contains the pipeline of this project
-/etc/init.d/go-server stop
-cp /vagrant/configurations/cruise-config.xml /etc/go
-/etc/init.d/go-server start
+    #copying configuration files
+
+    /etc/init.d/go-server stop
+    cp /tmp/cruise-config.xml /etc/go
+    cp /tmp/htpasswd /etc/go
+    /etc/init.d/go-server start
+BLOCK

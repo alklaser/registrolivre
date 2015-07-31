@@ -1,4 +1,8 @@
 #!/bin/sh
 
-sudo apt-get update
-sudo apt-get --yes install git
+set -e
+
+sudo su <<BLOCK
+    apt-get update
+    apt-get --yes install git
+BLOCK
