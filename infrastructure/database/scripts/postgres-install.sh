@@ -3,7 +3,8 @@
 set -e
 
 if [ -z "$(which postgres)" ] || [ "$(which postgres)" == 'postgres not found' ]; then
-    sudo apt-get install postgresql-9.1 --yes
+    sudo sh /home/registrolivre/database/apt.postgresql.org.sh
+    sudo apt-get install postgresql-9.4 --yes
 fi
 
 if [ -z "$(sudo -u postgres psql -c "SELECT datname FROM pg_database WHERE datname = 'registro_livre';" | grep 'registro_livre')" ]; then

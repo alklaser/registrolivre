@@ -8,5 +8,5 @@ if [ ! -z "$(sudo -u postgres psql -c "SELECT datname FROM pg_database WHERE dat
   fi
 
   if [ ! -z "$(which postgres)" ] && [ "$(which postgres)" != 'postgres not found' ]; then
-      sudo apt-get --purge remove postgresql-9.1 --yes
+      sudo apt-get --purge remove postgresql-9.4 --yes
   fi
