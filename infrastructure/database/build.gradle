@@ -1,7 +1,15 @@
-task createDatabase(type: Exec) {
-    commandLine "sh", "./scripts/create-database.sh"
+task createLocalDatabase(type: Exec) {
+    commandLine "sh", "./scripts/local/create-database.sh"
 }
 
-task destroyDatabase(type: Exec) {
-    commandLine "sh", "./scripts/destroy-database.sh"
+task destroyLocalDatabase(type: Exec) {
+    commandLine "sh", "./scripts/local/destroy-database.sh"
+}
+
+task createProductionDatabase(type: Exec) {
+    commandLine "sh", "./scripts/production/create-database.sh"
+}
+
+task destroyProductionDatabase(type: Exec) {
+    commandLine "sh", "./scripts/production/destroy-database.sh"
 }

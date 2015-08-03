@@ -7,6 +7,6 @@ if [ ! -z "$(sudo -u postgres psql -c "SELECT datname FROM pg_database WHERE dat
       sudo -u postgres psql -c "DROP ROLE registro_livre_user;"
   fi
 
-  if [ ! -z "$(which postgres)" ] && [ "$(which postgres)" != 'postgres not found' ]; then
+  if [ ! -z "$(which postgres)" ] || [ "$(which postgres)" != 'postgres not found' ]; then
       sudo apt-get --purge remove postgresql-9.4 --yes
   fi
