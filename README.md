@@ -146,8 +146,8 @@ $ ./gradlew bringUpLocalAppServer"
 Para provisionar a máquina local, tem que configurar as variáveis de ambientes antes de executar a task "provisionLocalAppServer":
 
 - Variáveis de ambiente configuradas no arquivo .bashrc ou .zshrc (ou outro que esteja usando)
-REGISTROLIVRE_PRIVATE_KEY="<caminho_da_chave_privada>"
-LOCAL_REGISTROLIVRE_IP="<ip_maquina_local>"
+REGISTROLIVRE_PRIVATE_KEY="caminho_da_chave_privada"
+LOCAL_REGISTROLIVRE_IP="ip_maquina_local"
 
 - Provisionamento
 ```
@@ -171,16 +171,15 @@ Para destruir a máquina virtual:
 ```
 $ ./gradlew destroyLocalAppServer
 ```
-Url para acessar a aplicação
-http://192.168.33.71:5000/
+Url para acessar a aplicação: http://192.168.33.71:5000/
 
 # Aplicação em Produção
 
 Para provisionar a instância da AWS, tem que configurar as variáveis de ambientes antes de executar a task "provisionProductionAppServer":
 
 - Variáveis de ambiente configuradas no arquivo .bashrc ou .zshrc (ou outro que esteja usando)
-REGISTROLIVRE_PRIVATE_KEY="<caminho_da_chave_privada>"
-AWS_REGISTROLIVRE_IP="<ip_instancia_aws>"
+REGISTROLIVRE_PRIVATE_KEY="caminho_da_chave_privada"
+AWS_REGISTROLIVRE_IP="ip_instancia_aws"
 
 - Provisionamento
 ```
@@ -192,5 +191,4 @@ Para fazer o deploy da aplicação na AWS:
 ```
 $ ./gradlew deployProductionAppServer
 ```
-Url para acessar a aplicação
-http://ec2-54-232-246-149.sa-east-1.compute.amazonaws.com:5000/
+Url para acessar a aplicação: http://ec2-54-232-246-149.sa-east-1.compute.amazonaws.com:5000/
