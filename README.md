@@ -3,15 +3,15 @@
 O **Registro Livre** é uma plataforma de dados abertos cujo objetivo principal é colocar à disposição do público informações sobre empresas, imóveis e outros tipos de bens e atividades sujeitos a registro público no Brasil. Embora os dados disponíveis em cartórios e juntas comerciais sejam públicos, eles raramente são publicados. O cidadão que deseja ter acesso a contratos sociais e informações sobre propriedade de imóveis, por exemplo, precisa pagar taxas e aguardar vários dias para receber cópias de documentos. O Registro Livre vai reunir estes dados numa plataforma aberta, para a qual todo cidadão poderá contribuir. Desta forma, os registros públicos serão acessíveis a todos e tornados públicos de fato.
 
 ## Tecnologias e dependências
-* [Java 8](http://docs.oracle.com/javase/8/) 
-* [Spring MVC](https://spring.io/guides/gs/serving-web-content/) 
+* [Java 8](http://docs.oracle.com/javase/8/)
+* [Spring MVC](https://spring.io/guides/gs/serving-web-content/)
 * [SpringBoot](http://projects.spring.io/spring-boot/)
 * [Gradle](https://gradle.org/)
 * [PostgreSQL](http://www.postgresql.org/)
 * [Hibernate](http://hibernate.org/)
 * [Bootstrap3](http://getbootstrap.com/)
 * [GO](http://www.go.cd/)
-* [Vagrant](https://www.vagrantup.com/) 
+* [Vagrant](https://www.vagrantup.com/)
 * [JUnit](http://junit.org/)
 * [Hamcrest](https://code.google.com/p/hamcrest/wiki/Tutorial)
 * [Mockito](http://mockito.org/)
@@ -130,8 +130,10 @@ $ infrastructure/go/configurations/htpasswd
 Para criar um login de acesso, primeiro verifique se você já possui o Apache htpasswd instalado no seu computador, caso não o possua, [clique aqui](http://www.go.cd/documentation/user/current/configuration/dev_authentication.html#generating-passwords-using-htpasswd ) para saber como instalar.
 
 Uma vez instalado, vá até a pasta root do projeto e execute o seguinte comando:
+
 ```
 $ htpasswd -s infrastructure/go/configurations/htpasswd "username desejado"
+
 ```
 A senha desejada será solicidada e será armazenada no arquivo htpasswd (usando hash SHA1), lembrando que será necessário executar o provisionamento da maquina virtual utilizada pelo go novamente.
 
@@ -140,16 +142,20 @@ A senha desejada será solicidada e será armazenada no arquivo htpasswd (usando
 Para criar a máquina virtual no ambiente local, executar o script abaixo:
 
 ```
-$ ./gradlew bringUpLocalAppServer"
+$ ./gradlew bringUpLocalAppServer
 ```
 
 Para provisionar a máquina local, tem que configurar as variáveis de ambientes antes de executar a task "provisionLocalAppServer":
 
-- Variáveis de ambiente configuradas no arquivo .bashrc ou .zshrc (ou outro que esteja usando)
-REGISTROLIVRE_PRIVATE_KEY="caminho_da_chave_privada"
-LOCAL_REGISTROLIVRE_IP="ip_maquina_local"
+- Adicione as seguintes variáveis de ambiente:
+
+```
+export REGISTROLIVRE_PRIVATE_KEY="caminho_da_chave_privada"
+export AWS_REGISTROLIVRE_IP="ip_maquina_local"
+```
 
 - Provisionamento
+
 ```
 $ ./gradlew provisionLocalAppServer
 ```
@@ -175,13 +181,18 @@ Url para acessar a aplicação: http://192.168.33.71:5000/
 
 # Aplicação em Produção
 
-Para provisionar a instância da AWS, tem que configurar as variáveis de ambientes antes de executar a task "provisionProductionAppServer":
+Para provisionar a instância da AWS, você precisa configurar as variáveis de ambiente antes de executar a task "provisionProductionAppServer":
 
-- Variáveis de ambiente configuradas no arquivo .bashrc ou .zshrc (ou outro que esteja usando)
-REGISTROLIVRE_PRIVATE_KEY="caminho_da_chave_privada"
-AWS_REGISTROLIVRE_IP="ip_instancia_aws"
+
+- Adicione as seguintes variáveis de ambiente:
+
+```
+export REGISTROLIVRE_PRIVATE_KEY="caminho_da_chave_privada"
+export AWS_REGISTROLIVRE_IP="ip_instancia_aws"
+```
 
 - Provisionamento
+
 ```
 $ ./gradlew provisionProductionAppServer
 ```
