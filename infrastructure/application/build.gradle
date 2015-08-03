@@ -1,3 +1,9 @@
+subprojects {
+    dependencies {
+        rootProject
+    }
+}
+
 task bringUpLocalAppServer(type: Exec) {
     commandLine "vagrant", "up", "--no-provision"
 }
@@ -18,8 +24,12 @@ task deployLocalAppServer(type: Exec) {
     commandLine "sh", "scripts/deploy/local/install.sh"
 }
 
-task provisionProductionServer(type: Exec) {
+task provisionProductionAppServer(type: Exec) {
     commandLine "sh", "scripts/production/provision-to-aws.sh"
+}
+
+task deployProductionAppServer(type: Exec) {
+    commandLine "sh", "scripts/deploy/production/install.sh"
 }
 
 provisionLocalAppServer.mustRunAfter(bringUpLocalAppServer)
