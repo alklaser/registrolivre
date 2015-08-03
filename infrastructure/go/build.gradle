@@ -1,18 +1,26 @@
-task bringUpGoServer(type: Exec) {
+task bringUpGoServerLocally(type: Exec) {
     commandLine "vagrant", "up", "--no-provision"
 }
 
-task provisionGoServer(type: Exec) {
+task provisionGoServerLocally(type: Exec) {
     commandLine "vagrant", "provision"
 }
 
-task destroyGoServer(type: Exec) {
+task destroyGoServerLocally(type: Exec) {
     commandLine "vagrant", "destroy", "--force"
 }
 
-task statusGoServer(type: Exec) {
+task statusGoServerLocally(type: Exec) {
     commandLine "vagrant", "status"
 }
 
-provisionGoServer.mustRunAfter(bringUpGoServer)
-destroyGoServer.mustRunAfter(bringUpGoServer)
+task deployGoAgentToAWS(type: Exec){
+    commandLine "sh","scripts/production/deploy-go-agent-on-aws.sh"
+}
+
+task deployGoServerToAWS(type: Exec){
+    commandLine "sh","scripts/production/deploy-go-server-on-aws.sh"
+}
+
+provisionGoServerLocally.mustRunAfter(bringUpGoServerLocally)
+destroyGoServerLocally.mustRunAfter(bringUpGoServerLocally)
