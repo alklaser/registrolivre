@@ -8,4 +8,5 @@ sudo su <<BLOCK
     apt-get update
     apt-get --yes purge go-agent
     apt-get --yes install go-agent
+    cp /tmp/go/go-agent /etc/default/go-agent
 BLOCK
