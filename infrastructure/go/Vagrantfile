@@ -1,7 +1,6 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-
   config.vm.box = "ubuntu-14.04"
   config.vm.box_url = "http://files.vagrantup.com/precise64.box"
 
@@ -17,10 +16,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "file", source: "configurations/htpasswd", destination: "/tmp/htpasswd"
 
   config.vm.provision "shell", path: "../scripts/provision/open-jdk8.sh"
-  config.vm.provision "shell", path: "scripts/provision/export_java_home.sh"
+  config.vm.provision "shell", path: "scripts/provision/export-java_home.sh"
   config.vm.provision "shell", path: "scripts/provision/git.sh"
   config.vm.provision "shell", path: "scripts/provision/nodejs.sh"
   config.vm.provision "shell", path: "scripts/provision/go-server.sh"
   config.vm.provision "shell", path: "scripts/provision/go-agent.sh"
-
  end
