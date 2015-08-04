@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="75">
-  <server artifactsdir="artifacts" commandRepositoryLocation="default" serverId="" >
+  <server artifactsdir="artifacts" commandRepositoryLocation="default" serverId="">
     <security>
       <passwordFile path="/etc/go/htpasswd" />
     </security>
@@ -38,6 +38,26 @@
             <tasks>
               <exec command="./gradlew">
                 <arg>test</arg>
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
+      <stage name="Deploy_to_Production">
+        <approval type="manual" />
+        <environmentvariables>
+          <variable name="REGISTROLIVRE_PRIVATE_KEY">
+            <value>~/.ssh/registro-livre-key.pem</value>
+          </variable>
+          <variable name="AWS_REGISTROLIVRE_IP">
+            <value>54.232.246.149</value>
+          </variable>
+        </environmentvariables>
+        <jobs>
+          <job name="Deploy_to_Production">
+            <tasks>
+              <exec command="./gradlew">
+                <arg>deployProductionAppServer</arg>
               </exec>
             </tasks>
           </job>
