@@ -12,7 +12,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
      box.memory = 1024
   end
 
+<<<<<<< HEAD
   config.vm.provision "file", source: "configurations/cruise-config.xml", destination: "/tmp/cruise-config.xml"
+=======
+  config.vm.provision "file", source: "configurations/cruise-config.xml", destination: "/tmp/go/cruise-config.xml"
+>>>>>>> Junior|Julio - paths to configuration files fixed on Vagrantfile.
   config.vm.provision "file", source: "configurations/htpasswd", destination: "/tmp/go/htpasswd"
   config.vm.provision "file", source: "configurations/go-agent", destination: "/tmp/go/go-agent"
 
