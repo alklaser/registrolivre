@@ -13,8 +13,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.provision "file", source: "configurations/cruise-config.xml", destination: "/tmp/cruise-config.xml"
-  config.vm.provision "file", source: "configurations/htpasswd", destination: "/tmp/htpasswd"
-    config.vm.provision "file", source: "configurations/go-agent", destination: "/tmp/go-agent"
+  config.vm.provision "file", source: "configurations/htpasswd", destination: "/tmp/go/htpasswd"
+  config.vm.provision "file", source: "configurations/go-agent", destination: "/tmp/go/go-agent"
 
   config.vm.provision "shell", path: "../scripts/provision/open-jdk8.sh"
   config.vm.provision "shell", path: "scripts/provision/export-java_home.sh"
