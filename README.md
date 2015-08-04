@@ -85,7 +85,7 @@ Obs: Executando o comando run as migrations serão executadas automaticamente.
 
 # GO - Variáveis de Ambiente
 
-## Como fazer o deploy do GO-CD para uma maquina virtual na AWS
+## Como fazer o deploy do GO-CD em uma MV na AWS
 Para fazer o deploy, primeiramente você precisa definir as seguintes variaveis de ambiente: 
 
 * **GO_SERVER_REGISTROLIVRE_KEY** - Caminho da chave de acesso para conectar via ssh.
@@ -106,18 +106,18 @@ A qualquer momento você pode editar os arquivos de configuração do Go Server 
 
 Para mais informações sobre os arquivos de configuração ou sobre outros assuntos relacionamos ao Go, acesse o site do [GO-CD](http://www.go.cd/) e confira a documentação completa.
 
-## Como iniciar o GO-CD no seu computador
+## Como fazer o deploy do GO-CD no seu computador
 
 Para ter uma instância do GO-CD executando no seu computador, basta executar o comando abaixo:
 
 ```
-$ ./gradlew bringUpGoServer
+$ ./gradlew bringUpGoServerLocally
 ```
 
 Após a inicialização da maquina, execute provisionGoServer para fazer o provisionamento da maquina, o que irá instalar e configurar todos os requisitos necessários:
 
 ```
-$ ./gradlew provisionGoServer
+$ ./gradlew provisionGoServerLocally
 ```
 
 Ao fazer isso o GO-CD será configurado dentro da maquina virtual criada no step anterior, permitindo o acesso ao GO-CD através das configurações informadas no Vagrantfile na pasta infrastructure/go. Se as configurações  padrões foram mantidas, o acesso será através da url:  192.168.33.10:8153/go.
@@ -125,13 +125,13 @@ Ao fazer isso o GO-CD será configurado dentro da maquina virtual criada no step
 Além disso você pode destruir a maquina virtual executando o comando:
 
 ```
-$ ./gradlew destroyGoServer
+$ ./gradlew destroyGoServerLocally
 ```
 
 E a qualquer momento  verificar o status da maquina virtual usando:
 
 ```
-$ ./gradlew statusGoServer
+$ ./gradlew statusGoServerLocally
 ```
 
 ## Permissões de acesso
