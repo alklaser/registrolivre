@@ -1,5 +1,5 @@
 task bringUpGoServerLocally(type: Exec) {
-    commandLine "./scripts/local/vagrant", "up", "--no-provision"
+    commandLine "vagrant", "up", "--no-provision"
 }
 
 task provisionGoServerLocally(type: Exec) {
