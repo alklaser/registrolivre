@@ -84,11 +84,27 @@ $ ./gradlew run
 Obs: Executando o comando run as migrations serão executadas automaticamente.
 
 # GO - Variáveis de Ambiente
-Para a conexão com o servidor remoto, é necessário definir as seguintes variáveis de ambiente:
 
-* **REGISTROLIVRE_PRIVATE_KEY** – Caminho para a sua chave privada.
-* **REGISTROLIVRE_IP_OR_DNS** – IP ou DNS do servidor.
+## Como fazer o deploy do GO-CD para uma maquina virtual na AWS
+Para fazer o deploy, primeiramente você precisa definir as seguintes variaveis de ambiente: 
 
+* **GO_SERVER_REGISTROLIVRE_KEY** - Caminho da chave de acesso para conectar via ssh.
+* **GO_SERVER_AWS_IP** -  IP ou DNS do servidor.
+* **GO_AGENT_REGISTROLIVRE_KEY** - Caminho da chave de acesso para conectar via ssh.
+* **GO_AGENT_AWS_IP** -  IP ou DNS do servidor.
+
+Logo após as variaveis serem definidas, você pode executar os comando que fazem o deploy do Go Agent e do Go Server:
+
+```
+$ ./gradlew deployGoServerToAWS
+$ ./gradlew deployGoAgentToAWS
+```
+
+Ao executar os dois comando acima, sua instância do Go já estará disponivel no endereço IP/DNS informado na variável **GO_SERVER_AWS_IP**  seguido do sufixo /go, ex: 127.0.0.1/go.
+
+A qualquer momento você pode editar os arquivos de configuração do Go Server e Go Agent, porém torna-se necessária a execução dos comandos de deploy novamente. Os arquivos utilizados nesses projeto são: **htpasswd**, **go-agent** e **cruise_config.xml**, todos se encontram na pasta root/infrastructure/go/configurations/.
+
+Para mais informações sobre os arquivos de configuração ou sobre outros assuntos relacionamos ao Go, acesse o site do [GO-CD](http://www.go.cd/) e confira a documentação completa.
 
 ## Como iniciar o GO-CD no seu computador
 
