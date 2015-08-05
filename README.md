@@ -45,44 +45,6 @@ $ sudo apt-get install npm
 $ ./gradlew jsTest
 ```
 
-# Banco de Dados
-## Pré-requisitos para executar o script
-### Mac OS X
-```
-brew install wget
-```
-**Para configurar o banco executar o comando abaixo:**
-
-```
-$ ./gradlew initDatabase
-```
-
-## Como criar migrations
-
-Migrations devem ser adicionadas no diretório src/main/resources/db/migration/.
-
-### Nomenclatura
-
-Os arquivos de migration devem seguir o padrão abaixo de nomenclatura.
-* Prefixo: V
-* Versão: Pontos e underscores separão as partes, você pode usar quantas partes quiser
-* Separador: __ (dois underscores)
-* Descrição: Underscores separam as palavras
-* Sufixo: .sql
-
-**Exemplo**: V1__init.sql
-
-### Executar migrations
-
-```
-$ ./gradlew flywayMigrate
-```
-Ou
-```
-$ ./gradlew run
-```
-Obs: Executando o comando run as migrations serão executadas automaticamente.
-
 # GO - Variáveis de Ambiente
 
 ## Como fazer o deploy do GO-CD em uma MV na AWS
@@ -155,6 +117,7 @@ A senha desejada será solicidada e será armazenada no arquivo htpasswd (usando
 
 # Criar Máquina Virtual Local
 
+O ambiente local para executar a aplicação é em uma máquina virtual.
 Para criar a máquina virtual no ambiente local, executar o script abaixo:
 
 ```
@@ -170,16 +133,10 @@ export REGISTROLIVRE_PRIVATE_KEY="caminho_da_chave_privada"
 export AWS_REGISTROLIVRE_IP="ip_maquina_local"
 ```
 
-- Provisionamento
+- Provisionamento:
 
 ```
 $ ./gradlew provisionLocalAppServer
-```
-
-Para fazer o deploy da aplicação local:
-
-```
-$ ./gradlew deployLocalAppServer
 ```
 
 Para verificar o status da sua máquina local:
@@ -188,12 +145,60 @@ Para verificar o status da sua máquina local:
 $ ./gradlew statusLocalAppServer
 ```
 
-Para destruir a máquina virtual:
+Para destruir a máquina virtual, se necessário:
 
 ```
 $ ./gradlew destroyLocalAppServer
 ```
-Url para acessar a aplicação: http://192.168.33.71:5000/
+
+## Banco de Dados
+
+Para criar o banco de dados local:
+
+```
+$ ./gradlew createLocalDatabase
+```
+
+Para destruir o banco de dados local, se necessário:
+
+```
+$ ./gradlew destroyLocalDatabase
+```
+
+### Como criar migrations
+
+Migrations devem ser adicionadas no diretório src/main/resources/db/migration/.
+
+#### Nomenclatura
+
+Os arquivos de migration devem seguir o padrão abaixo de nomenclatura.
+* Prefixo: V
+* Versão: Pontos e underscores separão as partes, você pode usar quantas partes quiser
+* Separador: __ (dois underscores)
+* Descrição: Underscores separam as palavras
+* Sufixo: .sql
+
+**Exemplo**: V1__init.sql
+
+#### Executar migrations
+
+Para executar as migrations na Máquina Virtual é só fazer um novo deploy da aplicação, executando:
+
+```
+$ ./gradlew deployLocalAppServer
+```
+
+## Deploy da aplicação no ambiente local
+
+Para fazer o deploy da aplicação no ambiente local, antes tem que ter executado as tasks "bringUpLocalAppServer", "provisionLocalAppServer" e "createLocalDatabase"
+
+A task para efetuar o deploy da aplicação:
+
+```
+$ ./gradlew deployLocalAppServer
+```
+
+Url para acessar a aplicação local: http://192.168.33.71:5000/
 
 # Aplicação em Produção
 

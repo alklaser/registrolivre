@@ -11,8 +11,10 @@
 
 case $1 in
     start)
-        echo "Starting registrolivre service ..."
         if [ ! -f /home/registrolivre/app/pid ]; then
+            echo "Starting registrolivre service ..."
+            echo "Loading environment variables"
+            . /home/registrolivre/.profile
             nohup java -Dserver.port=5000 -jar /home/registrolivre/app/registrolivre.jar /home/registrolivre/app 2>> /home/registrolivre/app/logs.txt >> /home/registrolivre/app/logs.txt &
             echo $! > /home/registrolivre/app/pid
             echo "registrolivre service started ..."
@@ -40,6 +42,8 @@ case $1 in
             rm /home/registrolivre/app/pid
 
             echo "Starting registrolivre service ..."
+             echo "Loading environment variables"
+            . /home/registrolivre/.profile
             nohup java -Dserver.port=5000 -jar /home/registrolivre/app/registrolivre.jar /home/registrolivre/app 2>> /home/registrolivre/app/logs.txt >> /home/registrolivre/app/logs.txt &
             echo $! > /home/registrolivre/app/pid
             echo "registrolivre service started ..."

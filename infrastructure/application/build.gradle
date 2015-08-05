@@ -25,7 +25,7 @@ task deployLocalAppServer(type: Exec) {
 }
 
 task provisionProductionAppServer(type: Exec) {
-    commandLine "sh", "scripts/production/provision-to-aws.sh"
+    commandLine "sh", "scripts/provision/production/provision-to-aws.sh"
 }
 
 task deployProductionAppServer(type: Exec) {

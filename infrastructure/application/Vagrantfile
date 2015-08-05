@@ -26,4 +26,5 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.provision "file", source: "scripts/provision/application-service.sh", destination: "/home/registrolivre/service/application-service.sh"
   config.vm.provision :shell, :path => "scripts/provision/remove-application-service.sh"
   config.vm.provision :shell, :path => "scripts/provision/create-application-service.sh"
+  config.vm.provision :shell, :path => "scripts/provision/local/configure-database-environment-variable.sh"
 end
