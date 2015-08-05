@@ -10,7 +10,7 @@ public class HelloController {
     private static final String template = "Olá, %s!";
 
     @RequestMapping("/")
-    public Hello hello(@RequestParam(value="name", defaultValue="otávio") String name) {
+    public Hello hello(@RequestParam(value="name", defaultValue="Júnior") String name) {
         return new Hello(String.format(template, name));
     }
 }
