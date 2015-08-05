@@ -202,25 +202,4 @@ Url para acessar a aplicação local: http://192.168.33.71:5000/
 
 # Aplicação em Produção
 
-Para provisionar a instância da AWS, você precisa configurar as variáveis de ambiente antes de executar a task "provisionProductionAppServer":
-
-
-- Adicione as seguintes variáveis de ambiente:
-
-```
-export REGISTROLIVRE_PRIVATE_KEY="caminho_da_chave_privada"
-export AWS_REGISTROLIVRE_IP="ip_instancia_aws"
-```
-
-- Provisionamento
-
-```
-$ ./gradlew provisionProductionAppServer
-```
-
-Para fazer o deploy da aplicação na AWS:
-
-```
-$ ./gradlew deployProductionAppServer
-```
 Url para acessar a aplicação: http://ec2-54-232-246-149.sa-east-1.compute.amazonaws.com:5000/
