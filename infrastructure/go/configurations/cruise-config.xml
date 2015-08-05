@@ -44,10 +44,9 @@
         </jobs>
       </stage>
       <stage name="Deploy_to_Production">
-        <approval type="manual" />
         <environmentvariables>
           <variable name="REGISTROLIVRE_PRIVATE_KEY">
-            <value>~/.ssh/registro-livre-key.pem</value>
+            <value>/home/registro-livre-key.pem</value>
           </variable>
           <variable name="AWS_REGISTROLIVRE_IP">
             <value>54.232.246.149</value>
@@ -58,6 +57,8 @@
             <tasks>
               <exec command="./gradlew">
                 <arg>deployProductionAppServer</arg>
+                <arg>-si</arg>
+                <runif status="passed" />
               </exec>
             </tasks>
           </job>
