@@ -7,6 +7,7 @@ PUBLIC_KEYS="/home/public_keys"
 USER="/home/registrolivre"
 
 echo "=====> Creating scripts folder"
+ssh -i $REGISTROLIVRE_PRIVATE_KEY ubuntu@$AWS_REGISTROLIVRE_IP "sudo rm -rf ${SCRIPTS}"
 ssh -i $REGISTROLIVRE_PRIVATE_KEY ubuntu@$AWS_REGISTROLIVRE_IP "sudo mkdir ${SCRIPTS}"
 ssh -i $REGISTROLIVRE_PRIVATE_KEY ubuntu@$AWS_REGISTROLIVRE_IP "sudo chmod 777 ${SCRIPTS}"
 
@@ -26,7 +27,7 @@ ssh -i $REGISTROLIVRE_PRIVATE_KEY ubuntu@$AWS_REGISTROLIVRE_IP "sudo sh ${PROVIS
 ssh -i $REGISTROLIVRE_PRIVATE_KEY ubuntu@$AWS_REGISTROLIVRE_IP "sudo sh ${PROVISION}/create-user.sh"
 ssh -i $REGISTROLIVRE_PRIVATE_KEY ubuntu@$AWS_REGISTROLIVRE_IP "sudo sh ${PROVISION}/ssh-user-permission.sh"
 ssh -i $REGISTROLIVRE_PRIVATE_KEY ubuntu@$AWS_REGISTROLIVRE_IP "sudo sh ${PROVISION}/create-folders.sh"
-scp -i $REGISTROLIVRE_PRIVATE_KEY ./scripts/provision/application-service.sh ubuntu@$AWS_REGISTROLIVRE_IP:${USER}/service
+ssh -i $REGISTROLIVRE_PRIVATE_KEY ubuntu@$AWS_REGISTROLIVRE_IP "sudo mv ${PROVISION}/application-service.sh ${USER}/service"
 ssh -i $REGISTROLIVRE_PRIVATE_KEY ubuntu@$AWS_REGISTROLIVRE_IP "sudo sh ${PROVISION}/remove-application-service.sh"
 ssh -i $REGISTROLIVRE_PRIVATE_KEY ubuntu@$AWS_REGISTROLIVRE_IP "sudo sh ${PROVISION}/create-application-service.sh"
 echo "=====> End Provision ..."
