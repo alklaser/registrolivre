@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RestController
 public class HelloController {
 
-    private static final String template = "Hello, %s!";
+    private static final String template = "Olá, %s!";
 
     @RequestMapping("/")
-    public Hello hello(@RequestParam(value="name", defaultValue="World") String name) {
+    public Hello hello(@RequestParam(value="name", defaultValue="mundo") String name) {
         return new Hello(String.format(template, name));
     }
 }
