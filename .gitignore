@@ -11,3 +11,5 @@ node_modules/
 .vagrant/
 
 *.jar
+
+infrastructure/application/public_keys/
