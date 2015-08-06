@@ -107,7 +107,7 @@ Para provisionar a máquina local, tem que configurar as variáveis de ambientes
 
 ```
 export REGISTROLIVRE_PRIVATE_KEY="caminho_da_chave_privada"
-export AWS_REGISTROLIVRE_IP="ip_maquina_local"
+export LOCAL_REGISTROLIVRE_IP="ip_maquina_local"
 ```
 
 - Provisionamento:
@@ -130,7 +130,7 @@ $ ./gradlew destroyLocalAppServer
 
 ## Banco de Dados
 
-Para criar o banco de dados local:
+Para criar o banco de dados local é necessário que sua chave pública esteja presente no diretório infrastructure/application/public_keys.
 
 ```
 $ ./gradlew createLocalDatabase
