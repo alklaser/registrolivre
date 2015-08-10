@@ -1,5 +1,5 @@
-CREATE TABLE IF NOT EXISTS empresas (
+CREATE TABLE IF NOT EXISTS companies (
   id   SERIAL PRIMARY KEY,
   cnpj VARCHAR(18) UNIQUE NOT NULL,
-  nome_fantasia VARCHAR(40)
+  trade_name VARCHAR(40)
 );

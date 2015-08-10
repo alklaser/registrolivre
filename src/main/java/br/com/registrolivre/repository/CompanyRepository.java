@@ -1,9 +1,9 @@
 package br.com.registrolivre.repository;
 
-import br.com.registrolivre.models.Empresa;
+import br.com.registrolivre.models.Company;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
 @Component
-public interface EmpresaRepository extends CrudRepository<Empresa, Long> {
+public interface CompanyRepository extends CrudRepository<Company, Long> {
 }

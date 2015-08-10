@@ -1,7 +1,7 @@
 package br.com.registrolivre.controllers;
 
-import br.com.registrolivre.models.Empresa;
-import br.com.registrolivre.repository.EmpresaRepository;
+import br.com.registrolivre.models.Company;
+import br.com.registrolivre.repository.CompanyRepository;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,18 +9,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class EmpresaController {
+public class CompanyController {
 
-    EmpresaRepository empresaRepository;
+    CompanyRepository companyRepository;
 
     @Autowired
-    public EmpresaController(EmpresaRepository empresaRepository) {
-        this.empresaRepository = empresaRepository;
+    public CompanyController(CompanyRepository companyRepository) {
+        this.companyRepository = companyRepository;
     }
 
-    public ResponseEntity<String> saveEmpresa(Empresa empresa) {
+    public ResponseEntity<String> saveCompany(Company company) {
         try {
-            empresaRepository.save(empresa);
+            companyRepository.save(company);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception exception) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

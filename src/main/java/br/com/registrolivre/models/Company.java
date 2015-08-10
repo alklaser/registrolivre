@@ -7,9 +7,9 @@ import lombok.experimental.FieldDefaults;
 
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class Empresa {
+public class Company {
 
      @Getter String cnpj;
-     @Getter String nomeFantasia;
+     @Getter String tradeName;
 
 }

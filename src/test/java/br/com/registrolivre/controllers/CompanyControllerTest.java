@@ -1,7 +1,7 @@
 package br.com.registrolivre.controllers;
 
-import br.com.registrolivre.models.Empresa;
-import br.com.registrolivre.repository.EmpresaRepository;
+import br.com.registrolivre.models.Company;
+import br.com.registrolivre.repository.CompanyRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,38 +16,38 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class EmpresaControllerTest {
+public class CompanyControllerTest {
 
     @Mock
-    EmpresaRepository empresaRepository;
+    CompanyRepository companyRepository;
     @Mock
-    Empresa empresa;
+    Company company;
 
-    EmpresaController controller;
+    CompanyController controller;
 
     @Before
     public void setUp() throws Exception {
-        controller = new EmpresaController(empresaRepository);
+        controller = new CompanyController(companyRepository);
     }
 
     @Test
     public void shouldCallRepository() throws Exception {
-        controller.saveEmpresa(empresa);
-        verify(empresaRepository).save(empresa);
+        controller.saveCompany(company);
+        verify(companyRepository).save(company);
     }
 
     @Test
     public void shouldReturnOKIfSuccess() throws Exception {
-        when(empresaRepository.save(empresa)).thenReturn(empresa);
-        ResponseEntity<String> response = controller.saveEmpresa(empresa);
+        when(companyRepository.save(company)).thenReturn(company);
+        ResponseEntity<String> response = controller.saveCompany(company);
         assertThat(response, is(HttpStatus.OK));
     }
 
 
     @Test
     public void shouldThrowException() throws Exception {
-        when(empresaRepository.save(empresa)).thenThrow(Exception.class);
-        ResponseEntity<String> response = controller.saveEmpresa(empresa);
+        when(companyRepository.save(company)).thenThrow(Exception.class);
+        ResponseEntity<String> response = controller.saveCompany(company);
         assertThat(response, is(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 }
