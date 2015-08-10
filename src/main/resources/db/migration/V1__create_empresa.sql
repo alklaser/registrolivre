@@ -1,0 +1,5 @@
+CREATE TABLE IF NOT EXISTS empresas (
+  id   SERIAL PRIMARY KEY,
+  cnpj VARCHAR(18) UNIQUE NOT NULL,
+  nome_fantasia VARCHAR(40)
+);
