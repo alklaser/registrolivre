@@ -14,6 +14,8 @@ apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: 'org.flywaydb.flyway'
 
+mainClassName = "br.com.registrolivre.Application"
+
 repositories {
     mavenCentral()
 }
