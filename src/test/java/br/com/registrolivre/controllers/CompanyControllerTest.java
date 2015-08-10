@@ -4,18 +4,16 @@ import br.com.registrolivre.models.Company;
 import br.com.registrolivre.repository.CompanyRepository;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.MockitoAnnotations.initMocks;
 
-@RunWith(MockitoJUnitRunner.class)
+
 public class CompanyControllerTest {
 
     @Mock
@@ -27,6 +25,7 @@ public class CompanyControllerTest {
 
     @Before
     public void setUp() throws Exception {
+        initMocks(this);
         controller = new CompanyController(companyRepository);
     }
 
@@ -40,14 +39,14 @@ public class CompanyControllerTest {
     public void shouldReturnOKIfSuccess() throws Exception {
         when(companyRepository.save(company)).thenReturn(company);
         ResponseEntity<String> response = controller.saveCompany(company);
-        assertThat(response, is(HttpStatus.OK));
+        assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
 
 
     @Test
-    public void shouldThrowException() throws Exception {
+    public void shouldReturnInternalServerError() throws Exception {
         when(companyRepository.save(company)).thenThrow(Exception.class);
         ResponseEntity<String> response = controller.saveCompany(company);
-        assertThat(response, is(HttpStatus.INTERNAL_SERVER_ERROR));
+        assertEquals(response.getStatusCode(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }
