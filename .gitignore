@@ -12,4 +12,4 @@ node_modules/
 
 *.jar
 
-infrastructure/application/public_keys/
+infrastructure/application/public_keys/*.pub
