@@ -17,11 +17,11 @@ import static org.mockito.MockitoAnnotations.initMocks;
 public class CompanyControllerTest {
 
     @Mock
-    CompanyRepository companyRepository;
+    private CompanyRepository companyRepository;
     @Mock
-    Company company;
+    private Company company;
 
-    CompanyController controller;
+    private CompanyController controller;
 
     @Before
     public void setUp() throws Exception {
@@ -42,11 +42,12 @@ public class CompanyControllerTest {
         assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
 
-
     @Test
     public void shouldReturnInternalServerError() throws Exception {
         when(companyRepository.save(company)).thenThrow(Exception.class);
         ResponseEntity<String> response = controller.saveCompany(company);
         assertEquals(response.getStatusCode(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+
 }
