@@ -13,11 +13,25 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
 apply plugin: 'org.flywaydb.flyway'
+apply plugin: 'jacoco'
 
 mainClassName = "br.com.registrolivre.Application"
 
 repositories {
     mavenCentral()
+}
+
+jacoco {
+    toolVersion = "0.7.1.201405082137"
+    reportsDir = file("build/reports/jacoco")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "build/reports/jacoco/test/html"
+    }
 }
 
 sourceCompatibility = 1.8
@@ -75,6 +89,18 @@ task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
 
+task checkTestCoverage << {
+    def coverageReportPath = "build/reports/jacoco/test/html/index.html"
+    def coverageFile = new File(coverageReportPath)
+    def matcher = ( coverageFile.text =~ /<tfoot>(.*)<\/tfoot>/ )
+    def coverageString = new XmlParser().parseText(matcher[0][0])
+
+    def lineCoverageString = coverageString.tr.td[2].text()
+    def branchCoverageString = coverageString.tr.td[4].text()
+}
+
+checkTestCoverage.dependsOn jacocoTestReport
+
 test {
 
     clean.execute()
@@ -87,4 +113,12 @@ test {
     testLogging {
         events "passed", "skipped", "failed"
     }
+
+    jacoco {
+        append = false
+        destinationFile = file("build/reports/jacoco/jacocoTest.exec")
+        classDumpFile = file("build/reports/jacoco/classpathdumps")
+    }
 }
+
+test.finalizedBy checkTestCoverage
