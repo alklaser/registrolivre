@@ -55,6 +55,8 @@ task initDatabase(type: Exec) {
 
 task jsTest(dependsOn: ['deleteNodeFolder','npmInstall', 'npmTest'])
 
+task jasmineTest(dependsOn: ['npmTest'])
+
 task registroLivreJar(type: Copy, dependsOn: ['clean', 'assemble']) {
     from jar.archivePath
     into project.rootDir
