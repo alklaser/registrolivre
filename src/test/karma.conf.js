@@ -10,6 +10,10 @@ module.exports = function (config) {
             '../node_modules/angular/angular.js',
             '../node_modules/angular-mocks/angular-mocks.js',
             'main/webapp/js/*.js',
+            'main/webapp/js/controllers/*.js',
+            'main/webapp/js/factories/*.js',
+            'test/webapp/js/controllers/*-spec.js',
+            'test/webapp/js/factories/*-spec.js',
             'test/webapp/js/*-spec.js'
         ],
 
