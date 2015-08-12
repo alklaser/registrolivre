@@ -48,7 +48,7 @@ public class CompanyControllerTest {
 
     @Test
     public void shouldReturnInternalServerError() throws Exception {
-        when(companyRepository.save(company)).thenThrow(Exception.class);
+        when(companyRepository.save(company)).thenThrow(IllegalArgumentException.class);
         ResponseEntity<Company> response = controller.saveCompany(companyRepresentation);
         assertEquals(response.getStatusCode(), HttpStatus.INTERNAL_SERVER_ERROR);
     }

@@ -16,6 +16,11 @@ public class CompanyRepresentation {
     @JsonFormat String cnpj;
     @JsonFormat String tradeName;
 
+    public CompanyRepresentation(String cnpj, String tradeName) {
+        this.cnpj = cnpj;
+        this.tradeName = tradeName;
+    }
+
     public Company toModel() {
         return new Company(this.cnpj, this.tradeName);
     }
