@@ -2,11 +2,21 @@
 <html ng-app="registro-livre">
 <head>
     <title>Registro Livre</title>
-    <script src="/Users/omachado/projects/registrolivre/node_modules/angular/angular.js"></script>
-    <script src="/Users/omachado/projects/registrolivre/node_modules/angular-route/angular-route.js"></script>
+
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
+    <link href="../css/styleguide.css" rel="stylesheet">
+
+    <script src="../vendor/angular/angular.min.js"></script>
+    <script src="../vendor/angular/angular-route.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="../js/app.js"></script>
+    <script src="../js/controllers/companies-list-controller.js"></script>
+    <script src="../js/factories/companies.js"></script>
 </head>
 <body>
+<div ng-include src="'views/partials/includes/header.html'"></div>
 <div ng-view></div>
+<div ng-include src="'views/partials/includes/footer.html'"></div>
 </body>
 </html>

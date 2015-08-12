@@ -1,15 +1,29 @@
+# Idea
 *.iml
 *.ipr
 *.iws
 .idea/
+
+# Gradle
 .gradle/
+
 .DS_Store
+
+# Build
 build/
 
+# Node
 node_modules/
 
+# Vagrant
 .vagrant/
 
+
+# Java
 *.jar
 
+# Ignore public keys
 infrastructure/application/public_keys/*.pub
+
+# Ignore external libraries (css and js)
+vendor/

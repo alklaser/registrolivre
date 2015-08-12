@@ -62,16 +62,41 @@ task npmTest(type: Exec) {
     commandLine "npm", "test"
 }
 
-task initDatabase(type: Exec) {
-    description = 'Configure database'
-    commandLine 'scripts/./install_database.sh'
-}
-
 task jsTest(dependsOn: ['deleteNodeFolder','npmInstall', 'npmTest'])
 
 task jasmineTest(dependsOn: ['npmTest'])
 
-task registroLivreJar(type: Copy, dependsOn: ['clean', 'assemble']) {
+task deleteVendor(type: Delete) {
+    clean {
+        delete 'src/main/webapp/vendor'
+    }
+}
+
+task copyBootstrap {
+    doLast {
+        mkdir('src/main/webapp/vendor/bootstrap')
+        mkdir('src/main/webapp/vendor/bootstrap/css')
+        mkdir('src/main/webapp/vendor/bootstrap/fonts')
+        mkdir('src/main/webapp/vendor/bootstrap/js')
+
+        copy { from 'node_modules/bootstrap/dist/css/bootstrap.min.css' into 'src/main/webapp/vendor/bootstrap/css/' }
+        copy { from 'node_modules/bootstrap/dist/fonts' into 'src/main/webapp/vendor/bootstrap/fonts/' }
+        copy { from 'node_modules/bootstrap/dist/js/bootstrap.min.js' into 'src/main/webapp/vendor/bootstrap/js/' }
+    }
+}
+
+task copyAngular {
+    doLast {
+        mkdir('src/main/webapp/vendor/angular')
+
+        copy { from 'node_modules/angular/angular.min.js' into 'src/main/webapp/vendor/angular/'}
+        copy { from 'node_modules/angular-route/angular-route.min.js' into 'src/main/webapp/vendor/angular/'}
+    }
+}
+
+task copyVendorFiles(dependsOn: ['deleteVendor', 'copyBootstrap', 'copyAngular'], type: Copy)
+
+task registroLivreJar(type: Copy, dependsOn: ['clean', 'assemble', 'copyVendorFiles']) {
     from jar.archivePath
     into project.rootDir
     rename {
