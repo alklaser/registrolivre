@@ -32,8 +32,8 @@ public class CompanyController {
             Company company = companyRepresentation.toModel();
             companyRepository.save(company);
             return new ResponseEntity<Company>(HttpStatus.OK);
-        } catch (Exception exception) {
-            log.error("Could not save company", exception);
+        } catch (IllegalArgumentException illegalArgumentException) {
+            log.error("Could not save company - one or more arguments were null", illegalArgumentException);
             return new ResponseEntity<Company>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
