@@ -10,8 +10,8 @@ import javax.persistence.*;
 @Table(name = "companies")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
-@Setter
 @Getter
+@Setter
 @EqualsAndHashCode
 public class Company {
 
@@ -23,7 +23,7 @@ public class Company {
     @Id
     @GeneratedValue
     @Column(name = "id")
-    long id;
+    Long id;
 
     @Column(name = "cnpj")
     String cnpj;
