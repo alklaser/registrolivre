@@ -1,5 +1,21 @@
-<div class="container content">
-    <div ng-repeat="company in companies">
-        <label>{{ company.tradeName }}</label>
+<div class="col-lg-8 col-md-10 col-sm-12 col-lg-offset-2 col-md-offset-1">
+    <div class="panel panel-default margin-35-0">
+        <div class="panel-heading centralize">
+            <h2>Lista de Empresas Cadastradas</h2>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Nome Fantasia</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="company in companies">
+                        <td>{{ company.tradeName }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

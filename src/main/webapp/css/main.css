@@ -20,6 +20,13 @@ dt {
 	margin-right: 5px;
 }
 
+#wrapper {
+	min-height: 100%;
+	position: relative;
+	padding-top: 10px;
+	padding-bottom: 100px;
+}
+
 .btn-download {
 	display: block;
 	border: 1px none;
@@ -134,7 +141,6 @@ dt {
 .content{
 	margin: 0 auto;
 	margin-top:65px;
-	margin-bottom:65px;
 	width: 95%;
 }
 
@@ -267,24 +273,25 @@ dt {
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
-.rodape-home{
-	position: fixed !important;
-	width:100%;
-	bottom:0;
-}
 
-.rodape {
-	position: relative;
+#footer {
+	position: absolute;
 	bottom:0;
 	width:100%;
 	height:60px;
 	line-height: 60px;
 	margin-bottom:0;
+	background-color: #FFF;
 }
 
-.rodape a:hover {
+#footer .container a {
+	color: #2c3e50;
+}
+
+#footer a:hover {
 	text-decoration: none;
 }
+
 
 .small {
 	font-size: 11px
@@ -334,4 +341,13 @@ dt {
 
 .width-100{
 	width:100%;
+}
+
+.table tbody {
+	border-bottom: 1px solid #111111;
+	border-top: 1px solid #111111;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+	border: none;
 }

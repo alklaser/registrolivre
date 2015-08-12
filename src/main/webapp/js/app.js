@@ -7,7 +7,7 @@ app.config(['$routeProvider',
                 templateUrl: 'partials/input.html',
                 controller: '../js/controllers/document-upload-controller'
             })
-            .when("/companies", {
+            .when("/empresas", {
                 templateUrl: 'views/partials/companies.html',
                 controller: 'CompaniesListController'
             })

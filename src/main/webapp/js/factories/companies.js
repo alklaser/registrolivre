@@ -1,6 +1,6 @@
 app.factory("companies", ["$http", function($http) {
     function all() {
-        return $http.get('/companies').then(function(response) {
+        return $http.get('/empresas').then(function(response) {
             return response.data;
         });
     };

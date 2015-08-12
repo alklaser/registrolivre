@@ -17,7 +17,7 @@ describe("Factory: companies", function() {
 
         var expectedCompanies = [{ id: 1, cnpj: "2", tradeName: "trade name" }];
 
-        $httpBackend.expectGET('/companies').respond(expectedCompanies);
+        $httpBackend.expectGET('/empresas').respond(expectedCompanies);
 
         companies.all().then(function(response){
             response.should.be.deep.equal(expectedCompanies);

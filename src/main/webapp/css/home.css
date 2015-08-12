@@ -2,6 +2,7 @@
 
 @import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900);
 
+html,
 body {	
 	background-color:#E1E1E1;
 	-webkit-background-size: cover;
@@ -10,6 +11,10 @@ body {
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+
+	margin: 0;
+	padding: 0;
+	height: 100%;
 }
 
 .home {

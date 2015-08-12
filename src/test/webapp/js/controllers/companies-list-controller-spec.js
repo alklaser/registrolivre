@@ -23,7 +23,7 @@ describe("Controller: CompaniesListController", function() {
     it("get companies list", function() {
         var expectedCompanies = [{id: 1, cnpj: "123456", tradeName: "Company One Ltda"}, {id: 2, cnpj: "654321", tradeName: "Company Two, Inc"}];
 
-        $httpBackend.expectGET('/companies').respond(expectedCompanies);
+        $httpBackend.expectGET('/empresas').respond(expectedCompanies);
 
         $httpBackend.flush();
 
