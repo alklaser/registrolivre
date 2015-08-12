@@ -2,8 +2,10 @@ package br.com.registrolivre.models;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -25,6 +27,7 @@ public class Company {
     @Column(name = "id")
     Long id;
 
+    @NotNull @CNPJ
     @Column(name = "cnpj")
     String cnpj;
 
