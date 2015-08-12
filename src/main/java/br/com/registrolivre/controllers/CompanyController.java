@@ -36,7 +36,7 @@ public class CompanyController {
 
 
     @RequestMapping(value = "/cadastro", method = RequestMethod.POST)
-    public ResponseEntity<Company> saveCompany(@RequestBody CompanyRepresentation companyRepresentation) {
+    public ResponseEntity saveCompany(@RequestBody CompanyRepresentation companyRepresentation) {
         try {
             Company company = companyRepresentation.toModel();
             Set<ConstraintViolation<Company>> violations = validator.validate(company);
@@ -48,7 +48,7 @@ public class CompanyController {
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (IllegalArgumentException illegalArgumentException) {
             log.error("Could not save company - one or more arguments were null", illegalArgumentException);
-            return new ResponseEntity<Company>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

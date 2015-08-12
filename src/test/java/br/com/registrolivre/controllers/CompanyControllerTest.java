@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -42,15 +43,21 @@ public class CompanyControllerTest {
     @Test
     public void shouldReturnOKIfSuccess() throws Exception {
         when(companyRepository.save(company)).thenReturn(company);
-        ResponseEntity<Company> response = controller.saveCompany(companyRepresentation);
+        ResponseEntity response = controller.saveCompany(companyRepresentation);
         assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
 
     @Test
     public void shouldReturnInternalServerError() throws Exception {
         when(companyRepository.save(company)).thenThrow(IllegalArgumentException.class);
-        ResponseEntity<Company> response = controller.saveCompany(companyRepresentation);
+        ResponseEntity response = controller.saveCompany(companyRepresentation);
         assertEquals(response.getStatusCode(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @Test
+    public void shouldValidateCNPJ() throws Exception {
+        companyRepresentation = new CompanyRepresentation("123 invalid cnpj", "another fancy name");
+        controller.saveCompany(companyRepresentation);
+        verifyZeroInteractions(companyRepository);
+    }
 }
