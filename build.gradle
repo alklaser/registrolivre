@@ -44,8 +44,8 @@ dependencies {
     compile("org.hibernate:hibernate-core:4.3.10.Final")
     compile("org.projectlombok:lombok:1.16.4")
     compile("org.postgresql:postgresql:9.4-1201-jdbc41")
-    compile "org.apache.commons:commons-dbcp2:2.1"
-
+    compile("org.apache.commons:commons-dbcp2:2.1")
+    compile("com.amazonaws:aws-java-sdk:1.10.10")
     testCompile("junit:junit:4.12")
     testCompile("org.mockito:mockito-all:1.9.5")
 }
