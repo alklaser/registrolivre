@@ -2,7 +2,7 @@ package br.com.registrolivre.controllers;
 
 import br.com.registrolivre.models.Company;
 import br.com.registrolivre.repository.CompanyRepository;
-import br.com.registrolivre.representations.CompanyRepresentation;
+import br.com.registrolivre.controllers.representations.CompanyRepresentation;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;

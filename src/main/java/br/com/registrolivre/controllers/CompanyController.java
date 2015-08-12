@@ -2,7 +2,7 @@ package br.com.registrolivre.controllers;
 
 import br.com.registrolivre.models.Company;
 import br.com.registrolivre.repository.CompanyRepository;
-import br.com.registrolivre.representations.CompanyRepresentation;
+import br.com.registrolivre.controllers.representations.CompanyRepresentation;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;

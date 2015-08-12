@@ -1,4 +1,4 @@
-package br.com.registrolivre.representations;
+package br.com.registrolivre.controllers.representations;
 
 import br.com.registrolivre.models.Company;
 import com.fasterxml.jackson.annotation.JsonFormat;
