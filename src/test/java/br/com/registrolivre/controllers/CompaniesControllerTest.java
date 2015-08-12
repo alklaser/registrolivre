@@ -14,21 +14,21 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-public class CompanyControllerTest {
+public class CompaniesControllerTest {
 
     @Mock
     private CompanyRepository companyRepository;
 
     private CompanyRepresentation companyRepresentation;
 
-    private CompanyController controller;
+    private CompaniesController controller;
 
     private Company company;
 
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        controller = new CompanyController(companyRepository);
+        controller = new CompaniesController(companyRepository);
         companyRepresentation = new CompanyRepresentation(1L, "123", "fancy name");
         company = companyRepresentation.toModel();
     }
