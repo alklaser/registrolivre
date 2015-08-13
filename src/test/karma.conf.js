@@ -10,12 +10,12 @@ module.exports = function (config) {
             '../node_modules/angular/angular.js',
             '../node_modules/angular-mocks/angular-mocks.js',
             '../node_modules/angular-route/angular-route.js',
-            'main/webapp/js/*.js',
-            'main/webapp/js/controllers/*.js',
-            'main/webapp/js/factories/*.js',
-            'test/webapp/js/controllers/*-spec.js',
-            'test/webapp/js/factories/*-spec.js',
-            'test/webapp/js/*-spec.js'
+            'main/resources/static/js/*.js',
+            'main/resources/static/js/controllers/*.js',
+            'main/resources/static/js/factories/*.js',
+            'test/resources/static/js/controllers/*-spec.js',
+            'test/resources/static/js/factories/*-spec.js',
+            'test/resources/static/js/*-spec.js'
         ],
 
         reporters: ['spec'],

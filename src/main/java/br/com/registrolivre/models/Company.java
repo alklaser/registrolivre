@@ -2,6 +2,7 @@ package br.com.registrolivre.models;
 
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import lombok.experimental.Wither;
 import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.persistence.*;

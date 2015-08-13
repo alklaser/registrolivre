@@ -46,6 +46,8 @@ dependencies {
     compile("org.postgresql:postgresql:9.4-1201-jdbc41")
     compile("org.apache.commons:commons-dbcp2:2.1")
     compile("com.amazonaws:aws-java-sdk:1.10.10")
+    compile("com.google.guava:guava:18.0")
+
     testCompile("junit:junit:4.12")
     testCompile("org.mockito:mockito-all:1.9.5")
 }
@@ -67,36 +69,36 @@ task jsTest(dependsOn: ['deleteNodeFolder','npmInstall', 'npmTest'])
 task jasmineTest(dependsOn: ['npmTest'])
 
 task deleteVendor(type: Delete) {
-    clean {
-        delete 'src/main/webapp/vendor'
-    }
+    delete 'src/main/resources/static/vendor'
 }
 
 task copyBootstrap {
     doLast {
-        mkdir('src/main/webapp/vendor/bootstrap')
-        mkdir('src/main/webapp/vendor/bootstrap/css')
-        mkdir('src/main/webapp/vendor/bootstrap/fonts')
-        mkdir('src/main/webapp/vendor/bootstrap/js')
+        mkdir('src/main/resources/static/vendor/bootstrap')
+        mkdir('src/main/resources/static/vendor/bootstrap/css')
+        mkdir('src/main/resources/static/vendor/bootstrap/fonts')
+        mkdir('src/main/resources/static/vendor/bootstrap/js')
 
-        copy { from 'node_modules/bootstrap/dist/css/bootstrap.min.css' into 'src/main/webapp/vendor/bootstrap/css/' }
-        copy { from 'node_modules/bootstrap/dist/fonts' into 'src/main/webapp/vendor/bootstrap/fonts/' }
-        copy { from 'node_modules/bootstrap/dist/js/bootstrap.min.js' into 'src/main/webapp/vendor/bootstrap/js/' }
+        copy { from 'node_modules/bootstrap/dist/css/bootstrap.min.css' into 'src/main/resources/static/vendor/bootstrap/css/' }
+        copy { from 'node_modules/bootstrap/dist/fonts' into 'src/main/resources/static/vendor/bootstrap/fonts/' }
+        copy { from 'node_modules/bootstrap/dist/js/bootstrap.min.js' into 'src/main/resources/static/vendor/bootstrap/js/' }
     }
 }
 
 task copyAngular {
     doLast {
-        mkdir('src/main/webapp/vendor/angular')
+        mkdir('src/main/resources/static/vendor/angular')
 
-        copy { from 'node_modules/angular/angular.min.js' into 'src/main/webapp/vendor/angular/'}
-        copy { from 'node_modules/angular-route/angular-route.min.js' into 'src/main/webapp/vendor/angular/'}
+        copy { from 'node_modules/angular/angular.min.js' into 'src/main/resources/static/vendor/angular/'}
+        copy { from 'node_modules/angular-route/angular-route.min.js' into 'src/main/resources/static/vendor/angular/'}
     }
 }
 
-task copyVendorFiles(dependsOn: ['deleteVendor', 'copyBootstrap', 'copyAngular'], type: Copy)
+task copyVendorFiles(dependsOn: ['deleteVendor', 'copyBootstrap', 'copyAngular'])
 
-task registroLivreJar(type: Copy, dependsOn: ['clean', 'assemble', 'copyVendorFiles']) {
+task assembleJar(dependsOn: assemble)
+
+task registroLivreJar(type: Copy, dependsOn: ['clean', 'copyVendorFiles', 'assembleJar']) {
     from jar.archivePath
     into project.rootDir
     rename {
@@ -105,6 +107,10 @@ task registroLivreJar(type: Copy, dependsOn: ['clean', 'assemble', 'copyVendorFi
 }
 
 registroLivreJar.mustRunAfter(clean)
+registroLivreJar.mustRunAfter(clean)
+copyAngular.mustRunAfter(deleteVendor)
+copyBootstrap.mustRunAfter(deleteVendor)
+assembleJar.mustRunAfter(copyVendorFiles)
 
 clean << {
     project.file('registrolivre.jar').delete()
