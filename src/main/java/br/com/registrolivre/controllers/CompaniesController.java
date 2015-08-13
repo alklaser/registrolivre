@@ -6,6 +6,7 @@ import br.com.registrolivre.repository.CompanyRepository;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,12 +33,18 @@ public class CompaniesController {
 
     @RequestMapping(value = "/empresas", method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<Iterable<CompanyRepresentation>> getCompanies() {
-        Iterable<Company> registeredCompanies = companyRepository.findAll();
 
-        List<CompanyRepresentation> companies = StreamSupport.stream(registeredCompanies.spliterator(), false)
-                .map(company -> toRepresentation(company))
-                .collect(Collectors.toList());
-        return ok(companies);
+        try {
+            Iterable<Company> registeredCompanies = companyRepository.findAll();
+
+            List<CompanyRepresentation> companies = StreamSupport.stream(registeredCompanies.spliterator(), false)
+                    .map(company -> toRepresentation(company))
+                    .collect(Collectors.toList());
+            return ok(companies);
+        } catch (IllegalArgumentException ex) {
+            log.error("Error trying to find one or more companies", ex);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     private CompanyRepresentation toRepresentation(Company company) {

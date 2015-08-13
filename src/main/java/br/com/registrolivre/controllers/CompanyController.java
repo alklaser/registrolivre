@@ -19,6 +19,8 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.util.Set;
 
+import static org.springframework.http.ResponseEntity.ok;
+
 @Log4j
 @NoArgsConstructor
 @RestController

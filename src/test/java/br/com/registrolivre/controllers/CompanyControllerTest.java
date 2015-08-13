@@ -1,18 +1,17 @@
 package br.com.registrolivre.controllers;
 
+import br.com.registrolivre.controllers.representations.CompanyRepresentation;
 import br.com.registrolivre.models.Company;
 import br.com.registrolivre.repository.CompanyRepository;
-import br.com.registrolivre.controllers.representations.CompanyRepresentation;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyZeroInteractions;
-import static org.mockito.Mockito.when;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.Is.is;
+import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
 public class CompanyControllerTest {
@@ -44,14 +43,14 @@ public class CompanyControllerTest {
     public void shouldReturnOKIfSuccess() throws Exception {
         when(companyRepository.save(company)).thenReturn(company);
         ResponseEntity response = controller.saveCompany(companyRepresentation);
-        assertEquals(response.getStatusCode(), HttpStatus.OK);
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
     }
 
     @Test
     public void shouldReturnInternalServerError() throws Exception {
         when(companyRepository.save(company)).thenThrow(IllegalArgumentException.class);
         ResponseEntity response = controller.saveCompany(companyRepresentation);
-        assertEquals(response.getStatusCode(), HttpStatus.INTERNAL_SERVER_ERROR);
+        assertThat(response.getStatusCode(), is(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
     @Test

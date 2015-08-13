@@ -52,7 +52,12 @@ public class CompaniesControllerTest {
         verify(companyRepository).findAll();
     }
 
-//    @Test(expected = Exception.class)
+    @Test
+    public void shouldReturnInternalServerError() {
+        when(companyRepository.findAll()).thenThrow(IllegalArgumentException.class);
+        ResponseEntity response = controller.getCompanies();
+        assertThat(response.getStatusCode(), is(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
 
     private Set<Company> registeredCompanies() {
         Company firstCompany = new Company(1L, "first cnpj", "first tradeName");
