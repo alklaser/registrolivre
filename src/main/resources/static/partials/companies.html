@@ -11,7 +11,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr ng-repeat="company in companies">
+                    <tr ng-show="!hasCompanies">
+                        <td colspan="1" class="text-center">{{ companiesNotFoundMessage }}</td>
+                    </tr>
+                    <tr ng-show="hasCompanies" ng-repeat="company in companies">
                         <td>{{ company.tradeName }}</td>
                     </tr>
                 </tbody>

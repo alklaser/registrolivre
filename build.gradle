@@ -94,7 +94,15 @@ task copyAngular {
     }
 }
 
-task copyVendorFiles(dependsOn: ['deleteVendor', 'copyBootstrap', 'copyAngular'])
+task copyLodash {
+    doLast {
+        mkdir('src/main/resources/static/vendor/lodash')
+
+        copy { from 'node_modules/lodash/index.js' into 'src/main/resources/static/vendor/lodash/'}
+    }
+}
+
+task copyVendorFiles(dependsOn: ['deleteVendor', 'copyLodash', 'copyBootstrap', 'copyAngular'])
 
 task assembleJar(dependsOn: assemble)
 
@@ -109,7 +117,9 @@ task registroLivreJar(type: Copy, dependsOn: ['clean', 'copyVendorFiles', 'assem
 registroLivreJar.mustRunAfter(clean)
 registroLivreJar.mustRunAfter(clean)
 copyAngular.mustRunAfter(deleteVendor)
+copyLodash.mustRunAfter(deleteVendor)
 copyBootstrap.mustRunAfter(deleteVendor)
+copyAngular.mustRunAfter(copyLodash)
 assembleJar.mustRunAfter(copyVendorFiles)
 
 clean << {
