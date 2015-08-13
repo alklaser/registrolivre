@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "companies")
+@Table(name = "documents")
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Entity
 @Getter
@@ -15,8 +15,8 @@ import javax.persistence.*;
 @EqualsAndHashCode
 public class Document {
 
-    public Document(Long companyId, String s3Etag) {
-        this.companyId = companyId;
+    public Document(Company company, String s3Etag) {
+        this.company = company;
         this.s3Etag = s3Etag;
     }
 
@@ -27,10 +27,8 @@ public class Document {
 
     @OneToOne
     @JoinColumn(name="company_id")
-    Long companyId;
+    Company company;
 
     @Column(name = "s3_etag")
     String s3Etag;
-
-
 }

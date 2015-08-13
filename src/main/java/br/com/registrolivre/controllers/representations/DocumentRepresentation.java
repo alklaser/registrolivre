@@ -14,15 +14,17 @@ import lombok.experimental.Wither;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class DocumentRepresentation {
     @JsonFormat Long id;
-    @JsonFormat Long company_id;
-    @JsonFormat String S3_etag;
+    @JsonFormat CompanyRepresentation company;
+    @JsonFormat
+    String S3_etag;
 
-    public DocumentRepresentation(Long companyId, String s3Etag) {
-        this.company_id = companyId;
+    public DocumentRepresentation(CompanyRepresentation company, String s3Etag) {
+        this.company = company;
         this.S3_etag = s3Etag;
     }
+
     public Document toModel() {
-        return new Document(this.company_id, this.S3_etag);
+        return new Document(this.company.toModel(), this.S3_etag);
     }
 
 }
