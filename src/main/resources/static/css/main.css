@@ -71,7 +71,7 @@ dt {
 	font-size: 50px;
 }
 
-#tabelaListagem tr:hover {
+.table-hover tr:hover {
 	cursor: pointer;
 }
 
