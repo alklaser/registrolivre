@@ -15,7 +15,7 @@ public class CompanyRepresentationTest {
     public void shouldConvertCompanyToRepresentation() throws Exception {
         Company company = new Company(CNPJ, TRADE_NAME);
         CompanyRepresentation companyRepresentation = new CompanyRepresentation.Builder()
-                .toRepresentantion(company);
+                .toRepresentation(company);
 
         assertThat(companyRepresentation.getCnpj(), is(company.getCnpj()));
         assertThat(companyRepresentation.getTradeName(), is(company.getTradeName()));

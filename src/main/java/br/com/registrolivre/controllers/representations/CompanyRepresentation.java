@@ -39,7 +39,7 @@ public class CompanyRepresentation {
             return new CompanyRepresentation(null, null, null);
         }
 
-        public CompanyRepresentation toRepresentantion(Company company) {
+        public CompanyRepresentation toRepresentation(Company company) {
             return new CompanyRepresentation()
                     .withId(company.getId())
                     .withCnpj(company.getCnpj())
