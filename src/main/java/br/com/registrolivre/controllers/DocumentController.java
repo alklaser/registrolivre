@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 public class DocumentController {
 
-    @RequestMapping(value = "/cadastro", method = RequestMethod.GET)
+    @RequestMapping(value = "/documentos", method = RequestMethod.GET)
     public ResponseEntity getDocumentUrl(DocumentRepresentation documentRepresentation) {
         return new ResponseEntity<>(HttpStatus.OK);
     }

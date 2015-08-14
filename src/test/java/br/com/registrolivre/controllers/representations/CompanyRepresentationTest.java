@@ -12,9 +12,12 @@ public class CompanyRepresentationTest {
     private static final String TRADE_NAME = "fancy name";
 
     @Test
-    public void shouldConvertRepresentationToCompany() throws Exception {
+    public void shouldConvertCompanyToRepresentation() throws Exception {
         Company company = new Company(CNPJ, TRADE_NAME);
-        CompanyRepresentation companyRepresentation = new CompanyRepresentation(CNPJ, TRADE_NAME);
-        assertThat(companyRepresentation.toModel(), is(company));
+        CompanyRepresentation companyRepresentation = new CompanyRepresentation.Builder()
+                .toRepresentantion(company);
+
+        assertThat(companyRepresentation.getCnpj(), is(company.getCnpj()));
+        assertThat(companyRepresentation.getTradeName(), is(company.getTradeName()));
     }
 }

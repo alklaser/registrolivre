@@ -1,5 +1,6 @@
 package br.com.registrolivre.controllers;
 
+import br.com.registrolivre.controllers.representations.CompanyRepresentation;
 import br.com.registrolivre.controllers.representations.DocumentRepresentation;
 import br.com.registrolivre.models.Company;
 import br.com.registrolivre.models.Document;
@@ -14,9 +15,6 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 public class DocumentControllerTest  {
 
-    @Mock
-    private Company company;
-
     private DocumentController controller;
 
     private Document document;
@@ -27,8 +25,14 @@ public class DocumentControllerTest  {
     public void setUp() throws Exception {
         initMocks(this);
         controller = new DocumentController();
-        documentRepresentation = new DocumentRepresentation(1L, "0001");
-        document = documentRepresentation.toModel();
+
+        CompanyRepresentation companyRepresentation = new CompanyRepresentation.Builder()
+                .withCnpj("cnpj")
+                .withTradeName("trade name")
+                .build();
+
+        documentRepresentation = new DocumentRepresentation(companyRepresentation, "s3Etag");
+        document = new Document.Builder().toModel(documentRepresentation);
     }
 
     @Test

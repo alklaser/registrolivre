@@ -30,7 +30,7 @@ public class CompanyControllerTest {
         initMocks(this);
         controller = new CompanyController(companyRepository);
         companyRepresentation = new CompanyRepresentation(1L, "79.064.650/0001-50", "fancy name");
-        company = companyRepresentation.toModel();
+        company = new Company.Builder().toModel(companyRepresentation);
     }
 
     @Test

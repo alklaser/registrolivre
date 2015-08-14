@@ -6,12 +6,13 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.Wither;
 
+import static lombok.AccessLevel.*;
+
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@Value
 @Wither
-@FieldDefaults(level = AccessLevel.PRIVATE)
+@FieldDefaults(level = PRIVATE)
 public class CompanyRepresentation {
 
     @JsonFormat Long id;
@@ -23,14 +24,26 @@ public class CompanyRepresentation {
         this.tradeName = tradeName;
     }
 
-    public Company toModel() {
-        return new Company(this.cnpj, this.tradeName);
-    }
+    @NoArgsConstructor
+    @AllArgsConstructor
+    @Value
+    @Wither
+    @FieldDefaults(level = PRIVATE)
+    public static class Builder {
 
-    public static CompanyRepresentation toRepresentation(Company company) {
-        return new CompanyRepresentation()
-                .withId(company.getId())
-                .withCnpj(company.getCnpj())
-                .withTradeName(company.getTradeName());
+        Long id;
+        String cnpj;
+        String tradeName;
+
+        public CompanyRepresentation build() {
+            return new CompanyRepresentation(null, null, null);
+        }
+
+        public CompanyRepresentation toRepresentantion(Company company) {
+            return new CompanyRepresentation()
+                    .withId(company.getId())
+                    .withCnpj(company.getCnpj())
+                    .withTradeName(company.getTradeName());
+        }
     }
 }
