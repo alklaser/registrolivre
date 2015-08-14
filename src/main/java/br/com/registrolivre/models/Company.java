@@ -35,6 +35,7 @@ public class Company {
     @Column(name = "cnpj")
     String cnpj;
 
+    @NotNull
     @Column(name = "trade_name")
     String tradeName;
 
