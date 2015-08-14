@@ -7,7 +7,10 @@ app.factory("companies", ["$http", function($http) {
     };
 
     function newCompany(company) {
-    }
+        return $http.post('/cadastro', company).then(function(response) {
+            return response.status;
+        });
+    };
 
     return {
         all: all,
