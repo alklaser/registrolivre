@@ -1,6 +1,5 @@
 package br.com.registrolivre.models;
 
-import br.com.registrolivre.controllers.representations.DocumentRepresentation;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -39,32 +38,6 @@ public class Document {
     @Column(name = "s3_etag")
     String s3Etag;
 
-    @NoArgsConstructor
-    @AllArgsConstructor
-    @Value
-    @Wither
-    @FieldDefaults(level = PRIVATE)
-    public static class Builder {
+    String url;
 
-        Long id;
-        Company company;
-        String s3Etag;
-
-        public Document build() {
-            return new Document(null, null, null);
-        }
-
-        public Document toModel(DocumentRepresentation documentRepresentation) {
-            Company company = new Company.Builder()
-                    .withId(documentRepresentation.getCompany().getId())
-                    .withCnpj(documentRepresentation.getCompany().getCnpj())
-                    .withTradeName(documentRepresentation.getCompany().getTradeName())
-                    .build();
-
-            return new Document()
-                    .withId(documentRepresentation.getId())
-                    .withCompany(company)
-                    .withS3Etag(documentRepresentation.getS3Etag());
-        }
-    }
 }
