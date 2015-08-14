@@ -1,9 +1,11 @@
-app.controller("NewCompanyController", ["$scope", "NewCompanyFactory", function($scope, newCompanyFactory) {
-  var createCompany = function(company) {
-    newCompanyFactory.postNewCompany(company);
+app.controller("NewCompanyController", ["$scope", "companies", function($scope, companies) {
+
+  $scope.createCompany = function(company) {
+    companies.newCompany(company);
   };
 
   return {
-    createCompany: createCompany
+    createCompany: $scope.createCompany
   };
+
 }]);

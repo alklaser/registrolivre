@@ -9,10 +9,10 @@ describe("Controller: NewCompanyController", function() {
 
     }));
 
-    it('Should call factory when click method is triggered', inject(function(NewCompanyFactory) {
+    it('Should call factory when click method is triggered', inject(function(companies) {
         var spy = sinon.spy();
         var $scope = {};
-        var controller = $controller('NewCompanyController', { $scope: $scope, NewCompanyFactory: { postNewCompany: spy } });
+        var controller = $controller('NewCompanyController', { $scope: $scope, companies: { newCompany: spy } });
         var company = { 
           cnpj: "231231",
           name: "Example Company"

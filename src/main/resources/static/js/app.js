@@ -12,7 +12,7 @@ app.config(['$routeProvider',
                 controller: 'CompaniesListController'
             })
             .when("/cadastro", {
-                templateUrl: 'views/partials/new-company.html',
+                templateUrl: 'partials/new-company.html',
                 controller: 'NewCompanyController'
             })
             .otherwise({
