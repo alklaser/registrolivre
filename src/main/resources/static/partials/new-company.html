@@ -14,8 +14,8 @@
 
           <div class="form-group has-feedback" id="cnpj-group">
             <label class="control-label">CNPJ <abbr class="cor-vermelha" title="Preenchimento obrigatório">*</abbr></label>
-            <input class="form-control" ng-model="company.cnpj" onblur="validateCNPJ(this.value)"  type="text" name="empresa.cnpj" id="cnpj" value=""
-              placeholder="ex: 00.000.000/0000-00" required="" maxlength="18" autocomplete="off">
+            <input class="form-control" ng-model="company.cnpj" onblur="cnpjValidator().validateCNPJ(this.value)" type="text" name="empresa.cnpj" id="cnpj" value=""
+              placeholder="ex: 00.000.000/0000-00" maxlength="18" autocomplete="off">
           </div>
 
           <div class="form-group has-feedback" id="nomeFantasia-group">
