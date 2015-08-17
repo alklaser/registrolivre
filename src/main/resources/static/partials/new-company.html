@@ -17,7 +17,7 @@
             <input class="form-control" ng-model="company.cnpj"  type="text" name="empresa.cnpj" id="cnpj" value="" placeholder="ex: 00.000.000/0000-00" maxlength="18" autocomplete="off">
           </div>
 
-          <div class="form-group has-feedback" id="nomeFantasia-group">
+          <div empty-field-validation class="form-group has-feedback" id="nomeFantasia-group">
             <label class="control-label">Nome fantasia  <abbr class="cor-vermelha" title="Preenchimento obrigatório">*</abbr> </label>
             <input class="form-control" ng-model="company.tradeName" type="text" name="empresa.nomeFantasia" id="nomeFantasia" value="" placeholder="ex: Larah Instrumentos Musicais" required="">
             <span class="glyphicon form-control-feedback"></span>

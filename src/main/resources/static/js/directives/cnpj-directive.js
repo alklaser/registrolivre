@@ -1,40 +1,18 @@
 app.directive("cnpjValidation", [function() {
 
   return {
-    
+
     link: function(scope, element, attr, ctrl) {
       var inputText = element.find('.form-control');
-      var label = element.find('.control-label');
-      
-      console.log(inputText);
-      inputText.on("blur", function() {        
+
+      inputText.on("blur", function() {
         element.removeClass('has-error has-success');
         if (validateCNPJ(inputText.val())) {
           element.addClass('has-success');
         } else {
           element.addClass('has-error');
         }
-        
       });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
       var validateCNPJ = function(input) {
         cnpj = input.replace(/[^\d]+/g, '');
