@@ -1,0 +1,11 @@
+.ng-table th.sortable.sort-desc, .ng-table th.sortable.sort-asc {
+    background-color: transparent;
+}
+
+.ng-table-header {
+    text-align: left;
+}
+
+.ng-table-counts {
+    display: none;
+}

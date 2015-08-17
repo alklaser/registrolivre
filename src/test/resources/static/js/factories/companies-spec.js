@@ -27,11 +27,11 @@ describe("Factory: companies", function() {
     });
 
     it("gets success message when creating new company with correct information", function() {
-        var company = { 
+        var company = {
           cnpj: "2903902193",
           tradeName: "Fantasy Name"
         };
-        
+
         var expectedResponse = 200;
 
         $httpBackend.expectPOST('/cadastro', company).respond(expectedResponse);
