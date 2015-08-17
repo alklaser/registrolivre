@@ -6,7 +6,7 @@
         <h2>Cadastrar Empresa</h2>
       </div>
 
-      <form class="form" name="formulario" enctype="multipart/form-data">
+      <form required-field-validation class="form" name="formulario" enctype="multipart/form-data">
         <div class="panel-body">
           <div class="list-group-item-heading centralize">
             <h4>Dados da empresa</h4>
@@ -14,19 +14,19 @@
 
           <div cnpj-validation class="form-group has-feedback" id="cnpj-group" >
             <label class="control-label">CNPJ <abbr class="cor-vermelha" title="Preenchimento obrigatório">*</abbr></label>
-            <input class="form-control" ng-model="company.cnpj"  type="text" name="empresa.cnpj" id="cnpj" value="" placeholder="ex: 00.000.000/0000-00" maxlength="18" autocomplete="off">
+            <input class="form-control required" ng-model="company.cnpj"  type="text" name="empresa.cnpj" id="cnpj" value="" placeholder="ex: 00.000.000/0000-00" maxlength="18" autocomplete="off">
           </div>
 
           <div empty-field-validation class="form-group has-feedback" id="nomeFantasia-group">
             <label class="control-label">Nome fantasia  <abbr class="cor-vermelha" title="Preenchimento obrigatório">*</abbr> </label>
-            <input class="form-control" ng-model="company.tradeName" type="text" name="empresa.nomeFantasia" id="nomeFantasia" value="" placeholder="ex: Larah Instrumentos Musicais" required="">
+            <input class="form-control required" ng-model="company.tradeName" type="text" name="empresa.nomeFantasia" id="nomeFantasia" value="" placeholder="ex: Larah Instrumentos Musicais" required="">
             <span class="glyphicon form-control-feedback"></span>
           </div>
         </div>
 
         <div class="panel-footer">
           <span class="centralize msg-alert color-red margin-15-0" id="form-alert">Preencha os campos corretamente para enviar.</span>
-          <input type="submit" id="btn-submit" ng-click="createCompany(company)" class="btn btn-lg btn-primary pull-right margin-0-6" value="Enviar">
+          <input type="submit" id="btn-submit" ng-click="createCompany(company)" class="btn btn-lg btn-primary pull-right margin-0-6" value="Enviar" disabled="true">
           <input type="reset" value="Limpar" class="btn btn-default btn-lg pull-left margin-0-6">
           <div style="clear:both;"></div>
         </div>

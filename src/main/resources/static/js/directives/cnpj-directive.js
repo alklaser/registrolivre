@@ -1,7 +1,6 @@
 app.directive("cnpjValidation", [function() {
 
   return {
-
     link: function(scope, element, attr, ctrl) {
       var inputText = element.find('.form-control');
 
