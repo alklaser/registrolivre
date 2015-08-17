@@ -1,6 +1,5 @@
 package br.com.registrolivre.controllers.representations;
 
-import br.com.registrolivre.models.Company;
 import br.com.registrolivre.models.Document;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
@@ -17,11 +16,11 @@ import static lombok.AccessLevel.*;
 public class DocumentRepresentation {
     @JsonFormat Long id;
     @JsonFormat CompanyRepresentation company;
-    @JsonFormat String s3Etag;
+    @JsonFormat String url;
 
-    public DocumentRepresentation(CompanyRepresentation company, String s3Etag) {
+    public DocumentRepresentation(CompanyRepresentation company, String url) {
         this.company = company;
-        this.s3Etag = s3Etag;
+        this.url = url;
     }
 
     @NoArgsConstructor
@@ -49,7 +48,7 @@ public class DocumentRepresentation {
             return new DocumentRepresentation()
                     .withId(document.getId())
                     .withCompany(companyRepresentation)
-                    .withS3Etag(document.getS3Etag());
+                    .withUrl(document.getUrl());
         }
     }
 }
