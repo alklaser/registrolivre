@@ -3,12 +3,13 @@ app.directive("cnpjValidation", [function() {
   return {
     
     link: function(scope, element, attr, ctrl) {
-
-      element.on("blur", function() {
-        
+      var inputText = element.find('.form-control');
+      var label = element.find('.control-label');
+      
+      console.log(inputText);
+      inputText.on("blur", function() {        
         element.removeClass('has-error has-success');
-
-        if (validateCNPJ(element.val())) {
+        if (validateCNPJ(inputText.val())) {
           element.addClass('has-success');
         } else {
           element.addClass('has-error');

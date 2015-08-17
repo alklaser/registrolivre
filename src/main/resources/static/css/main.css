@@ -352,14 +352,22 @@ dt {
 	border: none;
 }
 
-.has-error {
+.has-error input {
   border-color: #a94442;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
 }
 
-.has-success {
+.has-error label {
+  color: #A04442;
+}
+
+.has-success input {
   border-color: #2b542c;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #67b168;
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #67b168;
+}
+
+.has-success label {
+  color: #67B168;
 }

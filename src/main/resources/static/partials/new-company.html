@@ -12,9 +12,9 @@
             <h4>Dados da empresa</h4>
           </div>
 
-          <div class="form-group has-feedback" id="cnpj-group" >
+          <div cnpj-validation class="form-group has-feedback" id="cnpj-group" >
             <label class="control-label">CNPJ <abbr class="cor-vermelha" title="Preenchimento obrigatório">*</abbr></label>
-            <input cnpj-validation class="form-control" ng-model="company.cnpj"  type="text" name="empresa.cnpj" id="cnpj" value="" placeholder="ex: 00.000.000/0000-00" maxlength="18" autocomplete="off">
+            <input class="form-control" ng-model="company.cnpj"  type="text" name="empresa.cnpj" id="cnpj" value="" placeholder="ex: 00.000.000/0000-00" maxlength="18" autocomplete="off">
           </div>
 
           <div class="form-group has-feedback" id="nomeFantasia-group">
