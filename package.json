@@ -12,6 +12,7 @@
     "angular": "^1.4.4",
     "angular-mocks": "^1.4.3",
     "angular-route": "^1.4.3",
+    "angular-ui-mask": "^1.4.2",
     "bootstrap": "^3.3.5",
     "chai": "^3.2.0",
     "karma": "^0.13.3",
