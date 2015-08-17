@@ -1,13 +1,39 @@
-app.directive("cnpjValidator", [function() {
+app.directive("cnpjValidation", [function() {
 
   return {
-    restrict: 'A',
-    require: 'ngModel',
-    link: function(scope, elem, attr, ctrl) {
+    
+    link: function(scope, element, attr, ctrl) {
 
-      elem.on('blur', function() {
-        console.log(validateCNPJ(elem[0].value));
+      element.on("blur", function() {
+        
+        element.removeClass('has-error has-success');
+
+        if (validateCNPJ(element.val())) {
+          element.addClass('has-success');
+        } else {
+          element.addClass('has-error');
+        }
+        
       });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       var validateCNPJ = function(input) {
         cnpj = input.replace(/[^\d]+/g, '');
