@@ -3,6 +3,7 @@ package br.com.registrolivre.controllers;
 import br.com.registrolivre.controllers.representations.CompanyRepresentation;
 import br.com.registrolivre.models.Company;
 import br.com.registrolivre.repository.CompanyRepository;
+import br.com.registrolivre.services.CompanyService;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +20,20 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.util.Set;
 
-import static org.springframework.http.ResponseEntity.ok;
-
 @Log4j
 @NoArgsConstructor
 @RestController
 public class CompanyController {
 
-    private CompanyRepository companyRepository;
+    private CompanyService companyService;
     private Validator validator;
 
     @Autowired
-    public CompanyController(CompanyRepository companyRepository) {
-        this.companyRepository = companyRepository;
+    public CompanyController(CompanyService companyService) {
+        this.companyService = companyService;
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
     }
-
 
     @RequestMapping(value = "/cadastro", method = RequestMethod.POST)
     public ResponseEntity saveCompany(@RequestBody CompanyRepresentation companyRepresentation) {
@@ -43,7 +41,7 @@ public class CompanyController {
             Company company = new Company.Builder().toModel(companyRepresentation);
             Set<ConstraintViolation<Company>> violations = validator.validate(company);
             if (violations.isEmpty()) {
-                companyRepository.save(company);
+                companyService.save(company);
             } else {
                 log.error("Violations found: " + violations.toString());
             }
