@@ -2,7 +2,7 @@ package br.com.registrolivre.controllers;
 
 import br.com.registrolivre.controllers.representations.CompanyRepresentation;
 import br.com.registrolivre.models.Company;
-import br.com.registrolivre.repository.CompanyRepository;
+import br.com.registrolivre.services.CompanyService;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,18 +24,18 @@ import static org.springframework.http.ResponseEntity.ok;
 @Controller
 public class CompaniesController {
 
-    private CompanyRepository companyRepository;
+    private CompanyService companyService;
 
     @Autowired
-    public CompaniesController(CompanyRepository companyRepository) {
-        this.companyRepository = companyRepository;
+    public CompaniesController(CompanyService companyService) {
+        this.companyService = companyService;
     }
 
     @RequestMapping(value = "/empresas", method = RequestMethod.GET)
     public @ResponseBody ResponseEntity<Iterable<CompanyRepresentation>> getCompanies() {
 
         try {
-            Iterable<Company> registeredCompanies = companyRepository.findAll();
+            Iterable<Company> registeredCompanies = companyService.findAll();
 
             List<CompanyRepresentation> companies = StreamSupport.stream(registeredCompanies.spliterator(), false)
                     .map(company -> toRepresentation(company))

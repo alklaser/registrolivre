@@ -6,6 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -34,5 +37,26 @@ public class CompanyServiceTest {
 
         companyService.save(company);
         verify(companyRepository).save(company);
+    }
+
+    @Test
+    public void shouldReturnAllRegisteredCompanies() {
+        List<Company> companies = getCompanies();
+
+        when(companyRepository.findAll()).thenReturn(companies);
+
+        companyService.findAll();
+        verify(companyRepository).findAll();
+    }
+
+    private List<Company> getCompanies() {
+        Company company = new Company.Builder()
+                .withCnpj("cnpj")
+                .withTradeName("trade name")
+                .build();
+
+        List<Company> companies = new ArrayList<Company>();
+        companies.add(company);
+        return companies;
     }
 }

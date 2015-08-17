@@ -2,7 +2,7 @@ package br.com.registrolivre.controllers;
 
 import br.com.registrolivre.controllers.representations.CompanyRepresentation;
 import br.com.registrolivre.models.Company;
-import br.com.registrolivre.repository.CompanyRepository;
+import br.com.registrolivre.services.CompanyService;
 import com.google.common.collect.Lists;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,19 +25,19 @@ import static org.mockito.MockitoAnnotations.initMocks;
 public class CompaniesControllerTest {
 
     @Mock
-    CompanyRepository companyRepository;
+    CompanyService companyService;
 
     CompaniesController controller;
 
     @Before
     public void setUp() {
         initMocks(this);
-        this.controller = new CompaniesController(companyRepository);
+        this.controller = new CompaniesController(companyService);
     }
 
     @Test
     public void shouldReturnAllRegisteredCompanies() {
-        when(companyRepository.findAll()).thenReturn(registeredCompanies());
+        when(companyService.findAll()).thenReturn(registeredCompanies());
         ResponseEntity<Iterable<CompanyRepresentation>> companies = controller.getCompanies();
 
         List<CompanyRepresentation> expectedCompanies = new ArrayList<>();
@@ -49,12 +49,12 @@ public class CompaniesControllerTest {
         assertThat(Lists.newArrayList(companies.getBody()).get(1).getTradeName(), is("second tradeName"));
         assertThat(companies.getStatusCode(), is(HttpStatus.OK));
 
-        verify(companyRepository).findAll();
+        verify(companyService).findAll();
     }
 
     @Test
     public void shouldReturnInternalServerError() {
-        when(companyRepository.findAll()).thenThrow(IllegalArgumentException.class);
+        when(companyService.findAll()).thenThrow(IllegalArgumentException.class);
         ResponseEntity response = controller.getCompanies();
         assertThat(response.getStatusCode(), is(HttpStatus.INTERNAL_SERVER_ERROR));
     }
