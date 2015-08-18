@@ -9,6 +9,8 @@ import org.mockito.Mock;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
@@ -47,6 +49,19 @@ public class CompanyServiceTest {
 
         companyService.findAll();
         verify(companyRepository).findAll();
+    }
+
+    @Test
+    public void shouldReturnExistingCompanyWhenGetCompanyByCNPJ() throws Exception {
+        Company company = new Company.Builder()
+                .withCnpj("cnpj")
+                .withTradeName("trade name")
+                .build();
+
+        when(companyRepository.getCompanyByCnpj("cnpj")).thenReturn(company);
+        Company resultingCompany = companyService.getByCnpj("cnpj");
+
+        assertThat(resultingCompany, is(company));
     }
 
     private List<Company> getCompanies() {

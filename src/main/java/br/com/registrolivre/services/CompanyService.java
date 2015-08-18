@@ -26,4 +26,8 @@ public class CompanyService {
     public Iterable<Company> findAll() {
         return companyRepository.findAll();
     }
+
+    public Company getByCnpj(String cnpj) {
+        return companyRepository.getCompanyByCnpj(cnpj);
+    }
 }
