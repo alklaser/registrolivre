@@ -1,4 +1,4 @@
-var app = angular.module("registro-livre", ['ngRoute', 'ngTable', 'ui.mask'])
+var app = angular.module("registro-livre", ['ngRoute','ui.mask', 'ngTable'])
 
 app.config(['$routeProvider',
     function($routeProvider) {
