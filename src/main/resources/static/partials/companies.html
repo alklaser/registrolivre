@@ -13,6 +13,7 @@
                         <td class="text-center">
                             {{ companiesNotFoundMessage }}
                         </td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
@@ -22,7 +23,8 @@
                         <span ng-attr-data-toggle="{{ hasLongName ? 'tooltip' : '' }}" title="{{ company.tradeName }}">{{ company.tradeName | limitTo : 60 }}<span ng-show="hasLongName">...</span></span>
                     </td>
                     <td>
-                        <a ng-disabled="company.documents[0] == undefined" href="{{ company.documents[0].url }}" target="_blank" class="btn btn-primary pull-right">Ver Registro</a>
+                        <a href="{{ company.document.url }}" class="btn btn-default">Download de PDF</a>
+
                     </td>
                 </tr>
             </table>
