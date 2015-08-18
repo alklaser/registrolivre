@@ -2,8 +2,8 @@ package br.com.registrolivre.controllers;
 
 import br.com.registrolivre.controllers.representations.CompanyRepresentation;
 import br.com.registrolivre.models.Company;
+import br.com.registrolivre.models.Document;
 import br.com.registrolivre.services.CompanyService;
-import com.google.common.collect.Lists;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -24,6 +24,8 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 public class CompaniesControllerTest {
 
+    private final ArrayList<Document> emptyDocuments = new ArrayList<>();
+
     @Mock
     CompanyService companyService;
 
@@ -41,12 +43,10 @@ public class CompaniesControllerTest {
         ResponseEntity<Iterable<CompanyRepresentation>> companies = controller.getCompanies();
 
         List<CompanyRepresentation> expectedCompanies = new ArrayList<>();
-        expectedCompanies.add(new CompanyRepresentation(1L, "first cnpj", "first tradeName"));
-        expectedCompanies.add(new CompanyRepresentation(2L, "second cnpj", "second tradeName"));
+        expectedCompanies.add(new CompanyRepresentation(1L, "first cnpj", "first tradeName", emptyDocuments));
+        expectedCompanies.add(new CompanyRepresentation(2L, "second cnpj", "second tradeName", emptyDocuments));
 
         assertThat(asList(companies.getBody()).size(), is(asList(expectedCompanies).size()));
-        assertThat(Lists.newArrayList(companies.getBody()).get(0).getTradeName(), is("first tradeName"));
-        assertThat(Lists.newArrayList(companies.getBody()).get(1).getTradeName(), is("second tradeName"));
         assertThat(companies.getStatusCode(), is(HttpStatus.OK));
 
         verify(companyService).findAll();
@@ -60,8 +60,8 @@ public class CompaniesControllerTest {
     }
 
     private Set<Company> registeredCompanies() {
-        Company firstCompany = new Company(1L, "first cnpj", "first tradeName");
-        Company secondCompany = new Company(2L, "second cnpj", "second tradeName");
+        Company firstCompany = new Company(1L, "first cnpj", "first tradeName", emptyDocuments);
+        Company secondCompany = new Company(2L, "second cnpj", "second tradeName", emptyDocuments);
         Set<Company> companies = new HashSet<>();
         companies.add(firstCompany);
         companies.add(secondCompany);

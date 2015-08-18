@@ -9,6 +9,8 @@ import org.hibernate.validator.constraints.br.CNPJ;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import java.util.List;
+
 import static lombok.AccessLevel.PRIVATE;
 
 @AllArgsConstructor
@@ -39,6 +41,14 @@ public class Company {
     @Column(name = "trade_name")
     String tradeName;
 
+    @OneToMany
+    @JoinTable(
+            name = "documents",
+            joinColumns = @JoinColumn(name = "id"),
+            inverseJoinColumns = @JoinColumn(name = "company_id")
+    )
+    List<Document> documents;
+
     @NoArgsConstructor
     @AllArgsConstructor
     @Value
@@ -49,16 +59,18 @@ public class Company {
         Long id;
         String cnpj;
         String tradeName;
+        List<Document> documents;
 
         public Company build() {
-            return new Company(null, null, null);
+            return new Company(null, null, null, null);
         }
 
         public Company toModel(CompanyRepresentation companyRepresentation) {
             return new Company()
                     .withId(companyRepresentation.getId())
                     .withCnpj(companyRepresentation.getCnpj())
-                    .withTradeName(companyRepresentation.getTradeName());
+                    .withTradeName(companyRepresentation.getTradeName())
+                    .withDocuments(companyRepresentation.getDocuments());
         }
     }
 
