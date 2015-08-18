@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -62,5 +63,23 @@ public class CompanyControllerTest {
         companyRepresentation = new CompanyRepresentation("123 invalid cnpj", "another fancy name");
         controller.saveCompany(companyRepresentation);
         verifyZeroInteractions(companyService);
+    }
+
+    @Test
+    public void shouldGetExistingCompanyByCNPJ() throws Exception {
+        CompanyRepresentation company = new CompanyRepresentation("cnpj", "company inc.");
+        when(companyService.getByCnpj("cnpj")).thenReturn(new Company.Builder().toModel(company));
+        ResponseEntity response = controller.getCompanyByCnpj("cnpj");
+        assertThat(response.getBody(), is(company));
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+    }
+
+    @Test
+    public void shouldGetNothingWhenGettingNonExistingCompanyByCNPJ() throws Exception {
+        when(companyService.getByCnpj("cnpj")).thenReturn(null);
+        ResponseEntity response = controller.getCompanyByCnpj("cnpj");
+        assertEquals(response.getBody(), null);
+        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+
     }
 }

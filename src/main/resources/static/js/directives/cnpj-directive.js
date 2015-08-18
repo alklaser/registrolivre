@@ -1,4 +1,4 @@
-app.directive("cnpjValidation", [function() {
+app.directive("cnpjValidation", ["companies", function(companies) {
 
   return {
     link: function(scope, element, attr, ctrl) {
@@ -7,6 +7,8 @@ app.directive("cnpjValidation", [function() {
       inputText.on("blur", function() {
         element.removeClass('has-error has-success');
         if (validateCNPJ(inputText.val())) {
+          var response = companies.getCompanyWithCnpj(inputText.val());
+          console.log(response);
           element.addClass('has-success');
         } else {
           element.addClass('has-error');
