@@ -94,6 +94,7 @@ task copyAngular {
         copy { from 'node_modules/angular/angular.min.js' into 'src/main/resources/static/vendor/angular/js/'}
         copy { from 'node_modules/angular-route/angular-route.min.js' into 'src/main/resources/static/vendor/angular/js/'}
         copy { from 'node_modules/ng-table/dist/ng-table.js' into 'src/main/resources/static/vendor/angular/js/'}
+        copy { from 'node_modules/angular-ui-mask/dist/mask.min.js' into 'src/main/resources/static/vendor/angular/js/'}
         copy { from 'node_modules/ng-table/dist/ng-table.css' into 'src/main/resources/static/vendor/angular/css/'}
     }
 }
