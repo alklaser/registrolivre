@@ -1,6 +1,7 @@
 package br.com.registrolivre.models;
 
 import br.com.registrolivre.controllers.representations.CompanyRepresentation;
+import br.com.registrolivre.controllers.representations.DocumentRepresentation;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.Wither;
@@ -8,8 +9,9 @@ import org.hibernate.validator.constraints.br.CNPJ;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -20,7 +22,8 @@ import static lombok.AccessLevel.PRIVATE;
 @Entity
 @Value
 @Wither
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "documents")
+@ToString(exclude = "documents")
 public class Company {
 
     public Company(String cnpj, String tradeName) {
@@ -33,7 +36,8 @@ public class Company {
     @Column(name = "id")
     Long id;
 
-    @NotNull @CNPJ
+    @NotNull
+    @CNPJ
     @Column(name = "cnpj")
     String cnpj;
 
@@ -41,13 +45,8 @@ public class Company {
     @Column(name = "trade_name")
     String tradeName;
 
-    @OneToMany
-    @JoinTable(
-            name = "documents",
-            joinColumns = @JoinColumn(name = "id"),
-            inverseJoinColumns = @JoinColumn(name = "company_id")
-    )
-    List<Document> documents;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company", fetch = FetchType.LAZY)
+    Set<Document> documents = new HashSet<>();
 
     @NoArgsConstructor
     @AllArgsConstructor
@@ -59,18 +58,27 @@ public class Company {
         Long id;
         String cnpj;
         String tradeName;
-        List<Document> documents;
+        Set<Document> documents;
 
         public Company build() {
             return new Company(null, null, null, null);
         }
 
-        public Company toModel(CompanyRepresentation companyRepresentation) {
+        public Company toModel(CompanyRepresentation representation) {
+            Set<DocumentRepresentation> documentsRepresentation = representation.getDocuments();
+            Set<Document> documents = documentsRepresentation != null ? documentsToModel(documentsRepresentation) : new HashSet<>();
+
             return new Company()
-                    .withId(companyRepresentation.getId())
-                    .withCnpj(companyRepresentation.getCnpj())
-                    .withTradeName(companyRepresentation.getTradeName())
-                    .withDocuments(companyRepresentation.getDocuments());
+                    .withId(representation.getId())
+                    .withCnpj(representation.getCnpj())
+                    .withTradeName(representation.getTradeName())
+                    .withDocuments(documents);
+        }
+
+        private Set<Document> documentsToModel(Set<DocumentRepresentation> documents) {
+            return documents.stream()
+                    .map(document -> new Document.Builder().toModel(document))
+                    .collect(Collectors.toSet());
         }
     }
 

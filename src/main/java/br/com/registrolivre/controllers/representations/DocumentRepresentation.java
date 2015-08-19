@@ -31,23 +31,16 @@ public class DocumentRepresentation {
     public static class Builder {
 
         Long id;
-        String cnpj;
-        String tradeName;
+        CompanyRepresentation company;
+        String url;
 
         public DocumentRepresentation build() {
             return new DocumentRepresentation(null, null, null);
         }
 
         public DocumentRepresentation toRepresentantion(Document document) {
-            CompanyRepresentation companyRepresentation = new CompanyRepresentation.Builder()
-                    .withId(document.getCompany().getId())
-                    .withCnpj(document.getCompany().getCnpj())
-                    .withTradeName(document.getCompany().getTradeName())
-                    .build();
-
             return new DocumentRepresentation()
                     .withId(document.getId())
-                    .withCompany(companyRepresentation)
                     .withUrl(document.getUrl());
         }
     }

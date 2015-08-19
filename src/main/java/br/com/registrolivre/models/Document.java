@@ -1,14 +1,13 @@
 package br.com.registrolivre.models;
 
 import br.com.registrolivre.controllers.representations.DocumentRepresentation;
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
-import lombok.Value;
+import lombok.*;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.Wither;
 
 import javax.persistence.*;
+
+import java.io.Serializable;
 
 import static lombok.AccessLevel.PRIVATE;
 
@@ -19,7 +18,8 @@ import static lombok.AccessLevel.PRIVATE;
 @Entity
 @Value
 @Wither
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "company")
+@ToString(exclude = "company")
 public class Document {
 
     public Document(Company company, String url) {
@@ -32,8 +32,8 @@ public class Document {
     @Column(name = "id")
     Long id;
 
-    @OneToOne
-    @JoinColumn(name = "company_id")
+    @ManyToOne
+    @JoinColumn(name = "company_id", nullable = false)
     Company company;
 
     @Column(name = "url")
@@ -53,17 +53,10 @@ public class Document {
             return new Document(null, null, null);
         }
 
-        public Document toModel(DocumentRepresentation documentRepresentation) {
-            Company company = new Company.Builder()
-                    .withId(documentRepresentation.getCompany().getId())
-                    .withCnpj(documentRepresentation.getCompany().getCnpj())
-                    .withTradeName(documentRepresentation.getCompany().getTradeName())
-                    .build();
-
+        public Document toModel(DocumentRepresentation representation) {
             return new Document()
-                    .withId(documentRepresentation.getId())
-                    .withCompany(company)
-                    .withUrl(documentRepresentation.getUrl());
+                    .withId(representation.getId())
+                    .withUrl(representation.getUrl());
         }
     }
 }

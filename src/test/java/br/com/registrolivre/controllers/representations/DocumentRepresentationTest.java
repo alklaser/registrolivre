@@ -32,7 +32,6 @@ public class DocumentRepresentationTest {
         DocumentRepresentation documentRepresentation = new DocumentRepresentation.Builder()
                 .toRepresentantion(document);
 
-        assertThat(documentRepresentation.getCompany().getCnpj(), is(document.getCompany().getCnpj()));
         assertThat(documentRepresentation.getUrl(), is(document.getUrl()));
     }
 }

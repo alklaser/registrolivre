@@ -22,6 +22,5 @@ public class DocumentTest {
         Document document = new Document.Builder().toModel(documentRepresentation);
 
         assertThat(document.getUrl(), is(documentRepresentation.getUrl()));
-        assertThat(document.getCompany().getCnpj(), is(documentRepresentation.getCompany().getCnpj()));
     }
 }

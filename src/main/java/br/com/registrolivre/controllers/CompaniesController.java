@@ -3,6 +3,7 @@ package br.com.registrolivre.controllers;
 import br.com.registrolivre.controllers.representations.CompanyRepresentation;
 import br.com.registrolivre.models.Company;
 import br.com.registrolivre.services.CompanyService;
+import com.google.common.collect.Lists;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import static org.springframework.http.ResponseEntity.ok;
 
@@ -32,12 +32,15 @@ public class CompaniesController {
     }
 
     @RequestMapping(value = "/empresas", method = RequestMethod.GET)
-    public @ResponseBody ResponseEntity<Iterable<CompanyRepresentation>> getCompanies() {
+    public
+    @ResponseBody
+    ResponseEntity<Iterable<CompanyRepresentation>> getCompanies() {
 
         try {
             Iterable<Company> registeredCompanies = companyService.findAll();
 
-            List<CompanyRepresentation> companies = StreamSupport.stream(registeredCompanies.spliterator(), false)
+            List<CompanyRepresentation> companies = Lists.newArrayList(registeredCompanies)
+                    .stream()
                     .map(company -> toRepresentation(company))
                     .collect(Collectors.toList());
             return ok(companies);
@@ -48,6 +51,7 @@ public class CompaniesController {
     }
 
     private CompanyRepresentation toRepresentation(Company company) {
-        return new CompanyRepresentation.Builder().toRepresentation(company);
+        CompanyRepresentation companyRepresentation = new CompanyRepresentation.Builder().toRepresentation(company);
+        return companyRepresentation;
     }
 }

@@ -1,6 +1,7 @@
 package br.com.registrolivre.controllers;
 
 import br.com.registrolivre.controllers.representations.CompanyRepresentation;
+import br.com.registrolivre.controllers.representations.DocumentRepresentation;
 import br.com.registrolivre.models.Company;
 import br.com.registrolivre.models.Document;
 import br.com.registrolivre.services.CompanyService;
@@ -24,8 +25,6 @@ import static org.mockito.MockitoAnnotations.initMocks;
 
 public class CompaniesControllerTest {
 
-    private final ArrayList<Document> emptyDocuments = new ArrayList<>();
-
     @Mock
     CompanyService companyService;
 
@@ -43,6 +42,7 @@ public class CompaniesControllerTest {
         ResponseEntity<Iterable<CompanyRepresentation>> companies = controller.getCompanies();
 
         List<CompanyRepresentation> expectedCompanies = new ArrayList<>();
+        Set<DocumentRepresentation> emptyDocuments = new HashSet<>();
         expectedCompanies.add(new CompanyRepresentation(1L, "first cnpj", "first tradeName", emptyDocuments));
         expectedCompanies.add(new CompanyRepresentation(2L, "second cnpj", "second tradeName", emptyDocuments));
 
@@ -60,6 +60,7 @@ public class CompaniesControllerTest {
     }
 
     private Set<Company> registeredCompanies() {
+        Set<Document> emptyDocuments = new HashSet<>();
         Company firstCompany = new Company(1L, "first cnpj", "first tradeName", emptyDocuments);
         Company secondCompany = new Company(2L, "second cnpj", "second tradeName", emptyDocuments);
         Set<Company> companies = new HashSet<>();
