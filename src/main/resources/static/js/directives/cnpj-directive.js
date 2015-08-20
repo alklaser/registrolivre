@@ -4,9 +4,18 @@ app.directive("cnpjValidation", ["companies", function(companies) {
     link: function(scope, element, attr, ctrl) {
       var inputText = element.find('.form-control');
 
+      scope.showUniqueCnpjMessage = function(){
+        console.log(scope.cnpjAlreadyExists);
+        return scope.cnpjAlreadyExists && element.hasClass("has-error");
+      }
+
       inputText.on("blur", function() {
+        scope.cnpjAlreadyExists = false;
         element.removeClass('has-error has-success');
-        validateCNPJ(inputText.val());
+        if(!validateCNPJ(inputText.val())) {
+            element.addClass('has-error');
+        };
+        scope.$digest();
       });
 
       var validateCNPJ = function(input) {
@@ -20,7 +29,6 @@ app.directive("cnpjValidation", ["companies", function(companies) {
 
       var verifyUniqueCnpj = function(cnpj) {
         scope.verifingCnpj = true;
-        scope.cnpjAlreadyExists = false;
 
         companies.getCompanyWithCnpj(cnpj).then(function(response) {
             scope.verifingCnpj = false;
@@ -31,6 +39,7 @@ app.directive("cnpjValidation", ["companies", function(companies) {
                 element.addClass('has-error');
             }
         });
+        return true;
       }
 
       var isCNPJStructureValid = function(cnpj) {
