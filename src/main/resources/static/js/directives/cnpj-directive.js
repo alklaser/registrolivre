@@ -6,13 +6,7 @@ app.directive("cnpjValidation", ["companies", function(companies) {
 
       inputText.on("blur", function() {
         element.removeClass('has-error has-success');
-        if (validateCNPJ(inputText.val())) {
-          var response = companies.getCompanyWithCnpj(inputText.val());
-          console.log(response);
-          element.addClass('has-success');
-        } else {
-          element.addClass('has-error');
-        }
+        validateCNPJ(inputText.val());
       });
 
       var validateCNPJ = function(input) {
@@ -20,8 +14,44 @@ app.directive("cnpjValidation", ["companies", function(companies) {
 
         return isCNPJStructureValid(cnpj) &&
           firstDigitValidation(cnpj) &&
-          secondDigitValidation(cnpj);
+          secondDigitValidation(cnpj) &&
+          verifyUniqueCnpj(cnpj);
       };
+
+      var verifyUniqueCnpj = function(cnpj) {
+        var formattedCnpj = formatCnpj(cnpj);
+        scope.verifingCnpj = true;
+        scope.cnpjAlreadyExists = false;
+
+        companies.getCompanyWithCnpj(formattedCnpj).then(function(response) {
+            scope.verifingCnpj = false;
+            if (!response.data) {
+                element.addClass('has-success');
+            } else {
+                scope.cnpjAlreadyExists = true;
+                element.addClass('has-error');
+            }
+        });
+      }
+   var formatCnpj = function(value) {
+
+       var formattedCnpj = "";
+       for (var index = 0; index <= value.length - 1; index++) {
+         if (index == 2 || index == 5) {
+           formattedCnpj += '.';
+         }
+         if (index == 8) {
+           formattedCnpj += '/';
+         }
+         if (index == 12) {
+           formattedCnpj += '-';
+         }
+         formattedCnpj += value[index];
+       }
+
+       return formattedCnpj;
+
+     };
 
       var isCNPJStructureValid = function(cnpj) {
         if (cnpj == '')
