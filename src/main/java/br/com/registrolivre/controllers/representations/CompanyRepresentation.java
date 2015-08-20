@@ -25,7 +25,6 @@ public class CompanyRepresentation {
     @JsonFormat String cnpj;
     @JsonFormat String tradeName;
     @JsonFormat Set<DocumentRepresentation> documents;
-    @JsonFormat MultipartFile file;
 
     public CompanyRepresentation(String cnpj, String tradeName) {
         this.cnpj = cnpj;
@@ -43,10 +42,9 @@ public class CompanyRepresentation {
         String cnpj;
         String tradeName;
         Set<DocumentRepresentation> documents;
-        MultipartFile file;
 
         public CompanyRepresentation build() {
-            return new CompanyRepresentation(null, null, null, null, null);
+            return new CompanyRepresentation(null, null, null, null);
         }
 
         public CompanyRepresentation toRepresentation(Company company) {

@@ -4,7 +4,9 @@ import br.com.registrolivre.controllers.representations.CompanyRepresentation;
 import br.com.registrolivre.models.Company;
 import br.com.registrolivre.services.CompanyService;
 import com.google.common.collect.Lists;
+import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,11 +19,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static lombok.AccessLevel.*;
 import static org.springframework.http.ResponseEntity.ok;
 
 @Log4j
 @NoArgsConstructor
 @Controller
+@FieldDefaults(level = PRIVATE)
 public class CompaniesController {
 
     private CompanyService companyService;

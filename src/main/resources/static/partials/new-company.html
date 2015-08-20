@@ -1,6 +1,8 @@
 <div class="row">
   <div class="col-lg-6 col-md-8 col-sm-10 col-lg-offset-3 col-md-offset-2 col-sm-offset-1">
-    <div class="panel panel-default margin-35-0">
+      <div class="messages-container"></div>
+
+      <div class="panel panel-default margin-35-0">
 
       <div class="panel-heading centralize">
         <h2>Cadastrar Empresa</h2>
@@ -12,9 +14,11 @@
             <h4>Dados da empresa</h4>
           </div>
 
-          <div cnpj-validation class="form-group has-feedback" id="cnpj-group" >
+          <div cnpj-validation class="form-group has-feedback " id="cnpj-group" >
             <label class="control-label">CNPJ <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr></label>
-            <input class="form-control required" ng-model="company.cnpj"  type="text" name="empresa.cnpj" id="cnpj" value=""  maxlength="18" autocomplete="off" ui-mask="99.999.999/9999-99">
+            <input class="form-control required" ng-model="company.cnpj"  type="text" name="empresa.cnpj" id="cnpj" value=""  maxlength="18" autocomplete="off" ui-mask="99.999.999/9999-99" model-view-value="true">
+              <span ng-show="verifingCnpj" class="form-control-feedback" aria-hidden="true"><img src="svg/loader.svg" alt=""/></span>
+              <span ng-show="cnpjAlreadyExists"><label class=" control-label">Já existe empresa com esse CNPJ</label></span>
           </div>
 
           <div empty-field-validation class="form-group has-feedback" id="nomeFantasia-group">

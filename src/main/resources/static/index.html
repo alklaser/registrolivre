@@ -28,13 +28,16 @@
     <script src="js/directives/required-fields-directive.js"></script>
     <script src="js/directives/empty-field-directive.js"></script>
     <script src="js/factories/companies.js"></script>
+    <script src="js/factories/messages.js"></script>
 </head>
 <body>
 <div id="wrapper">
     <div ng-include src="'partials/includes/header.html'"></div>
     <div class="container content">
         <div class="row">
-            <div ng-view></div>
+            <div ng-view>
+                <div class="messages-container"></div>
+            </div>
         </div>
     </div>
     <div ng-include src="'partials/includes/footer.html'"></div>

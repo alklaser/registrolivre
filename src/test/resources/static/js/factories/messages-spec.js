@@ -20,9 +20,9 @@ describe("Factory: messages", function() {
     }));
 
     it("displays success message on given container", function() {
-        $document.find('body').append('<div class="message-container">lalala</div>');
-        messages.showSuccess("teste", '.message-container');
-        var htmlResponse = $document[0].querySelectorAll('.message-container');
+        $document.find('body').append('<div class="messages-container"></div>');
+        messages.showSuccess("teste");
+        var htmlResponse = $document[0].querySelectorAll('.messages-container');
         var response = angular.element(htmlResponse).html();
         expect(response).to.contain("teste");
         expect(response).to.contain("alert-success");

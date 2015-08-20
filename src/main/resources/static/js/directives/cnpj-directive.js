@@ -6,13 +6,7 @@ app.directive("cnpjValidation", ["companies", function(companies) {
 
       inputText.on("blur", function() {
         element.removeClass('has-error has-success');
-        if (validateCNPJ(inputText.val())) {
-          var response = companies.getCompanyWithCnpj(inputText.val());
-          console.log(response);
-          element.addClass('has-success');
-        } else {
-          element.addClass('has-error');
-        }
+        validateCNPJ(inputText.val());
       });
 
       var validateCNPJ = function(input) {
@@ -20,8 +14,24 @@ app.directive("cnpjValidation", ["companies", function(companies) {
 
         return isCNPJStructureValid(cnpj) &&
           firstDigitValidation(cnpj) &&
-          secondDigitValidation(cnpj);
+          secondDigitValidation(cnpj) &&
+          verifyUniqueCnpj(input);
       };
+
+      var verifyUniqueCnpj = function(cnpj) {
+        scope.verifingCnpj = true;
+        scope.cnpjAlreadyExists = false;
+
+        companies.getCompanyWithCnpj(cnpj).then(function(response) {
+            scope.verifingCnpj = false;
+            if (!response.data) {
+                element.addClass('has-success');
+            } else {
+                scope.cnpjAlreadyExists = true;
+                element.addClass('has-error');
+            }
+        });
+      }
 
       var isCNPJStructureValid = function(cnpj) {
         if (cnpj == '')
