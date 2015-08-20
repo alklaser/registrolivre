@@ -5,7 +5,6 @@ app.directive("cnpjValidation", ["companies", function(companies) {
       var inputText = element.find('.form-control');
 
       scope.showUniqueCnpjMessage = function(){
-        console.log(scope.cnpjAlreadyExists);
         return scope.cnpjAlreadyExists && element.hasClass("has-error");
       }
 
