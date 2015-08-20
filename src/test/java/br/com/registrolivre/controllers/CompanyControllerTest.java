@@ -37,7 +37,7 @@ public class CompanyControllerTest {
         initMocks(this);
         controller = new CompanyController(companyService);
         Set<DocumentRepresentation> documents = new HashSet<>();
-        companyRepresentation = new CompanyRepresentation(1L, "79.064.650/0001-50", "fancy name", documents);
+        companyRepresentation = new CompanyRepresentation(1L, "79.064.650/0001-50", "fancy name", documents, null);
         company = new Company.Builder().toModel(companyRepresentation);
     }
 
@@ -71,7 +71,7 @@ public class CompanyControllerTest {
     @Test
     public void shouldGetExistingCompanyByCNPJ() throws Exception {
         HashSet<DocumentRepresentation> documents = new HashSet<>();
-        CompanyRepresentation company = new CompanyRepresentation(1L, "cnpj", "company inc.", documents);
+        CompanyRepresentation company = new CompanyRepresentation(1L, "cnpj", "company inc.", documents, null);
         when(companyService.getByCnpj("cnpj")).thenReturn(new Company.Builder().toModel(company));
         ResponseEntity response = controller.getCompanyByCnpj("cnpj");
         assertThat(response.getBody(), is(company));

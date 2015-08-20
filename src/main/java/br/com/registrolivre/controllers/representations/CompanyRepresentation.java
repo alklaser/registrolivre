@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Value;
 import lombok.experimental.FieldDefaults;
 import lombok.experimental.Wither;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -20,14 +21,11 @@ import static lombok.AccessLevel.PRIVATE;
 @FieldDefaults(level = PRIVATE)
 public class CompanyRepresentation {
 
-    @JsonFormat
-    Long id;
-    @JsonFormat
-    String cnpj;
-    @JsonFormat
-    String tradeName;
-    @JsonFormat
-    Set<DocumentRepresentation> documents;
+    @JsonFormat Long id;
+    @JsonFormat String cnpj;
+    @JsonFormat String tradeName;
+    @JsonFormat Set<DocumentRepresentation> documents;
+    @JsonFormat MultipartFile file;
 
     public CompanyRepresentation(String cnpj, String tradeName) {
         this.cnpj = cnpj;
@@ -45,9 +43,10 @@ public class CompanyRepresentation {
         String cnpj;
         String tradeName;
         Set<DocumentRepresentation> documents;
+        MultipartFile file;
 
         public CompanyRepresentation build() {
-            return new CompanyRepresentation(null, null, null, null);
+            return new CompanyRepresentation(null, null, null, null, null);
         }
 
         public CompanyRepresentation toRepresentation(Company company) {
