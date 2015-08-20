@@ -21,6 +21,9 @@
                     <td class="text-left" data-title="'Nome Fantasia'" sortable="'tradeName'">
                         {{ company.tradeName }}
                     </td>
+                    <td>
+                        <a href="{{ company.documents[0].url }}" target="_blank" class="btn btn-default">Download de PDF</a>
+                    </td>
                 </tr>
             </table>
         </div>
