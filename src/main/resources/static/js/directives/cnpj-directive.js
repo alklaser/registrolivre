@@ -10,12 +10,12 @@ app.directive("cnpjValidation", ["companies", function(companies) {
       });
 
       var validateCNPJ = function(input) {
-        cnpj = input.replace(/[^\d]+/g, '');
+        var cnpj = input.replace(/[^\d]+/g, '');
 
         return isCNPJStructureValid(cnpj) &&
           firstDigitValidation(cnpj) &&
           secondDigitValidation(cnpj) &&
-          verifyUniqueCnpj(cnpj);
+          verifyUniqueCnpj(input);
       };
 
       var verifyUniqueCnpj = function(cnpj) {
@@ -33,25 +33,6 @@ app.directive("cnpjValidation", ["companies", function(companies) {
             }
         });
       }
-   var formatCnpj = function(value) {
-
-       var formattedCnpj = "";
-       for (var index = 0; index <= value.length - 1; index++) {
-         if (index == 2 || index == 5) {
-           formattedCnpj += '.';
-         }
-         if (index == 8) {
-           formattedCnpj += '/';
-         }
-         if (index == 12) {
-           formattedCnpj += '-';
-         }
-         formattedCnpj += value[index];
-       }
-
-       return formattedCnpj;
-
-     };
 
       var isCNPJStructureValid = function(cnpj) {
         if (cnpj == '')
