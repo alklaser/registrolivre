@@ -1,9 +1,12 @@
 package br.com.registrolivre.controllers;
 
 import br.com.registrolivre.controllers.representations.CompanyRepresentation;
+import br.com.registrolivre.controllers.representations.DocumentRepresentation;
 import br.com.registrolivre.models.Company;
+import br.com.registrolivre.models.Document;
 import br.com.registrolivre.services.AWSService;
 import br.com.registrolivre.services.CompanyService;
+import br.com.registrolivre.services.DocumentService;
 import com.amazonaws.services.s3.AmazonS3;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -33,13 +36,16 @@ public class CompanyController {
     CompanyService companyService;
     Validator validator;
     AWSService awsService;
+    DocumentService documentService;
 
     @Autowired
-    public CompanyController(CompanyService companyService, AWSService awsService) {
+    public CompanyController(CompanyService companyService, AWSService awsService, DocumentService documentService) {
         this.companyService = companyService;
+        this.awsService = awsService;
+        this.documentService = documentService;
+
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         validator = factory.getValidator();
-        this.awsService = awsService;
     }
 
     @RequestMapping(value = "/cadastro", method = RequestMethod.POST)
@@ -48,8 +54,9 @@ public class CompanyController {
             Company company = new Company.Builder().toModel(companyRepresentation);
             Set<ConstraintViolation<Company>> violations = validator.validate(company);
             if (violations.isEmpty()) {
-                saveFor(company);
+                Company registeredCompany = saveFor(company);
                 String documentUrl = uploadDocumentFor(multipartFile);
+                saveDocumentFor(registeredCompany, documentUrl);
                 return new ResponseEntity<>(HttpStatus.OK);
             } else {
                 log.error("Violations found: " + violations.toString());
@@ -72,13 +79,21 @@ public class CompanyController {
         return ResponseEntity.ok(companyRepresentation);
     }
 
-    private void saveFor(Company company) {
-        companyService.save(company);
+    private Company saveFor(Company company) {
+        return companyService.save(company);
     }
 
     private String uploadDocumentFor(MultipartFile multipartFile) throws IOException {
         AmazonS3 client = AWSService.client();
         String fileName = multipartFile.getName();
         return awsService.uploadToS3(client, fileName);
+    }
+
+    private void saveDocumentFor(Company registeredCompany, String documentUrl) {
+        Document document = new Document.Builder()
+                .withCompany(registeredCompany)
+                .withUrl(documentUrl)
+                .build();
+        documentService.save(document);
     }
 }

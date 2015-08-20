@@ -5,6 +5,7 @@ import br.com.registrolivre.controllers.representations.DocumentRepresentation;
 import br.com.registrolivre.models.Company;
 import br.com.registrolivre.services.AWSService;
 import br.com.registrolivre.services.CompanyService;
+import br.com.registrolivre.services.DocumentService;
 import com.amazonaws.services.s3.AmazonS3Client;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,10 +41,13 @@ public class CompanyControllerTest {
 
     private Company company;
 
+    @Mock
+    private DocumentService documentService;
+
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        controller = new CompanyController(companyService, awsService);
+        controller = new CompanyController(companyService, awsService, documentService);
         Set<DocumentRepresentation> documents = new HashSet<>();
         companyRepresentation = new CompanyRepresentation(1L, "79.064.650/0001-50", "fancy name", documents);
         company = new Company.Builder().toModel(companyRepresentation);
