@@ -18,7 +18,7 @@ public class CompanyTest {
 
     @Test
     public void shouldConvertRepresentationToCompany() throws Exception {
-        CompanyRepresentation representation = new CompanyRepresentation(1L, CNPJ, TRADE_NAME, DOCUMENTS, null);
+        CompanyRepresentation representation = new CompanyRepresentation(1L, CNPJ, TRADE_NAME, DOCUMENTS);
         Company company = new Company.Builder().toModel(representation);
 
         assertThat(company.getCnpj(), is(representation.getCnpj()));

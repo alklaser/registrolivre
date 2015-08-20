@@ -43,8 +43,8 @@ public class CompaniesControllerTest {
 
         List<CompanyRepresentation> expectedCompanies = new ArrayList<>();
         Set<DocumentRepresentation> emptyDocuments = new HashSet<>();
-        expectedCompanies.add(new CompanyRepresentation(1L, "first cnpj", "first tradeName", emptyDocuments, null));
-        expectedCompanies.add(new CompanyRepresentation(2L, "second cnpj", "second tradeName", emptyDocuments, null));
+        expectedCompanies.add(new CompanyRepresentation(1L, "first cnpj", "first tradeName", emptyDocuments));
+        expectedCompanies.add(new CompanyRepresentation(2L, "second cnpj", "second tradeName", emptyDocuments));
 
         assertThat(asList(companies.getBody()).size(), is(asList(expectedCompanies).size()));
         assertThat(companies.getStatusCode(), is(HttpStatus.OK));

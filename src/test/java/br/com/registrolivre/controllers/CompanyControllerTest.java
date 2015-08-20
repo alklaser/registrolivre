@@ -3,15 +3,17 @@ package br.com.registrolivre.controllers;
 import br.com.registrolivre.controllers.representations.CompanyRepresentation;
 import br.com.registrolivre.controllers.representations.DocumentRepresentation;
 import br.com.registrolivre.models.Company;
-import br.com.registrolivre.models.Document;
+import br.com.registrolivre.services.AWSService;
 import br.com.registrolivre.services.CompanyService;
+import com.amazonaws.services.s3.AmazonS3Client;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
+import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,6 +28,12 @@ public class CompanyControllerTest {
     @Mock
     private CompanyService companyService;
 
+    @Mock
+    private AWSService awsService;
+
+    @Mock
+    private MultipartFile multipartFile;
+
     private CompanyRepresentation companyRepresentation;
 
     private CompanyController controller;
@@ -35,43 +43,45 @@ public class CompanyControllerTest {
     @Before
     public void setUp() throws Exception {
         initMocks(this);
-        controller = new CompanyController(companyService);
+        controller = new CompanyController(companyService, awsService);
         Set<DocumentRepresentation> documents = new HashSet<>();
-        companyRepresentation = new CompanyRepresentation(1L, "79.064.650/0001-50", "fancy name", documents, null);
+        companyRepresentation = new CompanyRepresentation(1L, "79.064.650/0001-50", "fancy name", documents);
         company = new Company.Builder().toModel(companyRepresentation);
     }
 
     @Test
     public void shouldCallRepository() throws Exception {
-        controller.saveCompany(companyRepresentation);
+        when(multipartFile.getName()).thenReturn("file.pdf");
+        when(awsService.uploadToS3(any(AmazonS3Client.class), any(String.class))).thenReturn(any(String.class));
+        controller.saveCompany(companyRepresentation, multipartFile);
         verify(companyService).save(company);
     }
 
     @Test
     public void shouldReturnOKIfSuccess() throws Exception {
         companyService.save(company);
-        ResponseEntity response = controller.saveCompany(companyRepresentation);
+        ResponseEntity response = controller.saveCompany(companyRepresentation, multipartFile);
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
     }
 
     @Test
     public void shouldReturnInternalServerError() throws Exception {
         doThrow(IllegalArgumentException.class).when(companyService).save(company);
-        ResponseEntity response = controller.saveCompany(companyRepresentation);
+        ResponseEntity response = controller.saveCompany(companyRepresentation, multipartFile);
         assertThat(response.getStatusCode(), is(HttpStatus.INTERNAL_SERVER_ERROR));
     }
 
     @Test
     public void shouldValidateCNPJ() throws Exception {
         companyRepresentation = new CompanyRepresentation("123 invalid cnpj", "another fancy name");
-        controller.saveCompany(companyRepresentation);
+        controller.saveCompany(companyRepresentation, multipartFile);
         verifyZeroInteractions(companyService);
     }
 
     @Test
     public void shouldGetExistingCompanyByCNPJ() throws Exception {
         HashSet<DocumentRepresentation> documents = new HashSet<>();
-        CompanyRepresentation company = new CompanyRepresentation(1L, "cnpj", "company inc.", documents, null);
+        CompanyRepresentation company = new CompanyRepresentation(1L, "cnpj", "company inc.", documents);
         when(companyService.getByCnpj("cnpj")).thenReturn(new Company.Builder().toModel(company));
         ResponseEntity response = controller.getCompanyByCnpj("cnpj");
         assertThat(response.getBody(), is(company));
@@ -84,6 +94,5 @@ public class CompanyControllerTest {
         ResponseEntity response = controller.getCompanyByCnpj("cnpj");
         assertEquals(response.getBody(), null);
         assertThat(response.getStatusCode(), is(HttpStatus.OK));
-
     }
 }
