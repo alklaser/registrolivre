@@ -4,6 +4,7 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.util.Date;
 import static br.com.registrolivre.utils.EnvironmentVariables.REGISTROLIVRE_AWS_ACCESS_KEY_ID;
 import static br.com.registrolivre.utils.EnvironmentVariables.REGISTROLIVRE_AWS_SECRET_ACCESS_KEY;
 
+@Component
 public class AWSService {
     public static final String BUCKET_NAME = "registrolivre";
     public static final Date DATE_EXPIRATION = null;
