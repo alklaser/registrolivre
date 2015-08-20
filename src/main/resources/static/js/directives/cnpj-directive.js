@@ -10,7 +10,7 @@ app.directive("cnpjValidation", ["companies", function(companies) {
       });
 
       var validateCNPJ = function(input) {
-        var cnpj = input.replace(/[^\d]+/g, '');
+        cnpj = input.replace(/[^\d]+/g, '');
 
         return isCNPJStructureValid(cnpj) &&
           firstDigitValidation(cnpj) &&
@@ -19,11 +19,10 @@ app.directive("cnpjValidation", ["companies", function(companies) {
       };
 
       var verifyUniqueCnpj = function(cnpj) {
-        var formattedCnpj = formatCnpj(cnpj);
         scope.verifingCnpj = true;
         scope.cnpjAlreadyExists = false;
 
-        companies.getCompanyWithCnpj(formattedCnpj).then(function(response) {
+        companies.getCompanyWithCnpj(cnpj).then(function(response) {
             scope.verifingCnpj = false;
             if (!response.data) {
                 element.addClass('has-success');

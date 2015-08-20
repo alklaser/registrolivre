@@ -7,28 +7,28 @@ app.factory("messages", ["$document", "$templateCache", function($document, $tem
 
   }
 
-  function show(message, selector, type) {
+  function show(message, type) {
     var alert = parseHtml(message, type);
 
     /* O método .find() do Angular não encontra classes ou IDs, apenas atributos */
-    var container = $document[0].querySelector(selector);
+    var container = $document[0].querySelector(".messages-container");
     angular.element(container).html(alert);
   };
 
-  function showSuccess(message, selector) {
-    show(message, selector, "success");
+  function showSuccess(message) {
+    show(message, "success");
   }
 
-  function showWarning(message, selector) {
-    show(message, selector, "warning")
+  function showWarning(message) {
+    show(message, "warning")
   }
 
-   function showDanger(message, selector) {
-     show(message, selector, "danger");
+   function showDanger(message) {
+     show(message, "danger");
    }
 
-   function showInfo(message, selector) {
-     show(message, selector, "info");
+   function showInfo(message) {
+     show(message, "info");
    }
 
   return {
