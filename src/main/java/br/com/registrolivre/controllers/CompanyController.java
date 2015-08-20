@@ -38,10 +38,13 @@ public class CompanyController {
             Set<ConstraintViolation<Company>> violations = validator.validate(company);
             if (violations.isEmpty()) {
                 companyService.save(company);
+                return new ResponseEntity<>(HttpStatus.OK);
+
             } else {
                 log.error("Violations found: " + violations.toString());
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+
             }
-            return new ResponseEntity<>(HttpStatus.OK);
         } catch (IllegalArgumentException illegalArgumentException) {
             log.error("Could not save company - one or more arguments were null", illegalArgumentException);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

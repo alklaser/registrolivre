@@ -12,7 +12,7 @@ app.factory("messages", ["$document", "$templateCache", function($document, $tem
 
     /* O método .find() do Angular não encontra classes ou IDs, apenas atributos */
     var container = $document[0].querySelector(selector);
-    angular.element(container).append(alert);
+    angular.element(container).html(alert);
   };
 
   function showSuccess(message, selector) {
