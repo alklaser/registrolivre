@@ -22,7 +22,7 @@
                         {{ company.tradeName }}
                     </td>
                     <td>
-                        <a href="{{ company.documents[0].url }}" target="_blank" class="btn btn-default">Download de PDF</a>
+                        <a ng-disabled="company.documents[0] == undefined" href="{{ company.documents[0].url }}" target="_blank" class="btn btn-primary pull-right">Download de PDF</a>
                     </td>
                 </tr>
             </table>
