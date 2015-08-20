@@ -6,10 +6,6 @@
         <h2>Cadastrar Empresa</h2>
       </div>
 
-      <div ng-show="hasErrors()">
-        <h1>MAZAHHH OTAVIO VEIO</h1>
-      </div>
-
       <form required-field-validation class="form" name="formulario" enctype="multipart/form-data">
         <div class="panel-body">
           <div class="list-group-item-heading centralize">
@@ -26,6 +22,31 @@
             <input class="form-control required" ng-model="company.tradeName" type="text" name="empresa.nomeFantasia" id="nomeFantasia" value="" placeholder="ex: Larah Instrumentos Musicais" required="">
             <span class="glyphicon form-control-feedback"></span>
           </div>
+
+
+
+
+          <div class="form-group">
+            <label class="control-label">Upload de arquivo <abbr class="cor-vermelha" title="Preenchimento obrigatório">*</abbr></label>
+
+            <input id="file" class="form-group filestyle choose-file" data-buttontext="Escolher arquivo" type="file" name="arquivo" tabindex="-1" >
+
+            <div class="bootstrap-filestyle input-group">
+              <input type="text" class="form-control " disabled="">
+              <span class="group-span-filestyle input-group-btn" tabindex="0">
+                <label for="file" class="btn btn-default ">
+                  <span class="glyphicon glyphicon-folder-open" /> Escolher arquivo
+                </label>
+              </span>
+            </div>
+
+
+            <span class="msg-alert color-red" id="file-alert">Tamanho máximo do arquivo: 5MB.</span>
+          </div>
+
+
+
+
         </div>
 
         <div class="panel-footer">
