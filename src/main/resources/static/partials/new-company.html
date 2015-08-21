@@ -16,7 +16,7 @@
 
           <div cnpj-validation class="form-group has-feedback " id="cnpj-group" >
             <label class="control-label">CNPJ <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr></label>
-            <input class="form-control required" ng-model="company.cnpj"  type="text" name="empresa.cnpj" id="cnpj" value=""  maxlength="18"
+            <input class="form-control required" ng-model="company.cnpj"  type="text" name="empresa.cnpj" id="cnpj"
                    autocomplete="off" ui-mask="?99.999.999/9999-99" model-view-value="true" required>
               <span ng-show="verifingCnpj" class="form-control-feedback" aria-hidden="true"><img src="svg/loader.svg" alt=""/></span>
               <span ng-show="showUniqueCnpjMessage()"><label class=" control-label">Já existe empresa com esse CNPJ</label></span>
@@ -26,7 +26,8 @@
 
           <div empty-field-validation class="form-group has-feedback" id="nomeFantasia-group">
             <label class="control-label">Nome fantasia  <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr> </label>
-            <input class="form-control required" ng-model="company.tradeName" ng-change="validate()" type="text" name="empresa.nomeFantasia" id="nomeFantasia" value="" placeholder="ex: Larah Instrumentos Musicais" required="">
+            <input class="form-control required" ng-model="company.tradeName" ng-change="validate()" type="text" name="empresa.nomeFantasia"
+                   id="nomeFantasia" value="" placeholder="ex: Larah Instrumentos Musicais" maxlength="40" required>
             <span class="glyphicon form-control-feedback"></span>
           </div>
         </div>
