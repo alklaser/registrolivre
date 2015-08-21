@@ -10,6 +10,8 @@ app.directive("cnpjValidation", ["companies", function(companies) {
 
       inputText.on("blur", function() {
         scope.cnpjAlreadyExists = false;
+        scope.incompleteCnpj = false;
+        scope.invalidCnpj = false;
         element.removeClass('has-error has-success');
         if(!validateCNPJ(inputText.val())) {
             element.addClass('has-error');
@@ -42,14 +44,16 @@ app.directive("cnpjValidation", ["companies", function(companies) {
       }
 
       var isCNPJStructureValid = function(cnpj) {
-        if (cnpj == '')
+        if (cnpj.length != 14) {
+          scope.incompleteCnpj = true;
           return false;
+        }
 
-        if (cnpj.length != 14)
-          return false;
 
-        if (areAllCharsTheSame(cnpj))
+        if (areAllCharsTheSame(cnpj)){
+          scope.invalidCnpj = true;
           return false;
+        }
 
         return true;
       };
@@ -67,13 +71,17 @@ app.directive("cnpjValidation", ["companies", function(companies) {
       var firstDigitValidation = function(cnpj) {
         size = cnpj.length - 2;
         digits = cnpj.substring(size);
-        return cnpjDigitCalculation(cnpj, size) == digits.charAt(0);
+        var valid = cnpjDigitCalculation(cnpj, size) == digits.charAt(0);
+        scope.invalidCnpj = !valid;
+        return valid;
       };
 
       var secondDigitValidation = function(cnpj) {
         size = cnpj.length - 1;
         digits = cnpj.substring(size);
-        return cnpjDigitCalculation(cnpj, size) == digits.charAt(0);
+        var valid = cnpjDigitCalculation(cnpj, size) == digits.charAt(0);
+        scope.invalidCnpj = !valid;
+        return valid;
       };
 
       var cnpjDigitCalculation = function(cnpj, size) {

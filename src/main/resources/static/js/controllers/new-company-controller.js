@@ -2,7 +2,7 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
 
   $scope.createCompany = function(company) {
     companies.newCompany(company).then(function(response) {
-           messages.showSuccess("Empresa criada com sucesso.");
+           messages.showSuccess("Empresa <strong>"+ company.tradeName +"</strong> foi cadastrada.");
            $scope.resetForm();
         }, function(response) {
            messages.showDanger("Ocorreu um erro na criação da empresa, tente novamente.");
