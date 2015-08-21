@@ -24,7 +24,7 @@
 
           <div empty-field-validation class="form-group has-feedback" id="nomeFantasia-group">
             <label class="control-label">Nome fantasia  <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr> </label>
-            <input class="form-control required" ng-model="company.tradeName" type="text" name="empresa.nomeFantasia" id="nomeFantasia" value="" placeholder="ex: Larah Instrumentos Musicais" required="">
+            <input class="form-control required" ng-model="company.tradeName" ng-change="validate()" type="text" name="empresa.nomeFantasia" id="nomeFantasia" value="" placeholder="ex: Larah Instrumentos Musicais" required="">
             <span class="glyphicon form-control-feedback"></span>
           </div>
         </div>
