@@ -17,9 +17,9 @@
                 </tbody>
             </table>
             <table ng-show="hasCompanies" ng-table="tableParams" class="table table-striped table-hover">
-                <tr ng-repeat="company in $data">
-                    <td class="text-left" data-title="'Nome Fantasia'" sortable="'tradeName'">
-                        {{ company.tradeName }}
+                <tr ng-repeat="company in $data" initialize-tooltip>
+                    <td class="text-left" data-title="'Nome Fantasia'" sortable="'tradeName'" ng-init="hasLongName = company.tradeName.length > 60">
+                        <span ng-attr-data-toggle="{{ hasLongName ? 'tooltip' : '' }}" title="{{ company.tradeName }}">{{ company.tradeName | limitTo : 60 }}<span ng-show="hasLongName">...</span></span>
                     </td>
                     <td>
                         <a ng-disabled="company.documents[0] == undefined" href="{{ company.documents[0].url }}" target="_blank" class="btn btn-primary pull-right">Ver Registro</a>
