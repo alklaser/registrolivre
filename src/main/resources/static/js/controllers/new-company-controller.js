@@ -5,7 +5,7 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
            messages.showSuccess("Empresa <strong>"+ company.tradeName +"</strong> foi cadastrada.");
            $scope.resetForm();
         }, function(response) {
-           messages.showDanger("Ocorreu um erro na criação da empresa, tente novamente.");
+           messages.showDanger("Ocorreu um erro no sistema, por favor tente novamente.");
         });
     }
 

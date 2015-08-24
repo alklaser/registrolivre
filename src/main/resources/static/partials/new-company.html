@@ -20,8 +20,8 @@
                    autocomplete="off" ui-mask="?99.999.999/9999-99" model-view-value="true" required>
               <span ng-show="verifingCnpj" class="form-control-feedback" aria-hidden="true"><img src="svg/loader.svg" alt=""/></span>
               <span ng-show="showUniqueCnpjMessage()"><label class=" control-label">Já existe empresa com esse CNPJ</label></span>
-              <span ng-show="incompleteCnpj"><label class=" control-label">Número incompleto</label></span>
-              <span ng-show="invalidCnpj"><label class=" control-label">Número inválido</label></span>
+              <span ng-show="showIncompleteCnpjMessage()"><label class=" control-label">Número incompleto</label></span>
+              <span ng-show="showInvalidCnpjMessage()"><label class=" control-label">Número inválido</label></span>
           </div>
 
           <div empty-field-validation class="form-group has-feedback" id="nomeFantasia-group">

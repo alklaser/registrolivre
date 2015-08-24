@@ -8,6 +8,14 @@ app.directive("cnpjValidation", ["companies", function(companies) {
         return scope.cnpjAlreadyExists && element.hasClass("has-error");
       }
 
+      scope.showIncompleteCnpjMessage = function(){
+          return scope.incompleteCnpj && element.hasClass("has-error");
+      }
+
+      scope.showInvalidCnpjMessage = function(){
+          return scope.invalidCnpj && element.hasClass("has-error");
+      }
+
       inputText.on("blur", function() {
         scope.cnpjAlreadyExists = false;
         scope.incompleteCnpj = false;
