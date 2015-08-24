@@ -19,7 +19,7 @@ describe("Factory: messages", function() {
         messages = $injector.get('messages');
     }));
 
-    it("displays success message on given container", function() {
+    it("should displays success message on given container", function() {
         $document.find('body').append('<div class="messages-container"></div>');
         messages.showSuccess("teste");
         var htmlResponse = $document[0].querySelectorAll('.messages-container');

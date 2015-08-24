@@ -20,7 +20,7 @@ describe("Controller: CompaniesListController", function() {
         $httpBackend.verifyNoOutstandingExpectation();
     });
 
-    it("should get companies list", function() {
+    it("should get all registered companies", function() {
         var expectedCompanies = [{id: 1, cnpj: "123456", tradeName: "Company One Ltda"}, {id: 2, cnpj: "654321", tradeName: "Company Two, Inc"}];
 
         $httpBackend.expectGET('/empresas').respond(expectedCompanies);
