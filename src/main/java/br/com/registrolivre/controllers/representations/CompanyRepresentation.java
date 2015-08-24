@@ -24,6 +24,7 @@ public class CompanyRepresentation {
     @JsonFormat Long id;
     @JsonFormat String cnpj;
     @JsonFormat String tradeName;
+    @JsonFormat String companyName;
     @JsonFormat Set<DocumentRepresentation> documents;
     @JsonFormat MultipartFile file;
 
@@ -42,11 +43,12 @@ public class CompanyRepresentation {
         Long id;
         String cnpj;
         String tradeName;
+        String companyName;
         Set<DocumentRepresentation> documents;
         MultipartFile file;
 
         public CompanyRepresentation build() {
-            return new CompanyRepresentation(null, null, null, null, null);
+            return new CompanyRepresentation(null, null, null, null, null, null);
         }
 
         public CompanyRepresentation toRepresentation(Company company) {
@@ -58,6 +60,7 @@ public class CompanyRepresentation {
                     .withId(company.getId())
                     .withCnpj(company.getCnpj())
                     .withTradeName(company.getTradeName())
+                    .withCompanyName(company.getCompanyName())
                     .withDocuments(documents);
         }
     }

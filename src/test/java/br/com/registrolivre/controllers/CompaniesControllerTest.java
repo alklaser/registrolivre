@@ -43,8 +43,8 @@ public class CompaniesControllerTest {
 
         List<CompanyRepresentation> expectedCompanies = new ArrayList<>();
         Set<DocumentRepresentation> emptyDocuments = new HashSet<>();
-        expectedCompanies.add(new CompanyRepresentation(1L, "first cnpj", "first tradeName", emptyDocuments, null));
-        expectedCompanies.add(new CompanyRepresentation(2L, "second cnpj", "second tradeName", emptyDocuments, null));
+        expectedCompanies.add(new CompanyRepresentation(1L, "first cnpj", "first tradeName", "first tradeName Ltda.", emptyDocuments, null));
+        expectedCompanies.add(new CompanyRepresentation(2L, "second cnpj", "second tradeName", "second tradeName Ltda.", emptyDocuments, null));
 
         assertThat(asList(companies.getBody()).size(), is(asList(expectedCompanies).size()));
         assertThat(companies.getStatusCode(), is(HttpStatus.OK));
@@ -61,8 +61,8 @@ public class CompaniesControllerTest {
 
     private Set<Company> registeredCompanies() {
         Set<Document> emptyDocuments = new HashSet<>();
-        Company firstCompany = new Company(1L, "first cnpj", "first tradeName", emptyDocuments);
-        Company secondCompany = new Company(2L, "second cnpj", "second tradeName", emptyDocuments);
+        Company firstCompany = new Company(1L, "first cnpj", "first tradeName", "first tradeName Ltda.", emptyDocuments);
+        Company secondCompany = new Company(2L, "second cnpj", "second tradeName", "second tradeName Ltda.", emptyDocuments);
         Set<Company> companies = new HashSet<>();
         companies.add(firstCompany);
         companies.add(secondCompany);

@@ -30,3 +30,6 @@ vendor/
 
 # Ignoring direnv users
 .envrc
+
+# Ignore log files
+*.log
