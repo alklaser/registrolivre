@@ -15,6 +15,12 @@ app.factory("messages", ["$document", "$templateCache", function($document, $tem
     angular.element(container).html(alert);
   };
 
+  function clear() {
+    var container = $document[0].querySelector(".messages-container");
+    angular.element(container).html('');
+  }
+
+
   function showSuccess(message) {
     show(message, "success");
   }
@@ -36,5 +42,6 @@ app.factory("messages", ["$document", "$templateCache", function($document, $tem
     showWarning: showWarning,
     showDanger: showDanger,
     showInfo: showInfo,
+    clear: clear,
   }
 }]);

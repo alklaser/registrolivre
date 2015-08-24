@@ -14,6 +14,12 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
     $document.find(".has-feedback").removeClass("has-error has-success");
     $document.find("#btn-submit").attr("disabled", true);
   }
+
+  $scope.clearForm = function() {
+    messages.clear();
+    $scope.resetForm();
+  }
+
   return {
     createCompany: $scope.createCompany,
   };
