@@ -27,4 +27,29 @@ describe("Controller: NewCompanyController", function() {
 
         spy.should.have.been.called.once;
     }));
+
+    it('Should get states from states-and-cities service', function(){
+        var spy = sinon.spy();
+        var $scope = {};
+        var controller = $controller('NewCompanyController', { $scope: $scope, statesAndCities: { getStates: spy }});
+
+        controller.getStates();
+
+        spy.should.have.been.called.once;
+    });
+
+    it('Should get cities from states-and-cities service', function() {
+        var spy = sinon.spy();
+        var state =  "RS";
+        var $scope = {
+            company: {
+                UF: state
+            }
+        };
+        var controller = $controller('NewCompanyController', { $scope: $scope, statesAndCities: { getCitiesByState: spy }});
+
+        controller.loadCities();
+        assert(spy.calledWith(state));
+    });
+
 });
