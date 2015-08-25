@@ -27,3 +27,6 @@ infrastructure/application/public_keys/*.pub
 
 # Ignore external libraries (css and js)
 vendor/
+
+# Ignoring direnv users
+.envrc
