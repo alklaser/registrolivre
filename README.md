@@ -119,7 +119,7 @@ $ cp registrolivre.pub infrastructure/application/public_keys/
 
 ```
 export REGISTROLIVRE_PRIVATE_KEY="caminho_da_chave_privada"
-export LOCAL_REGISTROLIVRE_IP="ip_maquina_local"
+export LOCAL_REGISTROLIVRE_IP="192.168.33.71"  # ip do vagrant box 
 ```
 
 - Provisionamento:
