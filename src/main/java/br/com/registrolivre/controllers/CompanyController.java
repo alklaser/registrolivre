@@ -32,7 +32,7 @@ public class CompanyController {
     }
 
     @RequestMapping(value = "/cadastro", method = RequestMethod.POST)
-    public ResponseEntity saveCompany(@RequestBody CompanyRepresentation companyRepresentation) {
+    public ResponseEntity save(@RequestBody CompanyRepresentation companyRepresentation) {
         try {
             Company company = new Company.Builder().toModel(companyRepresentation);
             Set<ConstraintViolation<Company>> violations = validator.validate(company);
