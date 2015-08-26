@@ -58,7 +58,7 @@ public class CompanyServiceTest {
                 .withTradeName("trade name")
                 .build();
 
-        when(companyRepository.getCompanyByCnpj("cnpj")).thenReturn(company);
+        when(companyRepository.getByCnpj("cnpj")).thenReturn(company);
         Company resultingCompany = companyService.getByCnpj("cnpj");
 
         assertThat(resultingCompany, is(company));

@@ -9,13 +9,13 @@ describe("Controller: NewCompanyController", function() {
         messages = $injector.get('messages');
     }));
 
-    it('Should call factory when click method is triggered', inject(function(companies, messages) {
+    it('should create a new company', inject(function(companies, messages) {
         var spy = sinon.spy();
         var newCompany = function(company) {
             return {
                 then: spy
              };
-        }
+        };
 
         var $scope = {};
         var controller = $controller('NewCompanyController', { $scope: $scope, companies: { newCompany: newCompany }, messages: messages});

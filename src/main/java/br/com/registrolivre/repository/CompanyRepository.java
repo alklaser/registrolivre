@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface CompanyRepository extends CrudRepository<Company, Long> {
-    Company getCompanyByCnpj(String cnpj);
+    Company getByCnpj(String cnpj);
 }

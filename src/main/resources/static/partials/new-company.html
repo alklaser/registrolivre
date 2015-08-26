@@ -18,7 +18,7 @@
             <label class="control-label">CNPJ <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr></label>
             <input class="form-control required" ng-model="company.cnpj"  type="text" name="empresa.cnpj" id="cnpj"
                    autocomplete="off" ui-mask="?99.999.999/9999-99" model-view-value="true" required>
-              <span ng-show="verifingCnpj" class="form-control-feedback" aria-hidden="true"><img src="svg/loader.svg" alt=""/></span>
+              <span ng-show="verifingCnpj" class="form-control-feedback" aria-hidden="true"><img src="images/loader.svg" alt=""/></span>
               <span ng-show="showUniqueCnpjMessage()"><label class=" control-label">Já existe empresa com esse CNPJ</label></span>
               <span ng-show="showIncompleteCnpjMessage()"><label class=" control-label">Número incompleto</label></span>
               <span ng-show="showInvalidCnpjMessage()"><label class=" control-label">Número inválido</label></span>
