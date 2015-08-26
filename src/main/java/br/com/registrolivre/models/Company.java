@@ -57,7 +57,6 @@ public class Company {
     @Wither
     @FieldDefaults(level = PRIVATE)
     public static class Builder {
-
         Long id;
         String cnpj;
         String tradeName;
@@ -86,5 +85,4 @@ public class Company {
                     .collect(Collectors.toSet());
         }
     }
-
 }
