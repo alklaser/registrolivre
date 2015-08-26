@@ -48,7 +48,7 @@ public class CompanyRepresentation {
         MultipartFile file;
 
         public CompanyRepresentation build() {
-            return new CompanyRepresentation(null, null, null, null, null, null);
+            return new CompanyRepresentation();
         }
 
         public CompanyRepresentation toRepresentation(Company company) {
