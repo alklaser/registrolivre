@@ -51,7 +51,6 @@ public class CompaniesController {
     }
 
     private CompanyRepresentation toRepresentation(Company company) {
-        CompanyRepresentation companyRepresentation = new CompanyRepresentation.Builder().toRepresentation(company);
-        return companyRepresentation;
+        return new CompanyRepresentation.Builder().toRepresentation(company);
     }
 }
