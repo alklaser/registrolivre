@@ -39,7 +39,7 @@ app.directive("cnpjValidation", ["companies", function(companies) {
       var verifyUniqueCnpj = function(cnpj) {
         scope.verifingCnpj = true;
 
-        companies.getCompanyWithCnpj(cnpj).then(function(response) {
+        companies.getCompanyByCnpj(cnpj).then(function(response) {
             scope.verifingCnpj = false;
             if (!response.data) {
                 element.addClass('has-success');

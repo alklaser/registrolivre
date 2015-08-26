@@ -12,13 +12,13 @@ app.factory("companies", ["$http", function($http) {
     });
   };
 
-  function getCompanyWithCnpj(cnpj) {
+  function getCompanyByCnpj(cnpj) {
     return $http.get("/buscar-por-cnpj", {params:{"cnpj": cnpj}});
   };
 
   return {
     all: all,
     newCompany: newCompany,
-    getCompanyWithCnpj: getCompanyWithCnpj,
+    getCompanyByCnpj: getCompanyByCnpj,
   }
 }]);
