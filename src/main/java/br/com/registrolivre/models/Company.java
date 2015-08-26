@@ -65,7 +65,7 @@ public class Company {
         Set<Document> documents;
 
         public Company build() {
-            return new Company(null, null, null, null, null);
+            return new Company();
         }
 
         public Company toModel(CompanyRepresentation representation) {
