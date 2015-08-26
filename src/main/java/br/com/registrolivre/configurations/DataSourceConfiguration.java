@@ -1,6 +1,6 @@
 package br.com.registrolivre.configurations;
 
-import br.com.registrolivre.utils.EnvironmentVariables;
+import br.com.registrolivre.utils.DatabaseEnvironmentVariables;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +13,7 @@ public class DataSourceConfiguration {
 
     @Bean
     public BasicDataSource dataSource() throws URISyntaxException {
-        URI dbUri = new URI(System.getenv(EnvironmentVariables.REGISTROLIVRE_DATABASE_URL));
+        URI dbUri = new URI(System.getenv(DatabaseEnvironmentVariables.URL));
 
         String username = dbUri.getUserInfo().split(":")[0];
         String password = dbUri.getUserInfo().split(":")[1];
