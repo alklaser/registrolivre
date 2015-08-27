@@ -16,8 +16,10 @@ module.exports = function (config) {
             'main/resources/static/js/*.js',
             'main/resources/static/js/controllers/*.js',
             'main/resources/static/js/factories/*.js',
+            'main/resources/static/js/services/*.js',
             'test/resources/static/js/controllers/*-spec.js',
             'test/resources/static/js/factories/*-spec.js',
+            'test/resources/static/js/services/*-spec.js',
             'test/resources/static/js/*-spec.js'
         ],
 
