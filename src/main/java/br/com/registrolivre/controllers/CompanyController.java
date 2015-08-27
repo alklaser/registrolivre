@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
 import java.util.Optional;
 import java.util.Set;
 
@@ -32,8 +31,7 @@ public class CompanyController {
     @Autowired
     public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
-        ValidatorFactory factory = buildDefaultValidatorFactory();
-        validator = factory.getValidator();
+        validator = buildDefaultValidatorFactory().getValidator();
     }
 
     @RequestMapping(value = "/cadastro", method = RequestMethod.POST)
