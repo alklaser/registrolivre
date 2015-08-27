@@ -42,15 +42,15 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
       var verifyUniqueCnpj = function(cnpj) {
         scope.verifingCnpj = true;
 
-        companies.getCompanyByCnpj(cnpj).then(function(response) {
-          scope.verifingCnpj = false;
-          if (!response.data) {
-              element.addClass("has-success");
-          } else {
-              scope.cnpjAlreadyExists = true;
-              element.addClass("has-error");
-          }
-        });
+        companies.getCompanyByCnpj(cnpj).then(
+            function(response) {
+                scope.verifingCnpj = false;
+                scope.cnpjAlreadyExists = true;
+                element.addClass('has-error');
+            }, function(response) {
+                scope.verifingCnpj = false;
+                element.addClass('has-success');
+            })
         return true;
       }
 

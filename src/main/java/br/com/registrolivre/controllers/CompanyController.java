@@ -60,7 +60,7 @@ public class CompanyController {
     public ResponseEntity getCompanyByCnpj(@RequestParam String cnpj) {
         Optional<Company> company = Optional.ofNullable(companyService.getByCnpj(cnpj));
         if (!company.isPresent()) {
-            return new ResponseEntity<>(OK);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         CompanyRepresentation companyRepresentation = new CompanyRepresentation.Builder().toRepresentation(company.get());
         return ResponseEntity.ok(companyRepresentation);

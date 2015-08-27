@@ -81,7 +81,7 @@ public class CompanyControllerTest {
         when(companyService.getByCnpj("cnpj")).thenReturn(null);
         ResponseEntity response = controller.getCompanyByCnpj("cnpj");
         assertEquals(response.getBody(), null);
-        assertThat(response.getStatusCode(), is(HttpStatus.OK));
+        assertThat(response.getStatusCode(), is(HttpStatus.NOT_FOUND));
 
     }
 }
