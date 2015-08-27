@@ -7,8 +7,6 @@ import lombok.experimental.Wither;
 
 import javax.persistence.*;
 
-import java.io.Serializable;
-
 import static lombok.AccessLevel.PRIVATE;
 
 @AllArgsConstructor

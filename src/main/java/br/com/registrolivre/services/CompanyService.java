@@ -28,6 +28,6 @@ public class CompanyService {
     }
 
     public Company getByCnpj(String cnpj) {
-        return companyRepository.getCompanyByCnpj(cnpj);
+        return companyRepository.getByCnpj(cnpj);
     }
 }

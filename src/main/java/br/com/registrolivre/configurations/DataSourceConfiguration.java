@@ -1,6 +1,6 @@
 package br.com.registrolivre.configurations;
 
-import br.com.registrolivre.utils.EnvironmentVariables;
+import br.com.registrolivre.utils.DatabaseEnvironmentVariables;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,15 +13,15 @@ public class DataSourceConfiguration {
 
     @Bean
     public BasicDataSource dataSource() throws URISyntaxException {
-        URI dbUri = new URI(System.getenv(EnvironmentVariables.REGISTROLIVRE_DATABASE_URL));
+        URI databaseUri = new URI(System.getenv(DatabaseEnvironmentVariables.URL));
 
-        String username = dbUri.getUserInfo().split(":")[0];
-        String password = dbUri.getUserInfo().split(":")[1];
-        String databaseUrl = String.format("jdbc:postgresql://%s:%s%s", dbUri.getHost(), dbUri.getPort(), dbUri.getPath());
+        String userName = databaseUri.getUserInfo().split(":")[0];
+        String password = databaseUri.getUserInfo().split(":")[1];
+        String databaseUrl = String.format("jdbc:postgresql://%s:%s%s", databaseUri.getHost(), databaseUri.getPort(), databaseUri.getPath());
 
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setUrl(databaseUrl);
-        basicDataSource.setUsername(username);
+        basicDataSource.setUsername(userName);
         basicDataSource.setPassword(password);
 
         return basicDataSource;

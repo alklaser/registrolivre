@@ -103,11 +103,23 @@ $ ./gradlew bringUpLocalAppServer
 
 Para provisionar a máquina local, tem que configurar as variáveis de ambientes antes de executar a task "provisionLocalAppServer":
 
-- Adicione as seguintes variáveis de ambiente:
+- Gere uma SSH key para acessar a maquina virtual:
+
+```
+$ ssh-keygen -t rsa -b 4096 -C "registrolivre"
+```
+
+- Copie a **chave pública** gerada para o diretório adequado:
+
+```
+$ cp registrolivre.pub infrastructure/application/public_keys/
+```
+
+- Adicione as seguintes variáveis de ambiente (recomendo usar o [direnv](http://direnv.net/)):
 
 ```
 export REGISTROLIVRE_PRIVATE_KEY="caminho_da_chave_privada"
-export LOCAL_REGISTROLIVRE_IP="ip_maquina_local"
+export LOCAL_REGISTROLIVRE_IP="192.168.33.71"  # ip do vagrant box 
 ```
 
 - Provisionamento:

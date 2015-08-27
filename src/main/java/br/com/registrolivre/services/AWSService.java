@@ -7,14 +7,14 @@ import com.amazonaws.services.s3.AmazonS3Client;
 
 import java.io.File;
 
-import static br.com.registrolivre.utils.EnvironmentVariables.REGISTROLIVRE_AWS_ACCESS_KEY_ID;
-import static br.com.registrolivre.utils.EnvironmentVariables.REGISTROLIVRE_AWS_SECRET_ACCESS_KEY;
+import static br.com.registrolivre.utils.AWSEnviromentVariables.ACCESS_KEY_ID;
+import static br.com.registrolivre.utils.AWSEnviromentVariables.SECRET_ACCESS_KEY;
 
 public class AWSService {
     public static final String BUCKET_NAME = "registrolivre";
 
     public static AmazonS3 client() {
-        AWSCredentials credentials = new BasicAWSCredentials(REGISTROLIVRE_AWS_ACCESS_KEY_ID, REGISTROLIVRE_AWS_SECRET_ACCESS_KEY);
+        AWSCredentials credentials = new BasicAWSCredentials(ACCESS_KEY_ID, SECRET_ACCESS_KEY);
         return new AmazonS3Client(credentials);
     }
 

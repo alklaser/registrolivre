@@ -13,7 +13,7 @@ describe("Factory: companies", function() {
         $httpBackend.verifyNoOutstandingExpectation();
     });
 
-    it("get all companies", function() {
+    it("should get all registered companies", function() {
 
         var expectedCompanies = [{ id: 1, cnpj: "2", tradeName: "trade name" }];
 
@@ -26,7 +26,7 @@ describe("Factory: companies", function() {
 
     });
 
-    it("gets success message when creating new company with correct information", function() {
+    it("should returns success message when creating new company with correct information", function() {
         var company = {
           cnpj: "2903902193",
           tradeName: "Fantasy Name"
@@ -42,7 +42,8 @@ describe("Factory: companies", function() {
         $httpBackend.flush();
     });
 
-    it("gets a company object when using getCompanyWithCnpj with an existing cnpj", function() {
+
+    it("should returns a company with an existing cnpj", function() {
         var company = {
             cnpj: "2903902193",
             tradeName: "Fantasy Name"
@@ -50,7 +51,7 @@ describe("Factory: companies", function() {
         var expectedResponse = 200;
         $httpBackend.expectGET('/buscar-por-cnpj?cnpj=2903902193').respond(company);
 
-        companies.getCompanyWithCnpj("2903902193").then(function(response) {
+        companies.getCompanyByCnpj("2903902193").then(function(response) {
             response.data.should.be.deep.equal(company);
         });
 

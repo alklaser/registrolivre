@@ -45,6 +45,9 @@ public class Company {
     @Column(name = "trade_name")
     String tradeName;
 
+    @Column(name = "company_name")
+    String companyName;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "company", fetch = FetchType.LAZY)
     Set<Document> documents = new HashSet<>();
 
@@ -54,14 +57,14 @@ public class Company {
     @Wither
     @FieldDefaults(level = PRIVATE)
     public static class Builder {
-
         Long id;
         String cnpj;
         String tradeName;
+        String companyName;
         Set<Document> documents;
 
         public Company build() {
-            return new Company(null, null, null, null);
+            return new Company();
         }
 
         public Company toModel(CompanyRepresentation representation) {
@@ -72,6 +75,7 @@ public class Company {
                     .withId(representation.getId())
                     .withCnpj(representation.getCnpj())
                     .withTradeName(representation.getTradeName())
+                    .withCompanyName(representation.getCompanyName())
                     .withDocuments(documents);
         }
 
@@ -81,5 +85,4 @@ public class Company {
                     .collect(Collectors.toSet());
         }
     }
-
 }
