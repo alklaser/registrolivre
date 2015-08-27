@@ -3,7 +3,9 @@ package br.com.registrolivre.controllers;
 import br.com.registrolivre.controllers.representations.CompanyRepresentation;
 import br.com.registrolivre.models.Company;
 import br.com.registrolivre.services.CompanyService;
+import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,9 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 import java.util.Set;
 
+import static javax.validation.Validation.*;
+import static org.springframework.http.HttpStatus.*;
+
 @Log4j
 @NoArgsConstructor
 @RestController
@@ -27,7 +32,7 @@ public class CompanyController {
     @Autowired
     public CompanyController(CompanyService companyService) {
         this.companyService = companyService;
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        ValidatorFactory factory = buildDefaultValidatorFactory();
         validator = factory.getValidator();
     }
 
@@ -38,16 +43,16 @@ public class CompanyController {
             Set<ConstraintViolation<Company>> violations = validator.validate(company);
             if (violations.isEmpty()) {
                 companyService.save(company);
-                return new ResponseEntity<>(HttpStatus.OK);
+                return new ResponseEntity<>(OK);
 
             } else {
                 log.error("Violations found: " + violations.toString());
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+                return new ResponseEntity<>(BAD_REQUEST);
 
             }
         } catch (IllegalArgumentException illegalArgumentException) {
             log.error("Could not save company - one or more arguments were null", illegalArgumentException);
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -55,7 +60,7 @@ public class CompanyController {
     public ResponseEntity getCompanyByCnpj(@RequestParam String cnpj) {
         Company company = companyService.getByCnpj(cnpj);
         if (company == null) {
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(OK);
         }
         CompanyRepresentation companyRepresentation = new CompanyRepresentation.Builder().toRepresentation(company);
         return ResponseEntity.ok(companyRepresentation);
