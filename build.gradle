@@ -52,6 +52,9 @@ dependencies {
 
     testCompile("junit:junit:4.12")
     testCompile("org.mockito:mockito-all:1.9.5")
+
+    testCompile 'org.seleniumhq.selenium:selenium-java:2.47.1'
+
 }
 
 task npmInstall(type: Exec) {
