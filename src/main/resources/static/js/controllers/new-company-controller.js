@@ -22,7 +22,8 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
     $document.find("#btn-submit").attr("disabled", true);
   }
 
-  $scope.clearForm = function() {
+  $scope.clearForm = function(form) {
+    form.$setPristine();
     messages.clear();
     $scope.resetForm();
   }

@@ -4,15 +4,15 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
       var inputText = element.find(".form-control");
 
       scope.showUniqueCnpjMessage = function(){
-        return scope.cnpjAlreadyExists && element.hasClass("has-error ng-invalid");
+        return scope.cnpjAlreadyExists && element.hasClass("has-error");
       }
 
       scope.showIncompleteCnpjMessage = function(){
-        return scope.incompleteCnpj && element.hasClass("has-error ng-invalid");
+        return scope.incompleteCnpj && element.hasClass("has-error");
       }
 
       scope.showInvalidCnpjMessage = function(){
-        return scope.invalidCnpj && element.hasClass("has-error ng-invalid");
+        return scope.invalidCnpj && element.hasClass("has-error");
       }
 
       inputText.on("blur", function() {
@@ -21,7 +21,9 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
         scope.invalidCnpj = false;
 
         element.removeClass("has-error has-success ng-invalid ng-valid");
+        inputText.removeClass("has-error has-success ng-invalid ng-valid");
         if(!validateCNPJ(inputText.val())) {
+          inputText.addClass("has-error ng-invalid");
           element.addClass("has-error ng-invalid");
         };
 
@@ -46,9 +48,11 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
             function(response) {
                 scope.verifingCnpj = false;
                 scope.cnpjAlreadyExists = true;
+                inputText.addClass("has-error ng-invalid");
                 element.addClass('has-error ng-invalid');
             }, function(response) {
                 scope.verifingCnpj = false;
+                inputText.addClass("has-success ng-valid");
                 element.addClass('has-success ng-valid');
             })
         return true;

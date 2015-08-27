@@ -36,8 +36,8 @@
             <input class="form-control" ng-model="company.companyName" type="text" name="empresa.razaoSocial" id="razaoSocial" placeholder="ex: Larah Instrumentos Musicais Ltda." maxlength="150">
           </div>
 
-          <div class="form-group has-feedback" id="nomeEndereco-group" ng-class="{'has-error': userForm.nomeEndereco.$dirty && userForm.nomeEndereco.$invalid, 'has-success': userForm.nomeEndereco.$valid }">
-            <label class="control-label">Endereço  <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr> </label>
+          <div class="form-group has-feedback" id="nomeEndereco-group">
+            <label class="control-label">Endereço </label>
             <input class="form-control" ng-model="company.Address" type="text" name="nomeEndereco" id="nomeEndereco"
                      value="" placeholder="ex: Av. Ipiranga">
             <span class="glyphicon form-control-feedback"></span>
@@ -46,7 +46,7 @@
           <div class="row">
             <div class="col-lg-6 col-md-6">
               <div class="form-group has-feedback" id="nomeNumero-group">
-                <label class="control-label">Número <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr> </label>
+                <label class="control-label">Número </label>
                 <input class="form-control" ng-model="company.Number" type="number" name="empresa.nomeNumero" id="nomeNumero"
                        value="" placeholder="" maxlength="9" autocomplete="off"  model-view-value="true" />
                 <span class="glyphicon form-control-feedback"></span>
@@ -55,7 +55,7 @@
 
             <div class="col-lg-6 col-md-6">
               <div class="form-group has-feedback" id="nomeComplemento-group">
-                <label class="control-label">Complemento  </label><label class="cor-vermelha">&nbsp;</label>
+                <label class="control-label">Complemento</label>
                 <input class="form-control" ng-model="company.Complement" type="text" name="empresa.nomeComplemento" id="nomeComplemento"
                        value="" placeholder="ex: 201">
                 <span class="glyphicon form-control-feedback"></span>
@@ -66,7 +66,7 @@
           <div class="row">
             <div class="col-lg-2 col-md-2">
               <div class="form-group has-feedback" id="nomeUF-group">
-                <label class="control-label">UF  <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr> </label>
+                <label class="control-label">UF </label>
                 <select class="form-control" ng-model="company.UF" size="1" lang="trocaEstado()">
                     <option ng-repeat="state in getStates()" ng-value="{{state[0]}}"> {{ state[0] }} </option>
                 </select>
@@ -76,7 +76,7 @@
 
             <div class="col-lg-7 col-md-7">
               <div class="form-group has-feedback" id="nomeCidade-group">
-                <label class="control-label">Cidade  <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr> </label>
+                <label class="control-label">Cidade </label>
                 <select class="form-control" ng-model="company.Cidade" size="1">
                     <option ng-repeat="city in loadCities()" value="{{city}}"> {{ city }} </option>
                 </select>
@@ -86,7 +86,7 @@
 
             <div class="col-lg-3 col-md-3">
               <div class="form-group has-feedback" id="nomeCEP-group">
-                <label class="control-label">CEP  <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr> </label>
+                <label class="control-label">CEP</label>
                 <input class="form-control"  ng-model="company.CEP" type="text" name="empresa.nomeCEP" id="nomeCEP"
                        value="" maxlength="9" autocomplete="off" ui-mask="?99999-999" model-view-value="true">
                 <span class="glyphicon form-control-feedback"></span>
@@ -98,7 +98,7 @@
         <div class="panel-footer">
           <span class="centralize msg-alert color-red margin-15-0" id="form-alert">Preencha os campos corretamente para enviar.</span>
           <input type="submit" id="btn-submit" ng-disabled="userForm.$invalid" class="btn btn-lg btn-primary pull-right margin-0-6" ng-click="createCompany(company)" value="Enviar" disabled="true">
-          <input type="reset" ng-click="clearForm()" value="Limpar" class="btn btn-default btn-lg pull-left margin-0-6">
+          <input type="reset" ng-click="clearForm(userForm)" value="Limpar" class="btn btn-default btn-lg pull-left margin-0-6">
           <div style="clear:both;"></div>
         </div>
 
