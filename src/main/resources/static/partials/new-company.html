@@ -32,66 +32,67 @@
           </div>
 
           <div class="form-group" id="razaoSocial-group">
-              <label class="control-label">Razão social </label>
-              <input class="form-control" ng-model="company.companyName" type="text" name="empresa.razaoSocial" id="razaoSocial" placeholder="ex: Larah Instrumentos Musicais Ltda." maxlength="150">
+            <label class="control-label">Razão social </label>
+            <input class="form-control" ng-model="company.companyName" type="text" name="empresa.razaoSocial" id="razaoSocial" placeholder="ex: Larah Instrumentos Musicais Ltda." maxlength="150">
           </div>
-
-        </div>
 
           <div class="form-group has-feedback" id="nomeEndereco-group">
-              <label class="control-label">Endereço  <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr> </label>
-              <input class="form-control required" ng-model="company.Endereco" type="text" name="empresa.nomeEndereco" id="nomeEndereco"
+            <label class="control-label">Endereço  <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr> </label>
+            <input class="form-control required" ng-model="company.Endereco" type="text" name="empresa.nomeEndereco" id="nomeEndereco"
                      value="" placeholder="ex: Av. Ipiranga" >
-              <span class="glyphicon form-control-feedback"></span>
+            <span class="glyphicon form-control-feedback"></span>
           </div>
 
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-                    <div class="form-group has-feedback" id="nomeNumero-group">
-                    <label class="control-label">Número <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr> </label>
-                    <input class="form-control required" ng-model="company.Numero" type="number" name="empresa.nomeNumero" id="nomeNumero"
-                           value="" placeholder="" maxlength="9" autocomplete="off"  model-view-value="true" required="required" />
-                    <span class="glyphicon form-control-feedback"></span>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6">
-                <div class="form-group has-feedback" id="nomeComplemento-group">
-               <label class="control-label">Complemento  </label><label class="cor-vermelha">&nbsp;</label>
+          <div class="row">
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group has-feedback" id="nomeNumero-group">
+                <label class="control-label">Número <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr> </label>
+                <input class="form-control required" ng-model="company.Numero" type="number" name="empresa.nomeNumero" id="nomeNumero"
+                       value="" placeholder="" maxlength="9" autocomplete="off"  model-view-value="true" required="required" />
+                <span class="glyphicon form-control-feedback"></span>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group has-feedback" id="nomeComplemento-group">
+                <label class="control-label">Complemento  </label><label class="cor-vermelha">&nbsp;</label>
                 <input class="form-control required" ng-model="company.Complemento" type="text" name="empresa.nomeComplemento" id="nomeComplemento"
                        value="" placeholder="ex: 201" required="">
                 <span class="glyphicon form-control-feedback"></span>
-                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-2 col-md-2">
+              <div class="form-group has-feedback" id="nomeUF-group">
+                <label class="control-label">UF  <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr> </label>
+                <select class="form-control required" ng-model="company.UF" size="1" lang="trocaEstado()">
+                    <option ng-repeat="state in getStates()" ng-value="{{state[0]}}"> {{ state[0] }} </option>
+                </select>
+                    <span class="glyphicon form-control-feedback"></span>
                 </div>
             </div>
 
-            <div class="row">
-                <div class="col-lg-2 col-md-2">
-                <div class="form-group has-feedback" id="nomeUF-group">
-                <label class="control-label">UF  <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr> </label>
-               <select class="form-control required" ng-model="company.UF" size="1" lang="trocaEstado()">
-                   <option ng-repeat="state in getStates()" ng-value="{{state[0]}}"> {{ state[0] }} </option>
-               </select>
+            <div class="col-lg-7 col-md-7">
+              <div class="form-group has-feedback" id="nomeCidade-group">
+                <label class="control-label">Cidade  <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr> </label>
+                <select class="form-control required" ng-model="company.Cidade" size="1">
+                    <option ng-repeat="city in loadCities()" value="{{city}}"> {{ city }} </option>
+                </select>
                 <span class="glyphicon form-control-feedback"></span>
-                </div>
-                </div>
-                <div class="col-lg-7 col-md-7">
-                    <div class="form-group has-feedback" id="nomeCidade-group">
-                        <label class="control-label">Cidade  <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr> </label>
-                        <select class="form-control required" ng-model="company.Cidade" size="1">
-                            <option ng-repeat="city in loadCities()" value="{{city}}"> {{ city }} </option>
-                        </select>
-                        <span class="glyphicon form-control-feedback"></span>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3">
-                    <div class="form-group has-feedback" id="nomeCEP-group">
-                        <label class="control-label">CEP  <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr> </label>
-                        <input class="form-control required"  ng-model="company.CEP" type="text" name="empresa.nomeCEP" id="nomeCEP"
-                               value="" maxlength="9" autocomplete="off" ui-mask="?99999-999" model-view-value="true" required="">
-                        <span class="glyphicon form-control-feedback"></span>
-                    </div>
-                </div>
+              </div>
             </div>
+
+            <div class="col-lg-3 col-md-3">
+              <div class="form-group has-feedback" id="nomeCEP-group">
+                <label class="control-label">CEP  <abbr class="cor-vermelha" alt="Preenchimento obrigatório" title="Preenchimento obrigatório">*</abbr> </label>
+                <input class="form-control required"  ng-model="company.CEP" type="text" name="empresa.nomeCEP" id="nomeCEP"
+                       value="" maxlength="9" autocomplete="off" ui-mask="?99999-999" model-view-value="true" required="">
+                <span class="glyphicon form-control-feedback"></span>
+              </div>
+            </div>
+        </div>
 
         </div>
         <div class="panel-footer">
