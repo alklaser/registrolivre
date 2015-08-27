@@ -1,12 +1,11 @@
-package br.com.registrolivre.functional;
+package functional.Tests;
 
-import br.com.registrolivre.repository.CompanyRepository;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.Assert;
 
 import java.util.concurrent.TimeUnit;
 
@@ -15,12 +14,10 @@ import static org.hamcrest.core.Is.is;
 
 public class RegistrationFunctionTest {
 
-    @Autowired
-    CompanyRepository companyRepository;
 
     @Test
     public void shouldCreateNewCompany() {
-        companyRepository.deleteAll();
+
 
         WebDriver driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
@@ -35,9 +32,10 @@ public class RegistrationFunctionTest {
         WebElement submitButton = driver.findElement(By.id("btn-submit"));
         submitButton.click();
 
-        driver.get("http://192.168.33.71:5000/#/empresas");
-        WebElement span = driver.findElement(By.xpath(".//span[contains(text(),'Masterchef5')]"));
-        assertThat(span.getText(), is("Masterchef5"));
+        driver.findElement(By.xpath("/html/body/div/div[1]/nav/div/div[2]/ul/li[3]/a")).click();
+        Assert.assertEquals("Registro Livre", driver.getTitle());
+//        WebElement span = driver.findElement(By.xpath(".//span[contains(text(),'Masterchef5')]"));
+//        assertThat(span.getText(), is("Masterchef5"));
         driver.close();
     }
 }
