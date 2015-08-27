@@ -16,6 +16,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
+import java.util.Optional;
 import java.util.Set;
 
 import static javax.validation.Validation.*;
@@ -58,11 +59,11 @@ public class CompanyController {
 
     @RequestMapping(value = "/buscar-por-cnpj", method = RequestMethod.GET)
     public ResponseEntity getCompanyByCnpj(@RequestParam String cnpj) {
-        Company company = companyService.getByCnpj(cnpj);
-        if (company == null) {
+        Optional<Company> company = Optional.of(companyService.getByCnpj(cnpj));
+        if (!company.isPresent()) {
             return new ResponseEntity<>(OK);
         }
-        CompanyRepresentation companyRepresentation = new CompanyRepresentation.Builder().toRepresentation(company);
+        CompanyRepresentation companyRepresentation = new CompanyRepresentation.Builder().toRepresentation(company.get());
         return ResponseEntity.ok(companyRepresentation);
     }
 }
