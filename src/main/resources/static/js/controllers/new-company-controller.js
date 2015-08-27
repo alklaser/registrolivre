@@ -1,11 +1,10 @@
 app.controller("NewCompanyController", ["$scope", "$document", "companies", "messages", "statesAndCities", function($scope, $document, companies, messages, statesAndCities) {
-
   $scope.getStates = function() {
     return statesAndCities.getStates();
   };
 
   $scope.loadCities = function () {
-    return statesAndCities.getCitiesByState($scope.company.UF);
+    return $scope.company && statesAndCities.getCitiesByState($scope.company.UF);
   };
 
   $scope.createCompany = function(company) {
