@@ -1,11 +1,11 @@
 app.service("clipboard", [
   function() {
-    function clipboardData(event) {
+    function getText(event) {
       return event.originalEvent.clipboardData.getData("text");
     }
 
     this.handlePaste = function(domNode) {
-      return _.compose(domNode.val, clipboardData);
+      return _.compose(domNode.val, getText);
     };
   }
 ]);
