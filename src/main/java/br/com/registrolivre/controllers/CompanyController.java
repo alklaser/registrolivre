@@ -20,15 +20,17 @@ import java.util.Optional;
 import java.util.Set;
 
 import static javax.validation.Validation.*;
+import static lombok.AccessLevel.*;
 import static org.springframework.http.HttpStatus.*;
 
 @Log4j
 @NoArgsConstructor
 @RestController
+@FieldDefaults(level = PRIVATE)
 public class CompanyController {
 
-    private CompanyService companyService;
-    private Validator validator;
+    CompanyService companyService;
+    Validator validator;
 
     @Autowired
     public CompanyController(CompanyService companyService) {
