@@ -8,7 +8,7 @@ describe("clipboard", function () {
   }));
 
   describe("#handlePaste", function () {
-    it("updates dom node value with 'paste' event data", function () {
+    it("updates dom node value with clipboard event data", function () {
       var node = {
         val: sinon.spy()
       };
