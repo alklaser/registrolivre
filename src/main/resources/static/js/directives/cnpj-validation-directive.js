@@ -20,9 +20,11 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
         scope.incompleteCnpj = false;
         scope.invalidCnpj = false;
 
-        element.removeClass("has-error has-success");
+        element.removeClass("has-error has-success ng-invalid ng-valid");
+        inputText.removeClass("has-error has-success ng-invalid ng-valid");
         if(!validateCNPJ(inputText.val())) {
-          element.addClass("has-error");
+          inputText.addClass("has-error ng-invalid");
+          element.addClass("has-error ng-invalid");
         };
 
         scope.$digest();
@@ -46,10 +48,12 @@ app.directive("cnpjValidation", ["companies", "clipboard", function(companies, c
             function(response) {
                 scope.verifingCnpj = false;
                 scope.cnpjAlreadyExists = true;
-                element.addClass('has-error');
+                inputText.addClass("has-error ng-invalid");
+                element.addClass('has-error ng-invalid');
             }, function(response) {
                 scope.verifingCnpj = false;
-                element.addClass('has-success');
+                inputText.addClass("has-success ng-valid");
+                element.addClass('has-success ng-valid');
             })
         return true;
       }

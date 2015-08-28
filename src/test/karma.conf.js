@@ -13,17 +13,18 @@ module.exports = function (config) {
             '../node_modules/angular-route/angular-route.js',
             '../node_modules/ng-table/dist/ng-table.js',
             '../node_modules/angular-ui-mask/dist/mask.min.js',
-            'main/resources/static/js/*.js',
-            'main/resources/static/js/controllers/*.js',
-            'main/resources/static/js/factories/*.js',
-            'main/resources/static/js/services/*.js',
-            'test/resources/static/js/controllers/*-spec.js',
-            'test/resources/static/js/factories/*-spec.js',
-            'test/resources/static/js/services/*-spec.js',
-            'test/resources/static/js/*-spec.js'
+            'main/resources/static/js/**/*.js',
+            'test/resources/static/js/**/*-spec.js',
         ],
 
-        reporters: ['spec'],
+        reporters: ['spec', 'coverage'],
+
+        preprocessors: { 'main/resources/static/js/**/*.js': ['coverage'] },
+
+        coverageReporter: {
+          type : 'html',
+          dir : 'test/resources/coverage'
+        },
 
         port: 9876,
         colors: true,

@@ -33,3 +33,6 @@ vendor/
 
 # Ignore log files
 *.log
+
+#Ignore coverage report
+src/test/resources/coverage/

@@ -1,11 +1,10 @@
 app.controller("NewCompanyController", ["$scope", "$document", "companies", "messages", "statesAndCities", function($scope, $document, companies, messages, statesAndCities) {
-
   $scope.getStates = function() {
     return statesAndCities.getStates();
   };
 
   $scope.loadCities = function () {
-    return statesAndCities.getCitiesByState($scope.company.UF);
+    return $scope.company && statesAndCities.getCitiesByState($scope.company.UF);
   };
 
   $scope.createCompany = function(company) {
@@ -23,7 +22,8 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
     $document.find("#btn-submit").attr("disabled", true);
   }
 
-  $scope.clearForm = function() {
+  $scope.clearForm = function(form) {
+    form.$setPristine();
     messages.clear();
     $scope.resetForm();
   }
