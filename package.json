@@ -1,6 +1,10 @@
 {
   "name": "registroLivre",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/username/repository.git"
+  },
   "description": "",
   "main": "''",
   "scripts": {
