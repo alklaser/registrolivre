@@ -31,7 +31,8 @@ app.controller("NewCompanyController", ["$scope", "$document", "companies", "mes
   return {
     createCompany: $scope.createCompany,
     getStates: $scope.getStates,
-    loadCities: $scope.loadCities
+    loadCities: $scope.loadCities,
+    clearForm: $scope.clearForm
   };
 
 }]);
