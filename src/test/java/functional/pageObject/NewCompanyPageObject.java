@@ -4,10 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class TelaCadastroObject {
+public class NewCompanyPageObject {
     protected WebDriver driver;
 
-    public TelaCadastroObject(WebDriver driver) {
+    public NewCompanyPageObject(WebDriver driver) {
         super();
         this.driver = driver;
     }

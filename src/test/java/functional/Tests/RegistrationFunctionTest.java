@@ -1,44 +1,49 @@
 package functional.Tests;
 
-import functional.pageObject.TelaCadastroObject;
+import functional.pageObject.CompanyListPageObject;
+import functional.pageObject.NewCompanyPageObject;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 public class RegistrationFunctionTest {
     static WebDriver driver;
-    private TelaCadastroObject telaCadastroObject;
+    private NewCompanyPageObject newCompanyPageObject;
+    private CompanyListPageObject companyListPageObject;
 
     @Before
     public void setUp() throws Exception {
 
         driver = new FirefoxDriver();
-        telaCadastroObject = new TelaCadastroObject(driver);
+        newCompanyPageObject = new NewCompanyPageObject(driver);
+        companyListPageObject = new CompanyListPageObject (driver);
 
 
-       // telaCadastroObject.getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+       // newCompanyPageObject.getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
     }
 
     @Test
     public void shouldCreateNewCompany() {
-        telaCadastroObject.visit();
-        telaCadastroObject.fillInCnpj("30.883.835/0001-06");
-        telaCadastroObject.fillInName("Gama Company LTDA");
-        telaCadastroObject.fillInSocialReason("Gama Company");
-        telaCadastroObject.fillInAddress("Rua Avelino Nascimento");
-        telaCadastroObject.fillInNumber("222");
-        telaCadastroObject.fillInComplement("apart 107");
-        telaCadastroObject.fillInState("MG");
-        telaCadastroObject.fillInCity("Almenara");
-        telaCadastroObject.fillInZipCode("39900-000");
-        telaCadastroObject.submitForm();
+        newCompanyPageObject.visit();
+        newCompanyPageObject.fillInCnpj("30.883.835/0001-06");
+        newCompanyPageObject.fillInName("Gama Company LTDA");
+        newCompanyPageObject.fillInSocialReason("Gama Company");
+        newCompanyPageObject.fillInAddress("Rua Avelino Nascimento");
+        newCompanyPageObject.fillInNumber("222");
+        newCompanyPageObject.fillInComplement("apart 107");
+        newCompanyPageObject.fillInState("MG");
+        newCompanyPageObject.fillInCity("Almenara");
+        newCompanyPageObject.fillInZipCode("39900-000");
+        newCompanyPageObject.submitForm();
+
+
+        companyListPageObject.visit();
     }
 
     @After
