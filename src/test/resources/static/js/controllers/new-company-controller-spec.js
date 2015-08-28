@@ -54,11 +54,16 @@ describe("Controller: NewCompanyController", function() {
 
     it("Should clear form and messages when hit reset form button", function() {
         var clearMessages = sinon.spy();
+        var pristineMock = sinon.spy();
+        var formMock = {
+            $setPristine: pristineMock
+        }
 
         var controller = $controller('NewCompanyController', { $scope: $scope, messages: { clear: clearMessages }});
 
-        controller.clearForm();
+        controller.clearForm(formMock);
         clearMessages.should.have.been.called.once;
+        formMock.$setPristine.should.have.been.called.once;
         $scope.company.should.be.deep.equal({});
 
     });
