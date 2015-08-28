@@ -4,51 +4,46 @@ import functional.pageObject.TelaCadastroObject;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.junit.Assert;
 
-import java.util.concurrent.TimeUnit;
-
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 
 public class RegistrationFunctionTest {
     static WebDriver driver;
-    private TelaCadastroObject telacadastro;
+    private TelaCadastroObject telaCadastroObject;
 
     @Before
     public void setUp() throws Exception {
 
         driver = new FirefoxDriver();
-        telacadastro = new TelaCadastroObject(driver);
-        telacadastro.getDriver().get("http://192.168.33.71:5000/#/cadastro");
+        telaCadastroObject = new TelaCadastroObject(driver);
 
-       // telacadastro.getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+
+       // telaCadastroObject.getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
 
     }
 
-
-
     @Test
     public void shouldCreateNewCompany() {
-        telacadastro.preencheForm("30.883.835/0001-06", "pageObjectTest");
-        //telacadastro.inputCnpj("30.883.835/0001-06");
-        //telacadastro.inputNomeFantasia("pageObjectTest");
-        //telacadastro.submit();
-
-        driver.findElement(By.xpath("/html/body/div/div[1]/nav/div/div[2]/ul/li[3]/a")).click();
-        Assert.assertEquals("Registro Livre", driver.getTitle());
-//        WebElement span = driver.findElement(By.xpath(".//span[contains(text(),'Masterchef5')]"));
-//        assertThat(span.getText(), is("Masterchef5"));
+        telaCadastroObject.visit();
+        telaCadastroObject.fillInCnpj("30.883.835/0001-06");
+        telaCadastroObject.fillInName("Gama Company LTDA");
+        telaCadastroObject.fillInSocialReason("Gama Company");
+        telaCadastroObject.fillInAddress("Rua Avelino Nascimento");
+        telaCadastroObject.fillInNumber("222");
+        telaCadastroObject.fillInComplement("apart 107");
+        telaCadastroObject.fillInState("MG");
+        telaCadastroObject.fillInCity("Almenara");
+        telaCadastroObject.fillInZipCode("39900-000");
+        telaCadastroObject.submitForm();
     }
 
     @After
     public void tearDown() throws Exception {
         driver.quit();
-
     }
 }
 

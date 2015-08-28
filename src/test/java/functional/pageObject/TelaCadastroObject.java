@@ -1,57 +1,60 @@
 package functional.pageObject;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
-public class TelaCadastroObject{
-
-
+public class TelaCadastroObject {
     protected WebDriver driver;
 
-    public TelaCadastroObject(WebDriver driver){
+    public TelaCadastroObject(WebDriver driver) {
         super();
         this.driver = driver;
     }
 
-    @FindBy (id = "cnpj")
-    private WebElement cnpfField;
-
-    @FindBy (id = "nomeFantasia")
-    private WebElement nomeFantasiaField;
-
-    @FindBy (id = "btn-submit")
-    private WebElement submitBtn;
-
-//    public void inputCnpj(String cnpj){
-//        cnpfField.sendKeys(cnpj);
-//    }
-//
-//    public void inputNomeFantasia(String nomeFantasia){
-//        nomeFantasiaField.sendKeys(nomeFantasia);
-//    }
-//
-//    public void submit() {
-//        submitBtn.click();
-//    }
-
-    public TelaCadastroObject preencheForm(String cnpj,String nomeFantasia){
-        cnpfField.sendKeys(cnpj);
-        nomeFantasiaField.sendKeys(nomeFantasia);
-        submitBtn.click();
-//        inputCnpj(cnpj);
-//        inputNomeFantasia(nomeFantasia);
-//        submit();
-
-        return this;
+    public void visit() {
+        driver.get("http://192.168.33.71:5000/#/cadastro");
     }
 
-    public WebDriver getDriver() {
-        return driver;
+    public void fillInCnpj(String cnpj) {
+        driver.findElement(By.id("cnpj")).sendKeys(cnpj);
     }
 
-    public void setDriver(WebDriver driver) {
-        this.driver = driver;
+    public void fillInName(String nomeFantasia) {
+        driver.findElement(By.id("nomeFantasia")).sendKeys(nomeFantasia);
     }
 
+    public void fillInSocialReason(String socialReason) {
+        driver.findElement(By.id("razaoSocial")).sendKeys(socialReason);
+    }
+
+    public void fillInAddress(String nameAddress) {
+        driver.findElement(By.id("nomeEndereco")).sendKeys(nameAddress);
+    }
+
+    public void fillInNumber(String number) {
+        driver.findElement(By.id("nomeNumero")).sendKeys(number);
+    }
+
+    public void fillInComplement(String nameComplement) {
+        driver.findElement(By.id("nomeComplemento")).sendKeys(nameComplement);
+    }
+
+    public void fillInState(String stateName) {
+        Select dropdown = new Select(driver.findElement(By.cssSelector("#nomeUF-group select")));
+        dropdown.selectByVisibleText(stateName);
+    }
+
+    public void fillInCity(String cityName) {
+        Select dropdown = new Select(driver.findElement(By.cssSelector("#nomeCidade-group select")));
+        dropdown.selectByVisibleText(cityName);
+    }
+
+    public void fillInZipCode(String zipCode) {
+        driver.findElement(By.id("nomeCEP")).sendKeys(zipCode);
+    }
+
+    public void submitForm() {
+        driver.findElement(By.id("btn-submit")).click();
+    }
 }
