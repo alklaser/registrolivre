@@ -1,8 +1,10 @@
 package functional.Tests;
 
 import functional.pageObject.CompanyListPageObject;
+import functional.pageObject.HeaderObject;
 import functional.pageObject.NewCompanyPageObject;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
@@ -15,6 +17,7 @@ public class RegistrationFunctionTest {
     static WebDriver driver;
     private NewCompanyPageObject newCompanyPageObject;
     private CompanyListPageObject companyListPageObject;
+    private HeaderObject headerObject;
 
     @Before
     public void setUp() throws Exception {
@@ -22,6 +25,8 @@ public class RegistrationFunctionTest {
         driver = new FirefoxDriver();
         newCompanyPageObject = new NewCompanyPageObject(driver);
         companyListPageObject = new CompanyListPageObject (driver);
+        headerObject = new HeaderObject(driver);
+        driver.get("http://192.168.33.71:5000/#");
 
 
        // newCompanyPageObject.getDriver().manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
@@ -30,7 +35,7 @@ public class RegistrationFunctionTest {
 
     @Test
     public void shouldCreateNewCompany() {
-        newCompanyPageObject.visit();
+        headerObject.visitCadastrarEmpresa();
         newCompanyPageObject.fillInCnpj("30.883.835/0001-06");
         newCompanyPageObject.fillInName("Gama Company LTDA");
         newCompanyPageObject.fillInSocialReason("Gama Company");
@@ -43,7 +48,9 @@ public class RegistrationFunctionTest {
         newCompanyPageObject.submitForm();
 
 
-        companyListPageObject.visit();
+        headerObject.visitListarEmpresa();
+        Assert.assertEquals(headerObject.getCurrentUrl(),"http://192.168.33.71:5000/#/empresas");
+       // assertThat("Page object retornar uma lista de empresas");
     }
 
     @After

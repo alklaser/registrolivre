@@ -14,7 +14,7 @@ public class CompanyListPageObject {
         driver.get("http://192.168.33.71:5000/#/empresas");
     }
 
-    
+
 
 
 }
